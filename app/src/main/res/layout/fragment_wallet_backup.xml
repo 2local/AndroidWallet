@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.android.l2l.twolocal.view.ToolbarView
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        app:tv_show_close="true"
+        app:tv_title="" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btn_go_next"
+        android:layout_below="@+id/toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="@dimen/spacing_medium"
+           android:layout_marginEnd="@dimen/spacing_medium">
+
+            <TextView
+                android:id="@+id/txt_create_wallet"
+                style="@style/textAppearance.size14.grey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="@string/fragment_wallet_backup_create_eth_wallet" />
+
+            <TextView
+                style="@style/textAppearance.size20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_intermediate"
+                android:text="@string/fragment_wallet_backup_your_recovery_phrase" />
+
+            <TextView
+                style="@style/textAppearance.size14.grey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_large"
+                android:text="@string/fragment_wallet_backup_hint" />
+
+            <TextView
+                android:id="@+id/tv_mnemonic"
+                style="@style/TextAppearance.MaterialComponents.Body2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_large"
+                android:background="@drawable/bg_white_border_gray_radius_normal"
+                android:lineSpacingExtra="@dimen/spacing_medium"
+                android:padding="@dimen/spacing_medium"
+                android:textColor="@color/color_blue"
+                android:textSize="16sp" />
+
+            <TextView
+                style="@style/textAppearance.size14.red"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_large"
+                android:text="@string/fragment_wallet_backup_warning" />
+
+
+            <CheckBox
+                android:id="@+id/chk_stored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_xxxxlarge"
+                android:text="@string/fragment_wallet_backup_have_stored_mnemonic" />
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_go_next"
+        style="@style/button.secondary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/margin_large"
+        android:layout_marginTop="@dimen/margin_large"
+        android:layout_marginEnd="@dimen/margin_large"
+        android:layout_marginBottom="@dimen/margin_large"
+        android:enabled="false"
+        android:text="@string/fragment_send_token_continue"
+        android:textColor="@color/white"
+        android:textSize="@dimen/medium_text_size" />
+
+
+</RelativeLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/wallet_menu_rename"
+        android:icon="@drawable/ic_edit_tiny"
+        android:title="@string/wallet_menu_rename"
+        app:showAsAction="always"
+        android:iconTint="@color/icon_color"
+        />
+
+    <item
+        android:id="@+id/wallet_menu_remove"
+        android:icon="@drawable/ic_close_tiny"
+        android:title="@string/wallet_menu_remove"
+        app:showAsAction="always"
+       />
+
+    <item
+        android:id="@+id/wallet_menu_mnemonic"
+        android:icon="@drawable/ic_list"
+        android:title="@string/wallet_menu_mnemonic"
+        android:iconTint="@color/icon_color"
+        app:showAsAction="always"
+        />
+
+
+</menu>

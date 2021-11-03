@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/wallet"
+    app:startDestination="@id/MyWalletListScreen">
+
+    <fragment
+            android:id="@+id/MyWalletListScreen"
+            android:name="com.android.l2l.twolocal.ui.wallet.myWalletList.FragmentWalletListTab"
+            android:label="@string/navigation_wallet_title"
+            tools:layout="@layout/fragment_wallet_list_tab">
+    </fragment>
+</navigation>

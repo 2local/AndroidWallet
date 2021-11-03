@@ -1,0 +1,22 @@
+// Loading private app properties
+def signingPropertiesFile = rootProject.file("signing.properties")
+def signingProperties = new Properties()
+signingProperties.load(new FileInputStream(signingPropertiesFile))
+
+def localProperties = new Properties()
+localProperties.load(project.rootProject.file('local.properties').newDataInputStream())
+def BranchKey = localProperties.getProperty('Branch.key')
+def BranchTestKey = localProperties.getProperty('Branch_test.key')
+def googleMapKey = localProperties.getProperty('google_map.key')
+
+android {
+    //https://gist.github.com/mileskrell/7074c10cb3298a2c9d75e733be7061c2
+    signingConfigs {
+        release {
+            storeFile file(signingProperties['PRODUCTION_STORE_FILE'])
+            storePassword signingProperties['PRODUCTION_STORE_PASSWORD']
+            keyAlias signingProperties['PRODUCTION_KEY_ALIAS']
+            keyPassword signingProperties['PRODUCTION_KEY_PASSWORD']
+        }
+    }
+}

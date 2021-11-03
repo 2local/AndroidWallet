@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="splash_margin_bottom">30dp</dimen>
+    <dimen name="margin_top_slider_head_title">20sp</dimen>
+    <dimen name="slide_description_text_size">14sp</dimen>
+    <dimen name="slide_title_text_size">20sp</dimen>
+    <dimen name="standard_button_radius">8dp</dimen>
+    <dimen name="button_login_standard_margin_top">40dp</dimen>
+    <dimen name="button_login_standard_margin_top_small">16dp</dimen>
+    <dimen name="standard_padding_top">16dp</dimen>
+    <dimen name="android_standard_margin_large_xxxxxxx">68dp</dimen>
+    <dimen name="android_standard_margin">16dp</dimen>
+    <dimen name="android_standard_margin_small">8dp</dimen>
+    <dimen name="standard_elevation">4dp</dimen>
+    <dimen name="android_standard_padding">16dp</dimen>
+    <dimen name="android_standard_2x_margin_padding">32dp</dimen>
+    <dimen name="standard_login_register_action_text_margin">28dp</dimen>
+    <dimen name="text_amount_home_fragment_size">40sp</dimen>
+    <dimen name="medium_text_size">16sp</dimen>
+    <dimen name="medium_text_size_small">14sp</dimen>
+    <dimen name="android_half_standard_margin_padding">8dp</dimen>
+    <dimen name="intermediate_text_size">12sp</dimen>
+    <dimen name="intermediate_text_size_small">11sp</dimen>
+    <dimen name="text_small">10sp</dimen>
+    <dimen name="text_small_x">9sp</dimen>
+    <dimen name="standard_card_radius">8dp</dimen>
+    <dimen name="default_button_stroke_width">2dp</dimen>
+    <dimen name="default_button_stroke_width_large">3dp</dimen>
+    <dimen name="text_size_big">35sp</dimen>
+    <dimen name="text_title_size">18sp</dimen>
+    <dimen name="standard_transaction_chart_margin_item">15dp</dimen>
+
+    <dimen name="margin_huge">44dp</dimen>
+    <dimen name="margin_xxxxlarge">36dp</dimen>
+    <dimen name="margin_xxxlarge">32dp</dimen>
+    <dimen name="margin_xxlarge">28dp</dimen>
+    <dimen name="margin_xlarge">24dp</dimen>
+    <dimen name="margin_large">20dp</dimen>
+    <dimen name="margin_intermediate">12dp</dimen>
+    <dimen name="margin_xintermediate">10dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_xsmall">6dp</dimen>
+    <dimen name="margin_xxsmall">4dp</dimen>
+    <dimen name="margin_xxxsmall">2dp</dimen>
+    <dimen name="margin_xxxxsmall">1dp</dimen>
+
+    <dimen name="corner_radius_medium">15dp</dimen>
+    <dimen name="corner_radius_normal">10dp</dimen>
+    <dimen name="corner_radius_small">5dp</dimen>
+</resources>

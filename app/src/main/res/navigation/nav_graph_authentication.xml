@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_authentication"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/login_dest">
+
+
+    <fragment
+        android:id="@+id/login_dest"
+        android:name="com.android.l2l.twolocal.ui.authentication.FragmentLogin"
+        tools:layout="@layout/fragment_login"
+        android:label="login">
+        <action
+            android:id="@+id/action_login_to_register"
+            app:destination="@id/register_dest" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/register_dest"
+        android:name="com.android.l2l.twolocal.ui.authentication.FragmentRegister"
+        android:label="register"
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_register_to_login"
+            app:destination="@id/login_dest"
+
+            app:popUpTo="@id/login_dest"
+            app:popUpToInclusive="true"/>
+
+    </fragment>
+
+</navigation>

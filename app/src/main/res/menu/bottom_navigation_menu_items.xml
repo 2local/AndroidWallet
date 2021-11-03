@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:checked="true"
+        android:icon="@drawable/ic_home_gray"
+        android:title="@string/bottom_van_menu_home"
+        android:visible="true" />
+    <item
+        android:id="@+id/scan"
+        android:icon="@drawable/ic_scan_gray"
+        android:title="@string/bottom_van_menu_scan"
+        android:visible="true" />
+    <item
+        android:id="@+id/market"
+        android:icon="@drawable/ic_marketplace_gray"
+        android:title="@string/bottom_van_menu_marketplace"
+        android:visible="true" />
+    <item
+        android:id="@+id/wallet"
+        android:icon="@drawable/ic_wallet"
+        android:title="@string/bottom_van_menu_wallet"
+        android:visible="true" />
+</menu>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="top"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_medium">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:gravity="center"
+        android:text="@string/fragment_send_result_title"
+        android:textAppearance="@style/textAppearance.size18"
+        android:textColor="@color/button_green" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_xlarge"
+        android:text="@string/fragment_send_result_amount"
+        android:textAppearance="@style/textAppearance.size16.gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textAppearance="@style/textAppearance.size16.gray"
+            tools:text="12,500 ETH" />
+
+        <TextView
+            android:id="@+id/txtFiatAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_large"
+            android:text="@string/s_s"
+            android:textAppearance="@style/textAppearance.size14"
+            tools:text="25.58 USD" />
+    </LinearLayout>
+
+
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0.05dp"-->
+<!--            android:layout_marginTop="@dimen/margin_large"-->
+<!--            android:layout_marginBottom="@dimen/margin_large"-->
+<!--            android:alpha="0.2"-->
+<!--            android:background="@color/divider_color" />-->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_xlarge"
+        android:text="@string/fragment_send_result_recipient_address"
+        android:textAppearance="@style/textAppearance.size16.gray" />
+
+    <TextView
+        android:id="@+id/text_walletNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:textAppearance="@style/textAppearance.size14"
+        tools:text="GDU3UTKVDFRK...BGNDB4JIFCU24" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginTop="@dimen/spacing_xlarge"
+        android:text="@string/fragment_send_result_transaction_hash"
+        android:textAppearance="@style/textAppearance.size16.gray" />
+
+    <TextView
+        android:id="@+id/txtTransactionHash"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:textAppearance="@style/textAppearance.size14"
+        tools:text="GDU3UTKVDFRK...BGNDB4JIFCU24" />
+
+    <com.android.l2l.twolocal.view.CustomButton
+        android:id="@+id/button_done"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_huge"
+        android:background="@drawable/selector_button_blue"
+        android:text="@string/fragment_send_result_done"
+        android:textColor="@color/white"
+        android:textSize="@dimen/medium_text_size" />
+
+    <Button
+        android:id="@+id/btShare"
+        style="@style/buttonText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/spacing_xlarge"
+        android:text="@string/fragment_send_result_share" />
+</LinearLayout>

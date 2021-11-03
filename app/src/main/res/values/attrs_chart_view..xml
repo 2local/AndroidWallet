@@ -1,0 +1,7 @@
+<resources>
+    <declare-styleable name="ChartItemView">
+
+        <attr name="chart_expense" format="integer" />
+        <attr name="chart_income" format="integer" />
+    </declare-styleable>
+</resources>

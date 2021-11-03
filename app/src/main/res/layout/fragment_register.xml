@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center_vertical"
+    android:padding="@dimen/android_standard_2x_margin_padding"
+    >
+
+    <LinearLayout
+        android:id="@+id/widgetContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_register_sign_up"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textColorHint="@color/background_color"
+            app:passwordToggleContentDescription="@string/fragment_register_edt_email">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/text_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/background_color"
+                android:gravity="start"
+                android:hint="@string/fragment_register_edt_email"
+                android:inputType="textEmailAddress"
+                android:textAlignment="inherit"
+                android:textColorHint="@color/background_color" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textColorHint="@color/background_color"
+            app:passwordToggleContentDescription="@string/fragment_register_edt_email">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/text_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/background_color"
+                android:gravity="start"
+                android:hint="@string/fragment_register_username"
+                android:inputType="text"
+                android:textAlignment="inherit"
+                android:textColorHint="@color/background_color" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_slider_head_title">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/background_color"
+                app:passwordToggleDrawable="@drawable/selector_show_password"
+                app:passwordToggleEnabled="true">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/text_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/background_color"
+                    android:gravity="start"
+                    android:hint="@string/fragment_register_password"
+                    android:inputType="textPassword"
+                    android:textAlignment="inherit" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </RelativeLayout>
+
+        <com.android.l2l.twolocal.view.CustomButton
+            android:id="@+id/signUpSubmitButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/button_login_standard_margin_top"
+            android:background="@drawable/selector_button_colorprimary_solid"
+            android:clickable="true"
+            android:elevation="@dimen/standard_elevation"
+            android:focusable="true"
+            android:text="@string/fragment_register_create_an_account"
+            android:textAlignment="center"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/haveAnAccountTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="@dimen/android_standard_margin"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/fragment_register_have_an_account_question"
+        android:layout_marginTop="28dp"
+        app:layout_constraintTop_toBottomOf="@id/widgetContainer"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/haveAnAccountLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/fragment_register_login_now"
+        android:padding="@dimen/android_standard_margin_small"
+        app:layout_constraintStart_toEndOf="@id/haveAnAccountTextView"
+        app:layout_constraintBottom_toBottomOf="@id/haveAnAccountTextView"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintTop_toTopOf="@id/haveAnAccountTextView"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

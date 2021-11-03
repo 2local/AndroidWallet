@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_send_token"
+    app:startDestination="@id/sendFragment">
+
+    <fragment
+        android:id="@+id/sendFragment"
+        android:name="com.android.l2l.twolocal.ui.wallet.send.SendTokenFragment"
+        android:label="SendFragment"
+        tools:layout="@layout/fragment_send_token" >
+        <action
+            android:id="@+id/action_sendFragment_to_sendTokenConfirmFragment"
+            app:destination="@id/sendTokenConfirmFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/sendTokenConfirmationFragment"
+        tools:layout="@layout/fragment_send_token_success"
+        android:name="com.android.l2l.twolocal.ui.wallet.send.SendTokenSuccessFragment"
+        android:label="SendTokenConfirmationFragment" />
+
+    <fragment
+        android:id="@+id/sendTokenConfirmFragment"
+        tools:layout="@layout/fragment_send_token_confirm"
+        android:name="com.android.l2l.twolocal.ui.wallet.send.confirm.SendTokenConfirmFragment"
+        android:label="SendTokenConfirmFragment" >
+        <action
+            android:id="@+id/action_sendTokenConfirmFragment_to_sendTokenConfirmationFragment"
+            app:destination="@id/sendTokenConfirmationFragment"
+
+            app:popUpTo="@+id/sendFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+</navigation>

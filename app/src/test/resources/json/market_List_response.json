@@ -1,0 +1,24 @@
+{
+      "code": 200,
+      "message": "Companies List",
+      "record": {
+        "companies": [
+          {
+            "id": 2,
+            "api_id": 37,
+            "company_name": "webmull",
+            "latitude": "27.703705691763364",
+            "longitude": "90.3416387270203",
+            "location": "india",
+            "cci": "asdhjashdjkhaskj",
+            "sustainable": "local to local",
+            "representative": "Ankita pancholi",
+            "address": "https://www.webmull.com/",
+            "is_sync": 0,
+            "status": 0,
+            "created_at": "2021-05-04 13:56:34",
+            "updated_at": "2021-05-07 07:54:55"
+          }
+        ]
+      }
+    }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scan"
+    app:startDestination="@+id/scanFragment">
+
+
+    <fragment
+        android:id="@+id/scanFragment"
+        android:name="com.android.l2l.twolocal.ui.scanner.ScanFragment"
+        android:label="@string/navigation_scan_title"
+        />
+
+</navigation>

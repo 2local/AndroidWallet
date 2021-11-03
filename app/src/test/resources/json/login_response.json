@@ -1,0 +1,31 @@
+{
+      "code": "200",
+      "message": "You Are Successfully Login",
+      "record": {
+        "id": 55369,
+        "name": "erfaneghterafi1",
+        "public_key": "GCUCUXZFHW54QVYECB4Z6Z3PD5DX7YFBMHJKXSY7GLZY4KIHL4BMWNMG",
+        "user_type": "user",
+        "email": "erfan.eghterafi@gmail.com",
+        "mobile_number": 9138970886,
+        "first_name": "Erfan",
+        "last_name": "Eghterafi",
+        "created_at": "2021-02-23 19:42:29",
+        "updated_at": "2021-06-06 09:06:26",
+        "twofa_status": "false",
+        "status": "true",
+        "settings_updated": "true",
+        "mobile_verification_status": "No",
+        "wallet_status": "in_active",
+        "two_fa_on_off_status": 0,
+        "api_token": "LpRFL2rphOXANM85lezJ6ytHcwohPZjU0ABILHRN3Ld8InciZqMBh4P3id1U",
+        "affilated_status": "0",
+        "locked": 0,
+        "get_balance_status": "1",
+        "replace_status": "10",
+        "l2l": 27435.9444,
+        "xlm": 1.73099,
+        "access_token": "wj8Y9NbcsZZyHwRbVl3MOF4SMpjEd679UYlpBa6H23UidWVZbxnDP6yrEbir",
+        "token_type": "Bearer"
+      }
+    }

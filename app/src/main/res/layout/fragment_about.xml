@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.android.l2l.twolocal.view.ToolbarView
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:tv_show_back="true"
+        app:tv_title="@string/fragment_about_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_medium"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fragment_about_version"
+                android:layout_gravity="center_vertical|start"
+                android:textAppearance="@style/textAppearance.size16"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/item_version_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_currency_type"
+                android:enabled="false"
+                android:minWidth="48dp"
+                android:paddingStart="11dp"
+                android:paddingTop="2dp"
+                android:layout_gravity="center_vertical|end"
+                android:paddingEnd="11dp"
+                android:paddingBottom="2dp"
+                android:textAppearance="@style/textAppearance.size16.gray"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </FrameLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.05dp"
+            android:alpha="0.2"
+            android:background="@color/divider_color" />
+
+        <FrameLayout
+            android:id="@+id/privacy_policy"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fragment_about_privacy_policy"
+                android:layout_gravity="center_vertical"
+                android:textAppearance="@style/textAppearance.size16"
+                />
+
+        </FrameLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.05dp"
+            android:alpha="0.2"
+            android:background="@color/divider_color" />
+
+        <FrameLayout
+            android:id="@+id/terms_of_conditions"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fragment_about_team_of_use"
+                android:layout_gravity="center_vertical"
+                android:textAppearance="@style/textAppearance.size16"
+                />
+
+        </FrameLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.05dp"
+            android:alpha="0.2"
+            android:background="@color/divider_color" />
+
+        <FrameLayout
+            android:id="@+id/feedback"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@drawable/selector_ripple_effect_settings_currency"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:id="@+id/text_give_us_feedback"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fragment_about_give_us_feedback"
+                android:textAppearance="@style/textAppearance.size16"
+                android:layout_gravity="center_vertical"/>
+
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

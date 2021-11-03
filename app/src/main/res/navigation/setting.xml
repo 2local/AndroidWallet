@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/setting"
+    app:startDestination="@+id/settingScreen">
+
+    <fragment
+        android:id="@+id/settingScreen"
+        android:name="com.android.l2l.twolocal.ui.setting.SettingFragment"
+        android:label="SettingFragment"
+        tools:layout="@layout/fragment_settings">
+
+        <action
+            android:id="@+id/action_settingScreen_to_accountInfoFragment"
+            app:destination="@id/accountInfoFragment" />
+        <action
+            android:id="@+id/action_settingScreen_to_contactFragment"
+            app:destination="@id/contactFragment" />
+        <action
+            android:id="@+id/action_settingScreen_to_affiliateFragment"
+            app:destination="@id/affiliateFragment" />
+        <action
+            android:id="@+id/action_settingScreen_to_currencyFragment"
+            app:destination="@id/currencyFragment" />
+        <action
+            android:id="@+id/action_settingScreen_to_passwordFragment"
+            app:destination="@id/passwordFragment" />
+        <action
+            android:id="@+id/action_settingScreen_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_settingScreen_to_changeLocalPasswordFragment"
+            app:destination="@id/changeLocalPasswordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/accountInfoFragment"
+        android:name="com.android.l2l.twolocal.ui.setting.profile.AccountInfoFragment"
+        android:label="AccountInfoFragment"
+        tools:layout="@layout/fragment_account_info" />
+    <fragment
+        android:id="@+id/contactFragment"
+        android:name="com.android.l2l.twolocal.ui.setting.contacts.ContactListFragment"
+        android:label="ContactFragment"
+        tools:layout="@layout/fragment_contact_list">
+        <action
+            android:id="@+id/action_contactFragment_to_contactAddFragment"
+            app:destination="@id/contactAddFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/contactAddFragment"
+        android:name="com.android.l2l.twolocal.ui.setting.contacts.ContactAddFragment"
+        android:label="ContactAddFragment"
+        tools:layout="@layout/fragment_add_contact" />
+    <fragment
+        android:id="@+id/affiliateFragment"
+        android:name="com.android.l2l.twolocal.ui.setting.affiliate.AffiliateFragment"
+        tools:layout="@layout/fragment_affiliate"
+        android:label="AffiliateFragment" />
+    <fragment
+        android:id="@+id/currencyFragment"
+        android:name="com.android.l2l.twolocal.ui.setting.currency.CurrencyFragment"
+        tools:layout="@layout/fragment_currency"
+        android:label="CurrencyFragment" />
+
+    <fragment
+        android:id="@+id/passwordFragment"
+        android:name="com.android.l2l.twolocal.ui.setting.password.PasswordFragment"
+        tools:layout="@layout/fragment_password"
+        android:label="PasswordFragment" />
+
+    <fragment
+        android:id="@+id/changeLocalPasswordFragment"
+        android:name="com.android.l2l.twolocal.ui.setting.localPassword.FragmentChangeLocalPassword"
+        tools:layout="@layout/fragment_change_local_password"
+        android:label="changeLocalPasswordFragment" />
+
+    <fragment
+        android:id="@+id/aboutFragment"
+        tools:layout="@layout/fragment_about"
+        android:name="com.android.l2l.twolocal.ui.setting.about.AboutFragment"
+        android:label="AboutFragment" />
+
+</navigation>

@@ -1,0 +1,10 @@
+<resources>
+    <declare-styleable name="ToolbarView">
+
+        <attr name="tv_show_back" format="boolean" />
+        <attr name="tv_show_setting" format="boolean" />
+        <attr name="tv_show_menu" format="boolean" />
+        <attr name="tv_show_close" format="boolean" />
+        <attr name="tv_title" format="string" />
+    </declare-styleable>
+</resources>

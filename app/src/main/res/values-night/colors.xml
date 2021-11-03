@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#EF8749</color>
+    <color name="colorPrimaryVariant">#D97438</color>
+    <color name="secondaryColor">#EF8749</color>
+    <color name="secondaryColorVariant">#D97438</color>
+
+    <color name="black">#202020</color>
+    <color name="white">#fff</color>
+
+    <color name="button_brown_pressed">#D97438</color>
+    <color name="button_brown">#EF8749</color>
+
+    <color name="background_color">#000000</color>
+
+    <color name="color_blue">#5F64E9</color>
+    <color name="button_blue_pressed">#3F44C7</color>
+    <color name="light_blue">#709CFF</color>
+
+    <color name="green">#27c097</color>
+    <color name="button_green">#27C097</color>
+    <color name="button_green_pressed">#179A77</color>
+    <color name="green_text">#27c097</color>
+
+    <color name="red">#FE6C6C</color>
+    <color name="color_red_dark">#FE5757</color>
+
+    <color name="text_color_disabled">#BEBED1</color>
+    <color name="color_text_report">#606060</color>
+
+    <color name="grey_text">#9D9DB1</color>
+    <color name="black_text">#dddddd</color>
+
+    <color name="grey_0">#0f0f0f</color>
+    <color name="grey_1">#141D1D</color>
+    <color name="grey_2">#D3D1D1</color>
+    <color name="grey_3">#C1BFBF</color>
+    <color name="grey_4">#AAA9A9</color>
+    <color name="grey_5">#919090</color>
+    <color name="divider_color">#d0d0d0</color>
+    <color name="icon_color">#d0d0d0</color>
+
+</resources>

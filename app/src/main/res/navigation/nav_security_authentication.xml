@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_security_authentication"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/unlock_app_dest">
+
+    <fragment
+        android:id="@+id/unlock_app_dest"
+        android:name="com.android.l2l.twolocal.ui.authentication.securityPassword.FragmentUnlockApp"
+        tools:layout="@layout/fragment_unlock_app"
+        android:label="unlock app">
+        <action
+            android:id="@+id/action_unlock_to_create_password"
+            app:destination="@id/create_password_dest"
+
+            app:popUpTo="@id/unlock_app_dest"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/create_password_dest"
+        android:name="com.android.l2l.twolocal.ui.authentication.securityPassword.FragmentCreateLocalPassword"
+        android:label="create pass"
+        tools:layout="@layout/fragment_create_local_password">
+        <action
+            android:id="@+id/action_create_pass_to_unlock_app"
+            app:destination="@id/unlock_app_dest"
+
+            app:popUpTo="@id/unlock_app_dest"
+            app:popUpToInclusive="true"/>
+
+    </fragment>
+
+</navigation>

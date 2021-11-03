@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_xxlarge"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <ImageView
+        android:id="@+id/image_logo"
+        android:layout_width="@dimen/_80dp"
+        android:layout_height="@dimen/_80dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/logo"
+       />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:text="@string/fragment_unlock_app_welcome"
+        android:textAppearance="@style/textAppearance.size22.bold" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_xxlarge"
+        android:textColorHint="@color/grey_text"
+        app:passwordToggleContentDescription="@string/fragment_create_password_password"
+        app:passwordToggleDrawable="@drawable/selector_show_password"
+        app:passwordToggleEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/text_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:gravity="start"
+            android:hint="@string/fragment_create_password_password"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+   <LinearLayout
+       android:id="@+id/lnt_touch_id"
+       android:layout_width="match_parent"
+       android:orientation="horizontal"
+       android:layout_marginTop="@dimen/spacing_large"
+       android:gravity="center_vertical"
+       android:layout_height="wrap_content">
+
+       <ImageView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:clickable="true"
+           android:contentDescription="@string/fragment_login_fingerprint"
+           android:focusable="true"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintEnd_toStartOf="@id/text_fingerprint"
+           app:srcCompat="@drawable/ic_fingerprint" />
+
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="8dp"
+           android:text="@string/fragment_unlock_app_log_in_with_touch_id"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintStart_toEndOf="@+id/image_fingerprint" />
+   </LinearLayout>
+
+    <com.android.l2l.twolocal.view.CustomButton
+        android:id="@+id/button_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_huge"
+        android:background="@drawable/selector_button_colorprimary_solid"
+        android:text="@string/fragment_unlock_app_login"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/spacing_xlarge"
+        android:text="@string/fragment_unlock_app_forget_password"
+        android:textAppearance="@style/textAppearance.size16" />
+
+    <Button
+        android:id="@+id/btnResetWallet"
+        style="@style/buttonText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fragment_unlock_app_btn_reset"
+        />
+
+</LinearLayout>

@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.android.l2l.twolocal.view.ToolbarView
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:tv_show_back="true"
+        app:tv_title="@string/fragment_send_token_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foregroundGravity="center"
+            android:gravity="top"
+            android:orientation="vertical"
+            android:layout_margin="@dimen/spacing_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/text_color">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_wallet_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/fragment_send_token_send_to"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:paddingRight="@dimen/_73dp"
+                        android:maxLines="1"
+                        android:paddingLeft="0dp"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <ImageView
+                    android:id="@+id/image_scan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="@dimen/margin_small"
+                    android:layout_toLeftOf="@+id/image_menu"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="@dimen/margin_small"
+                    android:src="@drawable/ic_scan"
+                    android:textColor="@color/colorPrimary" />
+
+                <ImageView
+                    android:id="@+id/image_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="@dimen/margin_small"
+                    android:src="@drawable/ic_dot_gray"
+                    android:textColor="@color/colorPrimary" />
+
+                <ImageView
+                    android:id="@+id/imgClearAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/margin_small"
+                    android:src="@drawable/ic_cross_gray"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+            <Spinner
+                android:id="@+id/spinner_contacts"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:background="@null"
+                 />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="@dimen/android_standard_2x_margin_padding"
+                android:text="@string/fragment_send_token_amount" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:id="@+id/constraint_amount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1">
+
+                    <EditText
+                        android:id="@+id/edt_currency_amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionDone"
+                        android:inputType="numberDecimal"
+                        android:maxLength="16"
+                        android:maxLines="1"
+                        android:paddingStart="2dp"
+                        android:paddingEnd="35dp"
+                        android:textAlignment="inherit"
+                        android:textSize="@dimen/medium_text_size"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="124,217,129" />
+
+                    <TextView
+                        android:id="@+id/txtTokenSymbol"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|right"
+                        android:clickable="true"
+                        android:enabled="false"
+                        android:focusable="true"
+                        android:textAppearance="@style/textAppearance.size14.grey"
+                        tools:text="@string/fragment_send_token__2lc" />
+                </FrameLayout>
+
+                <ImageView
+                    android:id="@+id/img_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/android_standard_margin"
+                    android:layout_marginEnd="@dimen/android_standard_margin"
+                    android:src="@drawable/ic_exchange_gray"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/constraint_amount"
+                    app:layout_constraintTop_toTopOf="@+id/constraint_amount" />
+
+                <FrameLayout
+                    android:id="@+id/constraint_usd"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1">
+
+                    <EditText
+                        android:id="@+id/edt_fiat_amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:imeOptions="actionDone"
+                        android:inputType="numberDecimal"
+                        android:maxLength="16"
+                        android:maxLines="1"
+                        android:paddingEnd="35dp"
+                        android:textAlignment="inherit"
+                        android:textSize="@dimen/medium_text_size"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="25.58" />
+
+                    <TextView
+                        android:id="@+id/txtCurrency"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|right"
+                        android:clickable="true"
+                        android:enabled="false"
+                        android:focusable="true"
+                        android:textAppearance="@style/textAppearance.size14.grey"
+                        tools:text="@string/fragment_send_token_usd" />
+                </FrameLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <ProgressBar
+                    android:id="@+id/progressBalance"
+                    android:layout_width="@dimen/_20dp"
+                    android:layout_height="@dimen/_20dp"
+                    android:layout_marginRight="@dimen/margin_small"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/txt_available_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:paddingTop="2dp"
+                    android:textColor="@color/main_disabled_color"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/btn_select_max"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:paddingTop="2dp"
+                    android:text="@string/fragment_send_token_select_max"
+                    android:textColor="@color/main_disabled_color" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/android_standard_2x_margin_padding"
+                android:text="@string/fragment_send_token_no_need_for_memo"
+                android:textAppearance="@style/textAppearance.size14.gray" />
+
+            <com.android.l2l.twolocal.view.CustomButton
+                android:id="@+id/button_send"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_huge"
+                android:background="@drawable/selector_button_blue"
+                android:text="@string/fragment_send_token_continue"
+                android:textColor="@color/white"
+                android:textSize="@dimen/medium_text_size" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

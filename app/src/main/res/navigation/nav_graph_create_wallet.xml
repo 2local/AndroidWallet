@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_create_wallet"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/create_wallet_list_dest">
+
+
+    <fragment
+        android:id="@+id/create_wallet_list_dest"
+        android:name="com.android.l2l.twolocal.ui.wallet.create.CreateWalletListFragment"
+        tools:layout="@layout/fragment_create_wallet_list"
+        android:label="login">
+        <action
+            android:id="@+id/action_create_wallet_list_dest_to_etherRestoreFragment"
+            app:destination="@id/etherRestoreFragment" />
+        <action
+            android:id="@+id/action_create_wallet_list_dest_to_etherBackupFragment"
+            app:destination="@id/etherBackupFragment" />
+        <action
+            android:id="@+id/action_create_wallet_list_dest_to_walletRestorePrivateKeyFragment"
+            app:destination="@id/walletRestorePrivateKeyFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/etherRestoreFragment"
+        android:name="com.android.l2l.twolocal.ui.wallet.create.WalletRestoreMnemonicFragment"
+        tools:layout="@layout/fragment_wallet_mnemonic_restore"
+        android:label="EtherRestoreFragment" >
+        <action
+            android:id="@+id/action_etherRestoreFragment_to_etherBackupSuccessFragment"
+            app:destination="@id/etherBackupSuccessFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/walletRestorePrivateKeyFragment"
+        tools:layout="@layout/fragment_wallet_private_key_restore"
+        android:name="com.android.l2l.twolocal.ui.wallet.create.WalletRestorePrivateKeyFragment"
+        android:label="WalletRestorePrivateKeyFragment" >
+        <action
+            android:id="@+id/action_walletRestorePrivateKeyFragment_to_etherBackupSuccessFragment"
+            app:destination="@id/etherBackupSuccessFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/etherBackupSuccessFragment"
+        tools:layout="@layout/fragment_wallet_backup_success"
+        android:name="com.android.l2l.twolocal.ui.wallet.create.WalletBackupSuccessFragment"
+        android:label="EtherBackupSuccessFragment" />
+
+    <fragment
+        android:id="@+id/etherVerifyMnemonic"
+        tools:layout="@layout/fragment_wallet_verify_mnemonic"
+        android:name="com.android.l2l.twolocal.ui.wallet.create.WalletVerifyMnemonic"
+        android:label="EtherVerifyMnemonic" >
+        <action
+            android:id="@+id/action_etherVerifyMnemonic_to_etherBackupSuccessFragment"
+            app:destination="@id/etherBackupSuccessFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/etherBackupFragment"
+        android:name="com.android.l2l.twolocal.ui.wallet.create.WalletBackupFragment"
+        tools:layout="@layout/fragment_wallet_backup"
+        android:label="EtherBackupFragment" >
+        <action
+            android:id="@+id/action_etherBackupFragment_to_etherVerifyMnemonic"
+            app:destination="@id/etherVerifyMnemonic" />
+    </fragment>
+
+
+</navigation>

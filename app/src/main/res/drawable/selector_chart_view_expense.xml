@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="false">
+        <shape>
+            <solid android:color="@color/button_blue_pressed" />
+            <padding android:bottom="@dimen/android_standard_margin" android:left="@dimen/android_standard_margin" android:right="@dimen/android_standard_margin" android:top="@dimen/android_standard_margin" />
+            <corners android:bottomLeftRadius="20dp"
+                android:bottomRightRadius="20dp"/>
+        </shape>
+
+    </item>
+
+</selector>

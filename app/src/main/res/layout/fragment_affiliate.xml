@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="top"
+    android:orientation="vertical"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/spacing_medium" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/spacing_medium" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="@dimen/spacing_medium" />
+
+    <com.android.l2l.twolocal.view.ToolbarView
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tv_show_back="true"
+        app:tv_title="@string/fragment_affiliate_title" />
+
+    <TextView
+        android:id="@+id/text_referral_link"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:text="@string/fragment_affiliate_referral_link"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:textAppearance="@style/textAppearance.size16"
+        app:layout_constraintEnd_toEndOf="@+id/guidelineRight"
+        app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <TextView
+        android:id="@+id/text_referral_link_2local"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:ellipsize="end"
+        android:maxWidth="150dp"
+        android:maxLines="1"
+        android:text="2Local.io/S2qhlo5"
+        app:layout_constraintEnd_toEndOf="@+id/guidelineRight"
+        app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+        app:layout_constraintTop_toBottomOf="@id/text_referral_link" />
+
+
+    <LinearLayout
+        android:id="@+id/button_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/android_standard_2x_margin_padding"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+        app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+        app:layout_constraintTop_toBottomOf="@id/text_referral_link_2local">
+
+        <com.android.l2l.twolocal.view.CustomButton
+            android:id="@+id/button_copy"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="@dimen/android_standard_margin"
+            android:layout_weight="1"
+            android:background="@drawable/selector_button_colorprimary_solid_no_padding"
+            android:text="@string/fragment_affiliate_copy"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@id/text_referral_link_2local"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/text_referral_link_2local" />
+
+        <TextView
+            android:id="@+id/btn_share"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="@dimen/android_half_standard_margin_padding"
+            android:layout_weight="1"
+            android:background="@drawable/selector_button_colorprimary_stroke_no_padding"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="@string/fragment_affiliate_share"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toStartOf="@id/btn_share"
+            app:layout_constraintTop_toTopOf="@+id/btn_share" />
+    </LinearLayout>
+
+<!--    <TextView-->
+<!--        android:id="@+id/text_total_refferals"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="start"-->
+<!--        android:layout_marginTop="@dimen/android_standard_2x_margin_padding"-->
+<!--        android:text="@string/total_referral"-->
+<!--        android:textColor="@color/text_color_disabled"-->
+<!--        android:visibility="gone"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/button_container" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/editText_amount"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="4dp"-->
+<!--        android:backgroundTint="@color/background_color"-->
+<!--        android:text="0"-->
+<!--        android:textAlignment="inherit"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textColorHint="@color/black"-->
+<!--        android:textSize="@dimen/medium_text_size"-->
+<!--        android:visibility="gone"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/text_total_refferals" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/text_total_received"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="start"-->
+<!--        android:text="@string/total_received"-->
+<!--        android:textColor="@color/text_color_disabled"-->
+<!--        android:visibility="gone"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/buttons_container"-->
+<!--        app:layout_constraintTop_toTopOf="@id/text_total_refferals" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/text_2lc_amount"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="4dp"-->
+<!--        android:backgroundTint="@color/background_color"-->
+<!--        android:text="0"-->
+<!--        android:textAlignment="inherit"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textColorHint="@color/black"-->
+<!--        android:textSize="@dimen/medium_text_size"-->
+<!--        android:visibility="gone"-->
+<!--        app:layout_constraintStart_toStartOf="@id/text_total_received"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/text_total_received" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/text_2lc_indicator"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="@dimen/android_standard_margin"-->
+<!--        android:layout_marginTop="4dp"-->
+<!--        android:backgroundTint="@color/background_color"-->
+<!--        android:text="L2L"-->
+<!--        android:textAlignment="inherit"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textColorHint="@color/black"-->
+<!--        android:textSize="@dimen/medium_text_size"-->
+<!--        android:visibility="gone"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/text_2lc_amount"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/text_total_received" />-->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+

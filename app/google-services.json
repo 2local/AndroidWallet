@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "143456026416",
+    "firebase_url": "https://proud-skein-267213.firebaseio.com",
+    "project_id": "proud-skein-267213",
+    "storage_bucket": "proud-skein-267213.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:143456026416:android:18fac01dcdb948f00952f5",
+        "android_client_info": {
+          "package_name": "two.local.io"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "143456026416-7el3lmad7jfp83l06vldvr69sokt5hqi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBG6jjBLocP_PzfjyJA35BcMulLQoQv8JQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "143456026416-7el3lmad7jfp83l06vldvr69sokt5hqi.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "143456026416-vu4q8mkjrefd11uf12vbtfgi6r9uc788.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "CRYPTO.D-CRYPTO"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

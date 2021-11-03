@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/market"
+    app:startDestination="@+id/marketScreen">
+
+    <fragment
+        android:id="@+id/marketScreen"
+        android:name="com.android.l2l.twolocal.ui.market.FragmentMarketList"
+        android:label="@string/navigation_market_title"
+        tools:layout="@layout/fragment_market_list">
+
+    </fragment>
+
+</navigation>

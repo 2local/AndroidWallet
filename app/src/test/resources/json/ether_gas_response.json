@@ -1,0 +1,10 @@
+{
+      "status": "1",
+      "message": "OK",
+      "result": {
+        "LastBlock": "12634644",
+        "SafeGasPrice": "11",
+        "ProposeGasPrice": "23",
+        "FastGasPrice": "25"
+      }
+    }

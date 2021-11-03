@@ -1,0 +1,374 @@
+<resources>
+    <string name="app_name">2local</string>
+
+    <string name="navigation_home_title">Home</string>
+    <string name="navigation_scan_title">Scan</string>
+    <string name="navigation_market_title">Market</string>
+    <string name="navigation_wallet_title">Wallet</string>
+
+    <string name="bottom_van_menu_home">Home</string>
+    <string name="bottom_van_menu_marketplace">MarketPlace</string>
+    <string name="bottom_van_menu_scan">Scan</string>
+    <string name="bottom_van_menu_wallet">Wallet</string>
+
+    <string name="biometric_login_login">Biometric login for 2local app</string>
+    <string name="biometric_login_using_biometric_credential">Log in using your biometric credential</string>
+    <string name="biometric_login_cancel">cancel</string>
+
+    <string name="error_msg_no_biometric_hardware">No biometric features available on this device.</string>
+    <string name="error_msg_biometric_hw_unavailable">Biometric features are currently unavailable.</string>
+    <string name="error_msg_biometric_not_setup">The user hasn\'t associated any biometric credentials with their account.</string>
+
+
+    <string name="market_place_phone">"tel:+31252518537"</string>
+
+    <string name="slide_one_head_title">Worldwide Sustainability and Prosperity</string>
+    <string name="slide_one_description_content">Our Vision is an unity of happy bright people and a sustainable world with prosperity for all</string>
+    <string name="slide_two_head_title">Send, Receive and Pay with 2local token</string>
+    <string name="slide_two_description_content">Powered by a secure blockchain 2.0 wallet</string>
+    <string name="slide_three_head_title">Cashback on Local Purchases</string>
+    <string name="slide_three_description_content">Cashback by buying locally and sustainably to support the community</string>
+
+    <string name="fragment_login_title">Login</string>
+    <string name="fragment_login_btn_login">Login</string>
+    <string name="fragment_login_edt_email">Email</string>
+    <string name="fragment_login_password">Password</string>
+    <string name="fragment_login_touch_the_fingerprint_sensor_to_login">Touch the fingerprint sensor to login</string>
+    <string name="fragment_login_fingerprint">FingerPrint</string>
+    <string name="fragment_login_create_an_account">Create an account</string>
+    <string name="fragment_login_didn_t_signup_yet_question">Didn\'t signup yet?</string>
+    <string name="fragment_login_using_email_password">Please login using email and password</string>
+
+    <string name="fragment_create_password_create_password">Create password</string>
+    <string name="fragment_create_password_this_password_will_unlock">This password will unlock your 2local wallet only on this device.</string>
+    <string name="fragment_create_password_password">Password</string>
+    <string name="fragment_create_password_confirm_password">Confirm password</string>
+    <string name="fragment_create_password_must_be_at_least">Must be at least 8 character</string>
+    <string name="fragment_create_password_sign_in_touch_id">Sign in with touch ID</string>
+    <string name="fragment_create_password_btn_create_password">Create password</string>
+
+    <string name="fragment_change_local_password_title">Change local password</string>
+    <string name="fragment_change_local_password_change_your_local_password">Change your local password only on this device.</string>
+    <string name="fragment_change_local_password_current_password">Current password</string>
+    <string name="fragment_change_local_password_new_password">New password</string>
+    <string name="fragment_change_local_password_confirm_password">Confirm password</string>
+    <string name="fragment_change_local_password_btn_change_password">Change password</string>
+    <string name="fragment_change_local_password_current_pass_incorrect_error">Incorrect password</string>
+    <string name="fragment_change_local_password_change_successful">Your password changed</string>
+
+
+    <string name="fragment_unlock_app_welcome">Welcome back</string>
+    <string name="fragment_unlock_app_log_in_with_touch_id">Log in with touch ID</string>
+    <string name="fragment_unlock_app_login">Log in</string>
+    <string name="fragment_unlock_app_forget_password">Can\'t login? You can reset your current wallet and setup a new one</string>
+    <string name="fragment_unlock_app_btn_reset">Reset Wallet</string>
+    <string name="fragment_unlock_app_alert_reset_wallet">Reset Wallet</string>
+    <string name="fragment_unlock_app_alert_reset_wallet_content">If you reset wallet, you have to import all wallet again using recovery phrase.</string>
+    <string name="fragment_unlock_app_alert_reset_submit">Reset</string>
+    <string name="fragment_unlock_app_alert_reset_cancel">Cancel</string>
+
+    <string name="fragment_unlock_app_alert_reset_alert">Warning</string>
+    <string name="fragment_unlock_app_alert_reset_wallet_confirm">Are sure to reset wallet?</string>
+
+    <string name="splash_connection_failed_tap_to_try_again">Connection failed! tap to try again</string>
+    <string name="splash_try_again">Try Again</string>
+    <string name="splash_there_is_server_side_problem">There is some issues on the serve side, will be back soon</string>
+
+    <string name="activity_receive_token_your_address">Your Address</string>
+    <string name="activity_receive_token_copy">Copy</string>
+    <string name="activity_receive_token_amount">Amount</string>
+    <string name="activity_receive_token_request_specific_amount">Request Specific Amount</string>
+
+    <string name="activity_transaction_history_last_week_overview">Last week 2LC overview</string>
+    <string name="activity_transaction_history_latest_transactions">All Wallets Transactions</string>
+    <string name="activity_transaction_history_oops_no_transactions_yet">Oops, no transactions yet!</string>
+    <string name="activity_transaction_history_send">send</string>
+    <string name="activity_transaction_history_receive">receive</string>
+
+    <string name="activity_wallet_detail_send">Send</string>
+    <string name="activity_wallet_detail_receive">Receive</string>
+    <string name="activity_wallet_detail_latest_transactions">All Wallet Transactions</string>
+    <string name="activity_wallet_detail_buy">Buy</string>
+    <string name="activity_wallet_detail_copy">Copy</string>
+    <string name="activity_wallet_detail_oops_no_transactions_yet">Oops, no transactions yet!</string>
+
+    <string name="bottom_sheet_remove_wallet_title">Remove wallet</string>
+    <string name="bottom_sheet_remove_btn_submit">Remove wallet</string>
+    <string name="bottom_sheet_remove_btn_cancel">Cancel</string>
+    <string name="bottom_sheet_remove_wallet_are_you_sure_about_removing">Are you sure about removing your wallet? If you don\'t have access or lost your recovery phrase your wallet can\'t be recovered.</string>
+    <string name="bottom_sheet_remove_wallet">Wallet Remove successfully</string>
+    <string name="bottom_sheet_remove_wallet_question">Remove Wallet?</string>
+    <string name="bottom_sheet_remove_wallet_please_write_recovery">Please write recovery phrase, otherwise you will lose your wallet.</string>
+
+    <string name="bottom_sheet_rename_wallet_updated">Wallet Name Update successfully</string>
+    <string name="bottom_sheet_rename_wallet_wallet_name">Wallet name</string>
+    <string name="bottom_sheet_rename_wallet_confirm">Confirm</string>
+    <string name="bottom_sheet_rename_wallet_cancel">Cancel</string>
+
+    <string name="bottom_sheet_transaction_detail_copy">Copy</string>
+
+    <string name="dialog_receive_token_your_address">Your Address</string>
+    <string name="dialog_receive_token_amount">Amount</string>
+    <string name="dialog_receive_token_share">Share</string>
+
+    <string name="fragment_about_title">About 2local</string>
+    <string name="fragment_about_version">Version</string>
+    <string name="fragment_about_privacy_policy">Privacy policy</string>
+    <string name="fragment_about_team_of_use">Terms and Conditions</string>
+    <string name="fragment_about_give_us_feedback">Give us feedback</string>
+    <string name="fragment_about_version_prefix">v %s</string>
+
+    <string name="fragment_account_info_account_info">Account Info</string>
+    <string name="fragment_account_info_first_name">First Name</string>
+    <string name="fragment_account_info_last_name">Last Name</string>
+    <string name="fragment_account_info_birthday">Birthday</string>
+    <string name="fragment_account_info_country">Country</string>
+    <string name="fragment_account_info_state">State</string>
+    <string name="fragment_account_info_city">City</string>
+    <string name="fragment_account_info_address">Address</string>
+    <string name="fragment_account_info_postal_code">Postal Code</string>
+    <string name="fragment_account_info_username_required">Username (Required)</string>
+    <string name="fragment_account_info_phone_required">Phone (Required)</string>
+    <string name="fragment_account_info_save_changes">Save Changes</string>
+
+    <string name="fragment_add_contact_wallet_address">Wallet Address</string>
+    <string name="fragment_add_contact_paste">Paste</string>
+    <string name="fragment_add_contact_save">Save</string>
+    <string name="fragment_add_contact_currency">Currency</string>
+    <string name="fragment_setting_currency">Currency</string>
+    <string name="fragment_add_contact_title">Add Contact</string>
+    <string name="fragment_add_contact_name">Name</string>
+
+    <string name="fragment_affiliate_title">Affiliate</string>
+    <string name="fragment_affiliate_referral_link">Referral link</string>
+    <string name="fragment_affiliate_copy">Copy</string>
+    <string name="fragment_affiliate_share">Share</string>
+
+    <string name="fragment_create_wallet_create">Create</string>
+    <string name="fragment_create_wallet_add_new_wallet">Add New Wallet</string>
+    <string name="fragment_create_wallet_import_existing_wallet">import existing wallet</string>
+
+    <string name="fragment_currency_title">Currency</string>
+    <string name="fragment_currency_us_dollar">US Dollar</string>
+    <string name="fragment_currency_euro">Euro</string>
+    <string name="fragment_currency_eur">EUR</string>
+    <string name="fragment_currency_usd">USD</string>
+
+    <string name="fragment_password_title">Change password</string>
+    <string name="fragment_password_stars">*******</string>
+    <string name="fragment_password_new_password">New Password</string>
+    <string name="fragment_password_change_password">Change Password</string>
+    <string name="fragment_password_current_password">Current Password</string>
+
+    <string name="fragment_register_have_an_account_question">Have an account?</string>
+    <string name="fragment_register_login_now">Login Now</string>
+    <string name="fragment_register_edt_email">Email</string>
+    <string name="fragment_register_password">password</string>
+    <string name="fragment_register_create_an_account">create account</string>
+    <string name="fragment_register_sign_up">Sign up</string>
+    <string name="fragment_register_username">Username</string>
+
+    <string name="fragment_send_token_title">Send</string>
+    <string name="fragment_send_token_send_to">Send to</string>
+    <string name="fragment_send_token_amount">Amount</string>
+    <string name="fragment_send_token__2lc">2LC</string>
+    <string name="fragment_send_token_usd">USD</string>
+    <string name="fragment_send_token_low_gas">Low gas</string>
+    <string name="fragment_send_token_normal_gas">Normal gas</string>
+    <string name="fragment_send_token_high_gas">high gas</string>
+    <string name="fragment_send_token_select_max">select max</string>
+    <string name="fragment_send_token_continue">Continue</string>
+    <string name="fragment_send_token_no_need_for_memo">No need for memo</string>
+
+    <string name="fragment_send_token_confirmation_amount">Amount</string>
+    <string name="fragment_send_token_confirmation_low_gas">Low gas</string>
+    <string name="fragment_send_token_confirmation_normal_gas">Normal gas</string>
+    <string name="fragment_send_token_confirmation_high_gas">high gas</string>
+    <string name="fragment_send_token_confirmation_title">Send confirmation</string>
+    <string name="fragment_send_token_confirmation_send">Send</string>
+    <string name="fragment_send_token_confirmation_gas_price">Network fee</string>
+    <string name="fragment_send_token_confirmation_to">To</string>
+    <string name="fragment_send_token_confirmation_network_fee">Network Fee %s %s\t~%s$</string>
+
+    <string name="fragment_send_result_recipient_address">Recipient Address</string>
+    <string name="fragment_send_result_transaction_hash">Transaction hash</string>
+    <string name="fragment_send_result_done">Done</string>
+    <string name="fragment_send_result_title">Successful transaction</string>
+    <string name="fragment_send_result_share">share</string>
+    <string name="fragment_send_result_amount">Amount</string>
+
+    <string name="fragment_setting_about_2local">About 2local</string>
+    <string name="fragment_setting_about_sign_out">Sign out</string>
+    <string name="fragment_setting_about_usd">USD</string>
+
+    <string name="fragment_setting_local_password">Local Password</string>
+    <string name="fragment_setting_account_info">Account Info</string>
+    <string name="fragment_setting_address_book">Address book</string>
+    <string name="fragment_setting_title">Account Setting</string>
+    <string name="fragment_setting_security">Security</string>
+    <string name="fragment_setting_more">More</string>
+    <string name="fragment_setting_help_support"><![CDATA[Help & Support]]></string>
+    <string name="fragment_setting_sign_out">Sign out?</string>
+    <string name="fragment_setting_sign_out_alert">If you have any wallet, please write recovery phrase, otherwise you will lose your wallet.</string>
+    <string name="fragment_setting_btn_sign_out">Sign out</string>
+    <string name="fragment_setting_cancel">Cancel</string>
+
+    <string name="fragment_wallet_backup_success_successful">Successful</string>
+    <string name="fragment_wallet_backup_success_done">Done</string>
+    <string name="fragment_wallet_backup_success_backup_eth_success">Your %s wallet successfully has been created</string>
+
+    <string name="fragment_wallet_list_title">Wallets</string>
+    <string name="fragment_wallet_list_add_wallet">Add Wallet</string>
+    <string name="fragment_wallet_list_oops_no_wallet_yet">Oops, no wallet yet!</string>
+
+    <string name="fragment_restore_wallet_submit">Submit</string>
+    <string name="fragment_restore_wallet_enter_recovery_phrase">Enter Recovery Phrase</string>
+    <string name="fragment_restore_wallet_please_enter_your_phrase_to_recover_your_wallet">Please enter your phrase to recover your wallet</string>
+    <string name="fragment_restore_wallet_clear">clear</string>
+    <string name="fragment_restore_wallet_recovery_phrase_couldn_t_be_verified">Recovery phrase couldn\'t be verified.</string>
+    <string name="fragment_restore_wallet_enter_private_key">Enter Private Key</string>
+    <string name="fragment_restore_wallet_please_enter_your_private_key_to_recover_your_wallet">Please enter your private key to recover your wallet</string>
+    <string name="fragment_restore_wallet_private_key_couldn_t_be_verified">Private key couldn\'t be verified.</string>
+
+
+    <string name="restore_eth_success">Your %s wallet successfully has been recovered</string>
+    <string name="verify_eth_hint">Please fill the empty space with right words to confirm your recovery phrase</string>
+
+    <string name="fragment_wallet_backup_hint">Write down or copy these 12 words in the right order and save them in a safe place</string>
+    <string name="fragment_wallet_backup_warning">If you lose your recovery phrase, your wallet cannot be restored!</string>
+    <string name="fragment_wallet_backup_continue">Continue</string>
+    <string name="fragment_wallet_backup_create_eth_wallet">Create wallet</string>
+    <string name="fragment_wallet_backup_your_recovery_phrase">Your Recovery Phrase</string>
+    <string name="fragment_wallet_backup_have_stored_mnemonic">I have safely stored my recovery phrase offline</string>
+
+
+    <string name="usd">USD</string>
+    <string name="buy">Buy</string>
+    <string name="cancel">Cancel</string>
+    <string name="sent">Sent</string>
+
+    <string name="total_referral">Total referrals</string>
+    <string name="total_received">Total received</string>
+
+
+    <string name="list_contact">Contact list</string>
+    <string name="no_contacts_yet">No contacts yet..</string>
+    <string name="two_fa_invalid_code">Invalid code!</string>
+
+    <string name="your_password_successfully_has_been_changed">Your password successfully has been changed!</string>
+    <string name="directions">Directions</string>
+    <string name="call">Call</string>
+
+    <string name="_2_factor_authentication">2-Factor Authentication</string>
+
+    <string name="Loading">Loading</string>
+    <string name="Logging_in">Logging in…</string>
+    <string name="unknownError">Unknown error happened!</string>
+    <string name="settings">Settings</string>
+
+
+    <string name="contact_deleted_successfully">Contact deleted successfully</string>
+    <string name="send_token_where_is_no_contact">Where is no contact for this wallet!</string>
+    <string name="your_currency_changed_to_">Your currency changed to %s</string>
+    <string name="balance_currency">%s%s</string>
+    <string name="available_amount">Available: %s %s</string>
+    <string name="s_s">%s %s</string>
+    <string name="complete">Complete</string>
+    <string name="dropped">Dropped</string>
+    <string name="pending">Pending</string>
+    <string name="add_market_place">Add MarketPlace</string>
+
+
+    <string name="failed_to_get_market_place_list">An error happened when getting market place list, please try later.</string>
+    <string name="can_not_launch_the_web_url">an error happened while openning the link.</string>
+
+    <string name="no_market_place_found">No market place has found</string>
+    <string name="eth">ETH</string>
+    <string name="hidden_stars">******</string>
+    <string name="error_empty_input">This field is required</string>
+
+    <string name="invalid_username">Username should start with letters.\nUsername must be at least 8 letters.\nUsername should only contains letters and numbers.\nNo special chars.</string>
+    <string name="invalid_email">Invalid email</string>
+    <string name="invalid_mobile">Invalid mobile</string>
+    <string name="invalid_contact_name">Invalid contact name</string>
+    <string name="invalid_wallet_number">Invalid wallet address</string>
+    <string name="invalid_code">Invalid code</string>
+    <string name="invalid_password">Password should at least contains 8 characters</string>
+    <string name="invalid_password_repeat">Repeat password not match</string>
+    <string name="invalid_local_password">Invalid password! try again</string>
+
+    <string name="ether_verification_failed">Recovery phrase entered does not match your recovery phrase</string>
+    <string name="oops_no_wallet_yet">Oops, no wallet yet!</string>
+
+
+    <string name="confirm">Confirm</string>
+    <string name="clear">clear</string>
+    <string name="wallet_mnemonic">Wallet Mnemonic</string>
+    <string name="create_wallet_wallet">Create %s Wallet</string>
+    <string name="copied_to_clip_board">Copied to clip board</string>
+
+
+    <string name="wallet_menu_rename">\t Rename</string>
+    <string name="wallet_menu_remove">\t Remove wallet</string>
+    <string name="wallet_menu_mnemonic">\t Show mnemonic</string>
+
+    <string name="send_ether_menu_paste">\t Paste</string>
+    <string name="send_ether_menu_address_book">\t Address book</string>
+
+    <string name="transaction_detail_hash">Transaction Hash:%s</string>
+    <string name="transaction_detail_address_from_to">From: %sTo:%s</string>
+    <string name="transaction_detail_status">Status: %s</string>
+    <string name="affiliate_share_title">Install App</string>
+    <string name="receive_share_title">Request amount</string>
+    <string name="receive_wallet_amount">wallet number : %s amount: %s</string>
+
+    <string name="create_wallet">Create %s wallet</string>
+    <string name="fragment_wallet_verify_recovery_phrase">Verify Recovery Phrase</string>
+
+
+    <string name="repository_invalid_wallet_address">Invalid wallet address!</string>
+    <string name="repository_you_dont_have_enough_balance">You don\'t have enough balance! </string>
+    <string name="repository_transaction_not_present">Transaction not present!</string>
+    <string name="repository_transaction_pending">Pending</string>
+    <string name="repository_transaction_dropped">Dropped</string>
+    <string name="repository_transaction_unknown_error">Unknown error!</string>
+    <string name="repository_invalid_mnemonic_phrase">Invalid mnemonic phrase</string>
+    <string name="repository_error_occurred">an Error occurred, please try again later</string>
+    <string name="repository_send_amount_too_low">Send amount is too low</string>
+
+    <string name="chart_jun">Jun</string>
+    <string name="chart_jul">Jul</string>
+    <string name="chart_aug">Aug</string>
+    <string name="chart_sep">Sep</string>
+    <string name="chart_oct">Oct</string>
+    <string name="chart_nov">Nov</string>
+    <string name="chart_dec">Dec</string>
+    <string name="chart_may">May</string>
+    <string name="chart_apr">Apr</string>
+    <string name="chart_mar">Mar</string>
+    <string name="chart_feb">Feb</string>
+    <string name="chart_jan">Jan</string>
+    <string name="home_total_balance">Total Balance</string>
+    <string name="home_transactions">2LC last year transactions</string>
+    <string name="home_income">Income</string>
+    <string name="home_expenses">Expenses</string>
+    <string name="home_transaction_details">Transaction details</string>
+
+    <string name="item_wallet_home_receive">Receive</string>
+    <string name="item_wallet_home_send">Send</string>
+
+    <string name="activity_transaction_detail_income">Income</string>
+    <string name="activity_transaction_detail_expenses">Expenses</string>
+    <string name="activity_transaction_detail_expenses_all">All</string>
+    <string name="activity_transaction_detail_tab_send">Send</string>
+    <string name="activity_transaction_detail_tab_receive">Receive</string>
+
+    <string name="dialog_2fa_use_google_authenticator_to_grab_the_code">Use google authenticator to grab the code</string>
+    <string name="dialog_2fa_enter_validation_code">Enter Validation Code:</string>
+    <string name="dialog_2fa_confirm">Confirm</string>
+    <string name="dialog_2fa_cancel">Cancel</string>
+
+
+
+
+</resources>

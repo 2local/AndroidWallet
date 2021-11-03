@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.android.l2l.twolocal.view.ToolbarView
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        app:tv_show_close="true"
+        app:tv_title="" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btnSubmit"
+        android:layout_below="@+id/toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_medium"
+            android:layout_marginEnd="@dimen/spacing_medium"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/textAppearance.size20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/fragment_restore_wallet_enter_recovery_phrase" />
+
+            <TextView
+                style="@style/textAppearance.size14.grey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_large"
+                android:text="@string/fragment_restore_wallet_please_enter_your_phrase_to_recover_your_wallet" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_large">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_mnemonic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+                    android:lines="5"
+                    android:paddingStart="@dimen/spacing_medium"
+                    android:paddingTop="@dimen/spacing_medium"
+                    android:paddingEnd="@dimen/margin_xxxlarge"
+                    android:paddingBottom="@dimen/spacing_medium" />
+
+
+                <TextView
+                    android:id="@+id/tv_clear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|bottom"
+                    android:layout_marginTop="@dimen/margin_large"
+                    android:layout_marginBottom="@dimen/margin_small"
+                    android:gravity="center"
+                    android:lineSpacingExtra="@dimen/spacing_medium"
+                    android:padding="@dimen/margin_small"
+                    android:text="@string/clear"
+                    android:textAppearance="@style/textAppearance.size14.accent" />
+
+                <ImageView
+                    android:id="@+id/image_scan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|right"
+                    android:layout_marginRight="@dimen/_50dp"
+                    android:focusable="true"
+                    android:layout_marginBottom="@dimen/margin_small"
+                    android:padding="@dimen/margin_small"
+                    android:src="@drawable/ic_scan"
+                    android:textColor="@color/colorPrimary" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/txtError"
+                style="@style/textAppearance.size14.red"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_large"
+                android:text="@string/fragment_restore_wallet_recovery_phrase_couldn_t_be_verified"
+                android:visibility="invisible" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btnSubmit"
+        style="@style/button.secondary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/margin_large"
+        android:layout_marginTop="@dimen/margin_large"
+        android:layout_marginEnd="@dimen/margin_large"
+        android:layout_marginBottom="@dimen/margin_large"
+        android:text="@string/fragment_restore_wallet_submit"
+        android:textColor="@color/white"
+        android:textSize="@dimen/medium_text_size" />
+</RelativeLayout>
