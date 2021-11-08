@@ -41,6 +41,7 @@ public class ApiConstants {
 
     public static final String BSC_TRANSACTION_LIST = BSC_SCAN_URL + "?module=account&action=tokentx&apikey="+BSC_SCAN_PAI_KEY;
     public static final String BSC_TRANSACTION_GAS = BSC_SCAN_URL + "?module=proxy&action=eth_gasPrice&apikey=" + BSC_SCAN_PAI_KEY;
+    public static final String BSC_BEP_20_TOKEN_BALANCE = BSC_SCAN_URL + "?module=account&action=tokenbalance&tag=latest&apikey="+BSC_SCAN_PAI_KEY;
 
     //binance
     public static final String BINANCE_TRANSACTION_LIST = BSC_SCAN_URL + "?module=account&action=txlist&apikey="+BSC_SCAN_PAI_KEY;

@@ -72,7 +72,7 @@ class BinanceRepositoryAndroidTest {
 ////        } returns File(context.getFilesDir(), "")
 //
 //        val testSingle = TestObserver<Boolean>()
-//        repository.restoreWalletFromMnemonic("later front attract congress advice helmet moon potato brown expect region fish").subscribe(
+//        repository.restoreWalletFromMnemonic("").subscribe(
 //            testSingle
 //        )
 ////        testSingle.await().assertValue {

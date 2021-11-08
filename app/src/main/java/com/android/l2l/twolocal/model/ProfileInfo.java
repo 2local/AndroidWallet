@@ -9,8 +9,6 @@ public class ProfileInfo {
     private Long user_Id;
     @SerializedName("name")
     private String name;
-    @SerializedName("user_type")
-    private String user_type;
     @SerializedName("email")
     private String email;
     @SerializedName("mobile_number")
@@ -53,18 +51,18 @@ public class ProfileInfo {
     private String affiliatedStatus;
     @SerializedName("affiliate_code")
     private String affiliateCode;
-
+    @SerializedName("wallet")
+    private String wallet; // bsc/2lc
 
     public ProfileInfo(Long user_Id, String name,
-                       String user_type, String email, String mobile_number,
+                       String email, String mobile_number,
                        String twofa, String first_name, String last_name, String birthday, String country,
                        String city, String state, String post_code, String address,
                        String created_at, String updated_at, String twoFa_status,
                        String status, String country_code,
-                       String affiliatedStatus, String affiliateCode) {
+                       String affiliatedStatus, String affiliateCode, String wallet ) {
         this.user_Id = user_Id;
         this.name = name;
-        this.user_type = user_type;
         this.email = email;
         this.mobile_number = mobile_number;
         this.twofa = twofa;
@@ -83,6 +81,7 @@ public class ProfileInfo {
         this.country_code = country_code;
         this.affiliatedStatus = affiliatedStatus;
         this.affiliateCode = affiliateCode;
+        this.wallet = wallet;
     }
 
     public ProfileInfo() {
@@ -105,13 +104,6 @@ public class ProfileInfo {
         this.name = name;
     }
 
-    public String getUser_type() {
-        return this.user_type;
-    }
-
-    public void setUser_type(String user_type) {
-        this.user_type = user_type;
-    }
 
     public String getEmail() {
         return this.email;
@@ -279,6 +271,14 @@ public class ProfileInfo {
 
     public void setAffiliateCode(String affiliateCode) {
         this.affiliateCode = affiliateCode;
+    }
+
+    public String getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(String wallet) {
+        this.wallet = wallet;
     }
 
     public boolean twoFaIsActive() {

@@ -56,59 +56,59 @@ class HomeViewModel
     val expenseLiveData: LiveData<ViewState<MutableList<Double>>>
         get() = _expenseLiveData
 
-    fun getAllWallets(forceGetFromServer: Boolean) {
-        if (forceGetFromServer) {
-            val ether: Single<WalletBalance> =
-                ethRepository.getWalletBalance().onErrorReturnItem(WalletBalance("0", CryptoCurrencyType.ETHEREUM.name))
-            val l2l: Single<WalletBalance> =
-                bscRepository.getWalletBalance().onErrorReturnItem(WalletBalance("0", CryptoCurrencyType.ETHEREUM.name))
-            val bnb: Single<WalletBalance> =
-                bnbRepository.getWalletBalance().onErrorReturnItem(WalletBalance("0", CryptoCurrencyType.ETHEREUM.name))
-            Single.zip(l2l, ether, bnb,
-                {
-                        l2lBalance: WalletBalance,
-                        etherBalance: WalletBalance,
-                        bnbBalance: WalletBalance,
-                    ->
+    var l2lBalance: WalletBalance? = null;
+    fun getAllWallets() {
+        getTotalBalanceOfAllWallets()
+        getListOfWallets()
 
-                    val etherWallet: Wallet? = walletRepository.getWallet(CryptoCurrencyType.ETHEREUM)
-                    if (etherWallet != null) {
-                        etherWallet.amount = etherBalance.balance
-                        walletRepository.saveWallet(etherWallet)
-                    }
 
-                    val l2lWallet: Wallet? = walletRepository.getWallet(CryptoCurrencyType.TwoLC)
-                    if (l2lWallet != null) {
-                        l2lWallet.amount = l2lBalance.balance
-                        walletRepository.saveWallet(l2lWallet)
-                    }
+        val ether: Single<WalletBalance> =
+            ethRepository.getWalletBalance().onErrorReturnItem(WalletBalance("0", CryptoCurrencyType.ETHEREUM.name))
+        val l2l: Single<WalletBalance> =
+            bscRepository.getWalletBalance().onErrorReturnItem(WalletBalance("0", CryptoCurrencyType.TwoLC.name))
+        val bnb: Single<WalletBalance> =
+            bnbRepository.getWalletBalance().onErrorReturnItem(WalletBalance("0", CryptoCurrencyType.BINANCE.name))
+        Single.zip(l2l, ether, bnb,
+            {
+                    l2lBalance: WalletBalance,
+                    etherBalance: WalletBalance,
+                    bnbBalance: WalletBalance,
+                ->
 
-                    val bnbWallet: Wallet? = walletRepository.getWallet(CryptoCurrencyType.BINANCE)
-                    if (bnbWallet != null) {
-                        bnbWallet.amount = bnbBalance.balance
-                        walletRepository.saveWallet(bnbWallet)
-                    }
-
-                }).withIO()
-                .doOnSubscribe {
-                    addToDisposable(it)
-                    _totalBalanceLiveData.value = ViewState.Loading
+                val etherWallet: Wallet? = walletRepository.getWallet(CryptoCurrencyType.ETHEREUM)
+                if (etherWallet != null) {
+                    etherWallet.amount = etherBalance.balance
+                    walletRepository.saveWallet(etherWallet)
                 }
-                .doOnError {
-                    _totalBalanceLiveData.value = ViewState.Error(GeneralError().withError(it))
-                }
-                .subscribe({
-                    getTotalBalanceAllWallets()
-                    getListOfWallets()
-                }, { it.printStackTrace() })
 
-        } else {
-            getTotalBalanceAllWallets()
-            getListOfWallets()
-        }
+                this.l2lBalance = l2lBalance
+                val l2lWallet: Wallet? = walletRepository.getWallet(CryptoCurrencyType.TwoLC)
+                if (l2lWallet != null) {
+                    l2lWallet.amount = l2lBalance.balance
+                    walletRepository.saveWallet(l2lWallet)
+                }
+
+                val bnbWallet: Wallet? = walletRepository.getWallet(CryptoCurrencyType.BINANCE)
+                if (bnbWallet != null) {
+                    bnbWallet.amount = bnbBalance.balance
+                    walletRepository.saveWallet(bnbWallet)
+                }
+
+            }).withIO()
+            .doOnSubscribe {
+                addToDisposable(it)
+                _totalBalanceLiveData.value = ViewState.Loading
+            }
+            .doOnError {
+                _totalBalanceLiveData.value = ViewState.Error(GeneralError().withError(it))
+            }
+            .subscribe({
+                getTotalBalanceOfAllWallets()
+                getListOfWallets()
+            }, { it.printStackTrace() })
     }
 
-    private fun getTotalBalanceAllWallets() {
+    private fun getTotalBalanceOfAllWallets() {
         walletRepository.getWalletList().withIO()
             .doOnSubscribe {
                 addToDisposable(it)
@@ -127,9 +127,17 @@ class HomeViewModel
         var totalPrice = 0.0
         val isShowAmount = userSession.getBalanceSeen()
         val currency = userSession.getCurrentCurrency()
+        var has2lc = false
         walletList.forEach { wallet ->
+            has2lc = wallet.type == CryptoCurrencyType.TwoLC
             totalPrice += wallet.fiatPrice.toDouble()
         }
+        if (!has2lc) { // if we are using temp wallet (from login), we must add 2lc balance manually
+            val twolcWallet: Wallet? = walletRepository.getWallet(CryptoCurrencyType.TwoLC)
+            if (twolcWallet != null)
+                totalPrice += twolcWallet.fiatPrice.toDouble()
+        }
+
         val totalBalance = TotalBalance(currency, totalPrice.toString(), isShowAmount)
         _totalBalanceLiveData.value = ViewState.Success(totalBalance)
     }

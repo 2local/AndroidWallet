@@ -17,4 +17,5 @@ interface WalletRepositoryHelper {
     fun deleteAllTables(): Single<Boolean>
     fun getAllWalletTransactionList(): Single<List<WalletTransactionHistory>>
     fun getWalletTransactionList(walletType: CryptoCurrencyType): Single<List<WalletTransactionHistory>>
+    fun createTemporaryWallet(walletType: CryptoCurrencyType,  address: String,  uniqueKey: String): Boolean
 }

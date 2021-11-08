@@ -5,14 +5,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.android.l2l.twolocal.R
+import com.android.l2l.twolocal.coin.DefaultWallet
+import com.android.l2l.twolocal.coin.TwoLocalCoin
 import com.android.l2l.twolocal.common.withIO
 import com.android.l2l.twolocal.dataSourse.local.prefs.UserSessionHelper
 import com.android.l2l.twolocal.dataSourse.repository.auth.AuthenticationRepositoryHelper
 import com.android.l2l.twolocal.dataSourse.repository.profile.ProfileRepositoryHelper
+import com.android.l2l.twolocal.dataSourse.repository.wallet.WalletRepositoryHelper
 import com.android.l2l.twolocal.dataSourse.utils.ViewState
 import com.android.l2l.twolocal.dataSourse.utils.error.GeneralError
 import com.android.l2l.twolocal.dataSourse.utils.error.withError
 import com.android.l2l.twolocal.model.ProfileInfo
+import com.android.l2l.twolocal.model.enums.CryptoCurrencyType
 import com.android.l2l.twolocal.model.output.LoginOutput
 import com.android.l2l.twolocal.ui.authentication.viewModel.formState.LoginFormState
 import com.android.l2l.twolocal.ui.base.BaseViewModel
@@ -28,7 +32,8 @@ import javax.inject.Inject
 class LoginViewModel
 @Inject constructor(
     private val authenticationRepository: AuthenticationRepositoryHelper,
-    private val appPreferencesHelper: UserSessionHelper
+    private val appPreferencesHelper: UserSessionHelper,
+    private val walletRepository: WalletRepositoryHelper,
 ) : BaseViewModel() {
 
 
@@ -73,6 +78,7 @@ class LoginViewModel
                     authenticationRepository.storeUserInfo(it.record)
                     if (it.record != null && !it.record.twoFaIsActive())
                         authenticationRepository.saveUserLoggedIn()
+                    walletRepository.createTemporaryWallet(CryptoCurrencyType.TwoLC, it.record.wallet, TwoLocalCoin.TWOlc_WALLET_CONTRACT)
                 } else {
                     _loginLiveData.value = ViewState.Error(GeneralError().withError(message = it.message))
                 }

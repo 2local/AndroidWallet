@@ -1,5 +1,6 @@
 package com.android.l2l.twolocal.dataSourse.remote.currency;
 
+import com.android.l2l.twolocal.model.response.BSCBalanceResponse;
 import com.android.l2l.twolocal.model.response.BSCTransactionGasResponse;
 import com.android.l2l.twolocal.model.response.EtherTransactionGasResponse;
 import com.android.l2l.twolocal.model.response.EtherTransactionResponse;
@@ -40,5 +41,10 @@ public class CryptoCurrencyRemoteDataSource implements CryptoCurrencyRemoteDataS
     @Override
     public Single<EtherTransactionResponse> getBinanceTransactions(String walletAddress, String sort, int page, int offset) {
         return  apiInterface.getBinanceTransactions(walletAddress, sort,page ,offset);
+    }
+
+    @Override
+    public Single<BSCBalanceResponse> getBSC_BEP20_token_balance(String walletAddress, String contractAddress) {
+        return  apiInterface.getBSC_BEP20_token_balance(walletAddress, contractAddress);
     }
 }
