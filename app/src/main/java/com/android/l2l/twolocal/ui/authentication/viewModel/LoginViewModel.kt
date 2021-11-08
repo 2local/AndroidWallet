@@ -76,9 +76,9 @@ class LoginViewModel
                 if (it.code == 200) {
                     _loginLiveData.value = ViewState.Success(it.record)
                     authenticationRepository.storeUserInfo(it.record)
+                    walletRepository.createTemporaryWallet(CryptoCurrencyType.TwoLC, it.record.wallet, TwoLocalCoin.TWOlc_WALLET_CONTRACT)
                     if (it.record != null && !it.record.twoFaIsActive())
                         authenticationRepository.saveUserLoggedIn()
-                    walletRepository.createTemporaryWallet(CryptoCurrencyType.TwoLC, it.record.wallet, TwoLocalCoin.TWOlc_WALLET_CONTRACT)
                 } else {
                     _loginLiveData.value = ViewState.Error(GeneralError().withError(message = it.message))
                 }
