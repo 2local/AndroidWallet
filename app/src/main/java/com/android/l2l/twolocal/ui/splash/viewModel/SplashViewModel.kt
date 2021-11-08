@@ -29,6 +29,7 @@ class SplashViewModel
 @Inject constructor(
     private val exchangeRateRepository: ExchangeRateRepositoryHelper,
     private val userSession: UserSessionHelper,
+    private val profileRepository: ProfileRepositoryHelper,
 ) : BaseViewModel() {
 
     private val _appInitLiveData = MutableLiveData<AppInitState>()
@@ -59,10 +60,13 @@ class SplashViewModel
                     .onErrorResumeNext { Single.just(ExchangeRateResponse(TokenExchangeRatePairs.BINANCE.pair, "0")) },
                 exchangeRateRepository.getCoinExchangeRate(TokenExchangeRatePairs.ETHEREUM.pair)
                     .onErrorResumeNext { Single.just(ExchangeRateResponse(TokenExchangeRatePairs.ETHEREUM.pair, "0")) },
+                profileRepository.profile()
+                    .onErrorResumeNext { Single.just(ApiSingleResponse("", 401)) },
                 {
                         towlc_usdt: ExchangeRateResponse,
                         bnb_usdt: ExchangeRateResponse,
                         eth_usdt: ExchangeRateResponse,
+                        profileInfo: ApiSingleResponse<ProfileInfo>,
                     ->
                     val coinPrices: MutableList<CoinExchangeRate> = mutableListOf()
                     coinPrices.add(Mapper_ExchangeRate.mapperToCoinExchangeRate(bnb_usdt))
@@ -70,7 +74,6 @@ class SplashViewModel
                     coinPrices.add(Mapper_ExchangeRate.mapperToCoinExchangeRate(eth_usdt))
                     exchangeRateRepository.saveCoinExchangeRate(coinPrices)
 
-//                    profile.code == 200
                     true
 
                 }).withIO()

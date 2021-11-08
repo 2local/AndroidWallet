@@ -5,9 +5,9 @@ import com.google.gson.annotations.SerializedName;
 public class WalletBalance {
 
     @SerializedName("code")
-    private String code;
+    private String code; // Assets symbol
     @SerializedName("balance")
-    private String balance;
+    private String balance; // In decimal
 
     public WalletBalance(String balance, String code) {
         this.code = code;

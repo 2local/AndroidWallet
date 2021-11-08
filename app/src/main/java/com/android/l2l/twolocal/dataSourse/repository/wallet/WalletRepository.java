@@ -2,6 +2,7 @@ package com.android.l2l.twolocal.dataSourse.repository.wallet;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.text.TextUtils;
 
 import com.android.l2l.twolocal.coin.CoinHelper;
 import com.android.l2l.twolocal.dataSourse.local.db.AppDatabase;
@@ -11,6 +12,8 @@ import com.android.l2l.twolocal.model.WalletTransactionHistory;
 import com.android.l2l.twolocal.model.enums.CryptoCurrencyType;
 import com.android.l2l.twolocal.model.enums.FiatType;
 import com.android.l2l.twolocal.model.CoinExchangeRate;
+import com.android.l2l.twolocal.utils.SecurityUtils;
+import com.android.l2l.twolocal.utils.WalletFactory;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -155,5 +158,19 @@ public class WalletRepository implements WalletRepositoryHelper {
     @Override
     public Single<List<WalletTransactionHistory>> getWalletTransactionList(@NotNull CryptoCurrencyType walletType) {
         return database.getWalletTransactionList(walletType);
+    }
+
+    @NotNull
+    @Override
+    public boolean createTemporaryWallet(@NotNull CryptoCurrencyType currencyType, String address, String uniqueKey) {
+        Wallet wallet = WalletFactory.getWallet(currencyType, address, uniqueKey);
+        try {
+            database.saveOrReplaceWallet(wallet);
+
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return  false;
+        }
     }
 }

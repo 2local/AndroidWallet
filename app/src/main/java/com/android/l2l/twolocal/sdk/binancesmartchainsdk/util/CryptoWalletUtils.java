@@ -40,7 +40,7 @@ public class CryptoWalletUtils {
     }
 
     public static Credentials getWalletCredential(Context context, AppDatabase database, CryptoCurrencyType currencyType) {
-//        Credentials credentials = Credentials.create("336b7abaab1bcb3fab4e5b1ac020da587da451d16e4e9869957cd860a17abd37");
+//        Credentials credentials = Credentials.create("");
         Credentials credentials = null;
         try {
             Wallet wallet = database.getWallet(currencyType);

@@ -109,7 +109,7 @@ class BinanceRepositoryTest: MockWebServerBaseTest() {
 //        } returns File("")
 //
 //        val testSingle = TestObserver<Boolean>()
-//        repository.restoreWalletFromMnemonic("front front expect moon brown  attract congress advice potato moon region moon").subscribe(
+//        repository.restoreWalletFromMnemonic("").subscribe(
 //            testSingle
 //        )
 //        testSingle.await().assertValue {
@@ -128,7 +128,7 @@ class BinanceRepositoryTest: MockWebServerBaseTest() {
 //        } returns getInstrumentation().getContext().getDir("tmp1", Context.MODE_PRIVATE);
 //
 //        val testSingle = TestObserver<Boolean>()
-//        repository.restoreWalletFromPrivateKey("0x02be51640adb86933608b53e4ce522c930d39cf6004b17f5905c4062f21e5ab2").subscribe(
+//        repository.restoreWalletFromPrivateKey("").subscribe(
 //            testSingle
 //        )
 //        testSingle.await().assertValue {

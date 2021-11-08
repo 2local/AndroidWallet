@@ -153,11 +153,11 @@ class FragmentHomeTab : BaseFragment<HomeViewModel>(R.layout.fragment_home_tab) 
         }
 
         binding.refreshLayout.setOnRefreshListener {
-            viewModel.getAllWallets(true)
+            viewModel.getAllWallets()
         }
 
 
-        viewModel.getAllWallets(false)
+        viewModel.getAllWallets()
         viewModel.getL2LTransactionsHistory()
     }
 
@@ -197,6 +197,6 @@ class FragmentHomeTab : BaseFragment<HomeViewModel>(R.layout.fragment_home_tab) 
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: RefreshWalletListEvent) {
-        viewModel.getAllWallets(false)
+        viewModel.getAllWallets()
     }
 }

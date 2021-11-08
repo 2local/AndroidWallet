@@ -118,11 +118,31 @@ public class BSCRepository implements CryptoCurrencyRepositoryHelper {
     @NotNull
     @Override
     public Single<WalletBalance> getWalletBalance() {
+        Credentials credentials = CryptoWalletUtils.getWalletCredential(context, database, currencyType);
+        if (credentials == null && currencyType == CryptoCurrencyType.TwoLC) {
+            return getTokenBalanceFromBSC_API();
+        } else
+            return getTokenBalanceFromWeb3(credentials);
+    }
 
+    private Single<WalletBalance> getTokenBalanceFromBSC_API() {
+        String walletAddress = userSession.getProfileInfo().getWallet();
+        Single<WalletBalance> apiRequest;
+        if (!TextUtils.isEmpty(walletAddress)) {
+            apiRequest = etherApiInterface.getBSC_BEP20_token_balance(walletAddress, getContractAddress())
+                    .map(walletBalanceResponse -> {
+                        BigDecimal tokenValueByDecimals = BalanceUtils.balanceByDecimal(new BigInteger(walletBalanceResponse.getResult()), new BigInteger("18"));
+                        return new WalletBalance(tokenValueByDecimals.toString(), currencyType.getMyName());
+                    });
+        } else {
+            apiRequest = Single.just(new WalletBalance("0", currencyType.getMyName()));
+        }
+        return apiRequest;
+    }
+
+    private Single<WalletBalance> getTokenBalanceFromWeb3(Credentials credentials) {
         return Single.fromCallable(() -> {
-            Credentials credentials = CryptoWalletUtils.getWalletCredential(context, database, currencyType);
 
-//            TransactionReceiptProcessor transactionReceiptProcessor = new NoOpProcessor(web3j);
             TransactionManager transactionManager = new RawTransactionManager(web3j, credentials, getChainID());
             Erc20TokenWrapper contract = Erc20TokenWrapper.load(getContractAddress(), web3j, transactionManager, BigInteger.ZERO, BigInteger.ZERO);
             Address address = new Address(credentials.getAddress());
@@ -132,11 +152,9 @@ public class BSCRepository implements CryptoCurrencyRepositoryHelper {
             BigInteger decimalCount = contract.decimals().getValue();
 
             BigDecimal tokenValueByDecimals = BalanceUtils.balanceByDecimal(tokenBalance, decimalCount);
-            Log.v("getWalletBalance", tokenValueByDecimals.toString() + " " + tokenName + " " + tokenSymbol);
             return new WalletBalance(tokenValueByDecimals.toString(), currencyType.getMyName());
         });
     }
-
 
     @Override
     public boolean checkValidEtherAddress(String etherAddress) {
@@ -461,12 +479,13 @@ public class BSCRepository implements CryptoCurrencyRepositoryHelper {
         String walletAddress = "";
         if (credentials != null)
             walletAddress = credentials.getAddress();
-
+        else if (currencyType == CryptoCurrencyType.TwoLC)
+            walletAddress = userSession.getProfileInfo().getWallet();
         Single<List<WalletTransactionHistory>> apiRequest = getTransactionFromApi(walletAddress);
 
         Single<List<WalletTransactionHistory>> localRequest = database.getWalletTransactionList(currencyType);
 
-        String finalWalletAddress = walletAddress;
+        final String finalWalletAddress = walletAddress;
         return Observable.concatArray(localRequest.toObservable(), apiRequest.toObservable()).map(history -> {
             if (history != null)
                 for (WalletTransactionHistory transaction : history) {

@@ -1,6 +1,7 @@
 package com.android.l2l.twolocal.dataSourse.remote.currency
 
 import com.android.l2l.twolocal.dataSourse.remote.api.ApiConstants
+import com.android.l2l.twolocal.model.response.BSCBalanceResponse
 import com.android.l2l.twolocal.model.response.BSCTransactionGasResponse
 import com.android.l2l.twolocal.model.response.EtherTransactionGasResponse
 import com.android.l2l.twolocal.model.response.EtherTransactionResponse
@@ -42,4 +43,10 @@ interface CryptoCurrencyApiInterface {
         @Query("page") page: Int,
         @Query("offset") offset: Int
     ): Single<EtherTransactionResponse>
+
+    @GET(ApiConstants.BSC_BEP_20_TOKEN_BALANCE)
+    fun getBSC_BEP20_token_balance(
+        @Query("address") address: String,
+        @Query("contractaddress") contractaddress: String,
+    ): Single<BSCBalanceResponse>
 }
