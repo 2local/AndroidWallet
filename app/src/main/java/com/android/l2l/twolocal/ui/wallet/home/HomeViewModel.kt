@@ -1,6 +1,7 @@
 package com.android.l2l.twolocal.ui.wallet.home;
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -56,9 +57,8 @@ class HomeViewModel
     val expenseLiveData: LiveData<ViewState<MutableList<Double>>>
         get() = _expenseLiveData
 
-    var l2lBalance: WalletBalance? = null;
     fun getAllWallets() {
-        getTotalBalanceOfAllWallets()
+        twoLCWalletTotalAmount()
         getListOfWallets()
 
 
@@ -81,7 +81,6 @@ class HomeViewModel
                     walletRepository.saveWallet(etherWallet)
                 }
 
-                this.l2lBalance = l2lBalance
                 val l2lWallet: Wallet? = walletRepository.getWallet(CryptoCurrencyType.TwoLC)
                 if (l2lWallet != null) {
                     l2lWallet.amount = l2lBalance.balance
@@ -103,43 +102,37 @@ class HomeViewModel
                 _totalBalanceLiveData.value = ViewState.Error(GeneralError().withError(it))
             }
             .subscribe({
-                getTotalBalanceOfAllWallets()
+                twoLCWalletTotalAmount()
                 getListOfWallets()
             }, { it.printStackTrace() })
     }
 
-    private fun getTotalBalanceOfAllWallets() {
-        walletRepository.getWalletList().withIO()
-            .doOnSubscribe {
-                addToDisposable(it)
-            }
-            .doOnError {
-                _totalBalanceLiveData.value = ViewState.Error(GeneralError().withError(it))
-            }
-            .subscribe({ walletList ->
+//    private fun getTotalBalanceOfAllWallets() {
+//        walletRepository.getWalletList().withIO()
+//            .doOnSubscribe {
+//                addToDisposable(it)
+//            }
+//            .doOnError {
+//                _totalBalanceLiveData.value = ViewState.Error(GeneralError().withError(it))
+//            }
+//            .subscribe({ walletList ->
+//
+//                onTotalWalletsAmount()
+//
+//            }, { it.printStackTrace() })
+//    }
 
-                onTotalWalletsAmount(walletList as MutableList<Wallet>)
-
-            }, { it.printStackTrace() })
-    }
-
-    private fun onTotalWalletsAmount(walletList: MutableList<Wallet>) {
-        var totalPrice = 0.0
+    private fun twoLCWalletTotalAmount() {
         val isShowAmount = userSession.getBalanceSeen()
-        val currency = userSession.getCurrentCurrency()
-        var has2lc = false
-        walletList.forEach { wallet ->
-            has2lc = wallet.type == CryptoCurrencyType.TwoLC
-            totalPrice += wallet.fiatPrice.toDouble()
-        }
-        if (!has2lc) { // if we are using temp wallet (from login), we must add 2lc balance manually
-            val twolcWallet: Wallet? = walletRepository.getWallet(CryptoCurrencyType.TwoLC)
-            if (twolcWallet != null)
-                totalPrice += twolcWallet.fiatPrice.toDouble()
-        }
 
-        val totalBalance = TotalBalance(currency, totalPrice.toString(), isShowAmount)
-        _totalBalanceLiveData.value = ViewState.Success(totalBalance)
+        val twolcWallet: Wallet? = walletRepository.getWallet(CryptoCurrencyType.TwoLC)
+        if (twolcWallet != null) {
+
+            val totalPrice = twolcWallet.fiatPrice.toDouble()
+            val twolc = twolcWallet.amount
+            val totalBalance = TotalBalance(twolcWallet.type.symbol, twolc, totalPrice.toString(), isShowAmount)
+            _totalBalanceLiveData.value = ViewState.Success(totalBalance)
+        }
     }
 
     fun toggleBlindAmount() {
@@ -156,7 +149,7 @@ class HomeViewModel
                 _totalBalanceLiveData.value = ViewState.Error(GeneralError().withError(it))
             }
             .subscribe({ walletList ->
-                onTotalWalletsAmount(walletList as MutableList<Wallet>)
+                twoLCWalletTotalAmount()
                 onWalletListLoaded(walletList as MutableList<Wallet>)
             }, { it.printStackTrace() })
     }

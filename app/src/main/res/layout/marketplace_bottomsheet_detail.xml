@@ -141,7 +141,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="address"
-            android:textAppearance="@style/textAppearance.size14" />
+            android:textAppearance="@style/textAppearance.size16" />
 
     </LinearLayout>
 
@@ -160,7 +160,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="http://www.google.com"
-            android:textAppearance="@style/textAppearance.size14" />
+            android:textAppearance="@style/textAppearance.size16" />
 
     </LinearLayout>
 

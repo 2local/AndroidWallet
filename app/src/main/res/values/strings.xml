@@ -270,7 +270,7 @@
     <string name="contact_deleted_successfully">Contact deleted successfully</string>
     <string name="send_token_where_is_no_contact">Where is no contact for this wallet!</string>
     <string name="your_currency_changed_to_">Your currency changed to %s</string>
-    <string name="balance_currency">%s%s</string>
+    <string name="balance_currency">%s %s</string>
     <string name="available_amount">Available: %s %s</string>
     <string name="s_s">%s %s</string>
     <string name="complete">Complete</string>
@@ -348,7 +348,7 @@
     <string name="chart_mar">Mar</string>
     <string name="chart_feb">Feb</string>
     <string name="chart_jan">Jan</string>
-    <string name="home_total_balance">Total Balance</string>
+    <string name="home_total_balance">Total 2LC Balance</string>
     <string name="home_transactions">2LC last year transactions</string>
     <string name="home_income">Income</string>
     <string name="home_expenses">Expenses</string>
