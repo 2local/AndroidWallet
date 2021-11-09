@@ -1,9 +1,11 @@
 package com.android.l2l.twolocal.ui.wallet.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.annotation.Nullable
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.l2l.twolocal.R
@@ -14,6 +16,7 @@ import com.android.l2l.twolocal.databinding.FragmentHomeTabBinding
 import com.android.l2l.twolocal.di.viewModel.AppViewModelFactory
 import com.android.l2l.twolocal.model.Wallet
 import com.android.l2l.twolocal.model.enums.CryptoCurrencyType
+import com.android.l2l.twolocal.model.enums.FiatType
 import com.android.l2l.twolocal.model.event.RefreshWalletListEvent
 import com.android.l2l.twolocal.ui.base.BaseFragment
 import com.android.l2l.twolocal.ui.setting.SettingActivity
@@ -26,6 +29,8 @@ import com.android.l2l.twolocal.utils.CommonUtils
 import com.android.l2l.twolocal.utils.LiveDataCombineUtil
 import com.android.l2l.twolocal.view.ChartItemView
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -46,7 +51,7 @@ class FragmentHomeTab : BaseFragment<HomeViewModel>(R.layout.fragment_home_tab) 
     private lateinit var incomeViews: MutableList<ChartItemView>
 
     override fun onCreate(@Nullable savedInstanceState: Bundle?) {
-        DaggerWalletComponent.factory().create(requireActivity().findAppComponent(),CryptoCurrencyType.TwoLC).inject(this)
+        DaggerWalletComponent.factory().create(requireActivity().findAppComponent(), CryptoCurrencyType.TwoLC).inject(this)
         super.onCreate(savedInstanceState)
     }
 
@@ -62,9 +67,9 @@ class FragmentHomeTab : BaseFragment<HomeViewModel>(R.layout.fragment_home_tab) 
             if (wallets[position].type == CryptoCurrencyType.NONE)
                 CreateWalletActivity.start(requireContext())
             else if (view.id == R.id.btnReceive) {
-                    ReceiveActivity.start(requireContext(), wallets[position].type)
+                ReceiveActivity.start(requireContext(), wallets[position].type)
             } else if (view.id == R.id.btnSend) {
-                    SendTokenActivity.start(requireContext(), wallets[position].type)
+                SendTokenActivity.start(requireContext(), wallets[position].type)
             } else if (view.id == R.id.btnBuy) {
 
             }
@@ -81,11 +86,19 @@ class FragmentHomeTab : BaseFragment<HomeViewModel>(R.layout.fragment_home_tab) 
                         binding.imageEye.setImageResource(R.drawable.ic_eye_gray)
                     else
                         binding.imageEye.setImageResource(R.drawable.ic_eye_brown_selected)
-
                     binding.txtTotalBalance.text = getString(
                         R.string.balance_currency,
-                        wallet.currency?.mySymbol,
+                        wallet.currency,
                         if (wallet.showAmount) CommonUtils.formatToDecimalPriceTwoDigits(CommonUtils.stringToBigDecimal(wallet.balance)) else getString(
+                            R.string.hidden_stars
+                        )
+                    )
+
+
+                    binding.txtTotalBalanceDollar.text = getString(
+                        R.string.balance_currency,
+                        FiatType.USD.mySymbol,
+                        if (wallet.showAmount) CommonUtils.formatToDecimalPriceSixDigits(CommonUtils.stringToBigDecimal(wallet.fiatBalance)) else getString(
                             R.string.hidden_stars
                         )
                     )
@@ -97,7 +110,7 @@ class FragmentHomeTab : BaseFragment<HomeViewModel>(R.layout.fragment_home_tab) 
                     onMessageToast(it.error.message)
                 }
                 else -> {
-
+                    binding.refreshLayout.isRefreshing = false
                 }
             }
         })
@@ -130,11 +143,11 @@ class FragmentHomeTab : BaseFragment<HomeViewModel>(R.layout.fragment_home_tab) 
 
 
                 t2.response.forEachIndexed { index, element ->
-                    incomeViews[index].setIncomeChart(maxValue,element )
+                    incomeViews[index].setIncomeChart(maxValue, element)
                 }
 
                 t1.response.forEachIndexed { index, element ->
-                    incomeViews[index].setExpenseFebChart(maxValue,element )
+                    incomeViews[index].setExpenseFebChart(maxValue, element)
                 }
             }
 
@@ -157,7 +170,10 @@ class FragmentHomeTab : BaseFragment<HomeViewModel>(R.layout.fragment_home_tab) 
         }
 
 
-        viewModel.getAllWallets()
+        lifecycleScope.launch {
+            delay(300)
+            viewModel.getAllWallets()
+        }
         viewModel.getL2LTransactionsHistory()
     }
 

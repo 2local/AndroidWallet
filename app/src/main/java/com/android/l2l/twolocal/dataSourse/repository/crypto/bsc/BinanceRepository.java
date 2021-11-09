@@ -406,19 +406,22 @@ public class BinanceRepository implements CryptoCurrencyRepositoryHelper {
     public Observable<List<WalletTransactionHistory>> getTransactionHistory() {
 
         Credentials credentials = CryptoWalletUtils.getWalletCredential(context, database, currencyType);
-        String walletAddress = credentials.getAddress();
-        Single<List<WalletTransactionHistory>> apiRequest = getTransactionFromApi(walletAddress);
+        if(credentials!=null) {
+            String walletAddress = credentials.getAddress();
+            Single<List<WalletTransactionHistory>> apiRequest = getTransactionFromApi(walletAddress);
 
-        Single<List<WalletTransactionHistory>> localRequest = database.getWalletTransactionList(currencyType);
+            Single<List<WalletTransactionHistory>> localRequest = database.getWalletTransactionList(currencyType);
 
-        return Observable.concatArray(localRequest.toObservable(), apiRequest.toObservable()).map(history -> {
-            if (history != null)
-                for (WalletTransactionHistory transaction : history) {
-                    transaction.setSend(transaction.getFrom().equalsIgnoreCase(walletAddress));
-                }
+            return Observable.concatArray(localRequest.toObservable(), apiRequest.toObservable()).map(history -> {
+                if (history != null)
+                    for (WalletTransactionHistory transaction : history) {
+                        transaction.setSend(transaction.getFrom().equalsIgnoreCase(walletAddress));
+                    }
 
-            return history;
-        });
+                return history;
+            });
+        }else
+            return Observable.just(new ArrayList<WalletTransactionHistory>());
     }
 
     private Single<List<WalletTransactionHistory>> getTransactionFromApi(String walletAddress){

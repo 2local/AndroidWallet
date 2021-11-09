@@ -3,6 +3,7 @@ package com.android.l2l.twolocal.ui.market
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -54,9 +55,9 @@ class BottomSheetMarketPlaceDetail : BottomSheetDialogFragment() { //TODO create
         }
 
         marketPlace?.let {
-            binding.marketPlaceUrl.text = it.websiteUrl
+            binding.marketPlaceUrl.text = it.address
             binding.companyName.text = it.companyName
-            binding.marketPlaceAddress.text = it.address
+            binding.marketPlaceAddress.text = it.representative
         }
 
 
@@ -74,10 +75,10 @@ class BottomSheetMarketPlaceDetail : BottomSheetDialogFragment() { //TODO create
             this.dismiss()
         }
 
-        binding.marketPlaceUrlContainer.setOnClickListener {
+        binding.marketPlaceUrl.setOnClickListener {
             try {
                 marketPlace?.let {
-                    Intent(Intent.ACTION_VIEW, Uri.parse(it.websiteUrl)).apply {
+                    Intent(Intent.ACTION_VIEW, Uri.parse(it.address)).apply {
                         startActivity(this)
                     }
                 }

@@ -3,11 +3,11 @@ def signingPropertiesFile = rootProject.file("signing.properties")
 def signingProperties = new Properties()
 signingProperties.load(new FileInputStream(signingPropertiesFile))
 
-def localProperties = new Properties()
-localProperties.load(project.rootProject.file('local.properties').newDataInputStream())
-def BranchKey = localProperties.getProperty('Branch.key')
-def BranchTestKey = localProperties.getProperty('Branch_test.key')
-def googleMapKey = localProperties.getProperty('google_map.key')
+//def localProperties = new Properties()
+//localProperties.load(project.rootProject.file('local.properties').newDataInputStream())
+//def BranchKey = localProperties.getProperty('Branch.key')
+//def BranchTestKey = localProperties.getProperty('Branch_test.key')
+//def googleMapKey = localProperties.getProperty('google_map_key')
 
 android {
     //https://gist.github.com/mileskrell/7074c10cb3298a2c9d75e733be7061c2
@@ -19,4 +19,23 @@ android {
             keyPassword signingProperties['PRODUCTION_KEY_PASSWORD']
         }
     }
+
+
+//    defaultConfig {
+//        Properties properties = new Properties()
+//        if (rootProject.file("local.properties").exists()) {
+//            properties.load(rootProject.file("local.properties").newDataInputStream())
+//        }
+
+//        manifestPlaceholders = [
+//                googleMapKey : properties.getProperty("google_map_key", "") ,
+//                branchKey : properties.getProperty("branch_key", "") ,
+//                branchTestKey : properties.getProperty("branch_test_key", "")
+//        ]
+//
+//        buildConfigField "String", "googleMapKey", localProperties['google_map_key']
+//        buildConfigField "String", "branchKey", localProperties['branch_key']
+//        buildConfigField "String", "branchTestKey", localProperties['branch_test_key']
+
+//    }
 }

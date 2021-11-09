@@ -7,8 +7,9 @@ plugins {
     id("kotlin-android")
     id("kotlin-kapt")
     id("kotlin-parcelize")
-    id("com.google.gms.google-services")
-    id("com.google.firebase.crashlytics")
+    id("com.google.secrets_gradle_plugin") version "0.5"
+//    id("com.google.gms.google-services")
+//    id("com.google.firebase.crashlytics")
 }
 apply {
     from("../app_properties.gradle")
