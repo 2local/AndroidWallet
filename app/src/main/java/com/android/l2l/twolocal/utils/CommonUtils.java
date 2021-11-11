@@ -144,6 +144,21 @@ public final class CommonUtils {
 
     }
 
+    public static String formatToDecimalPriceSixDigitsOptional(BigDecimal price) {
+        try {
+            NumberFormat numberFormat = DecimalFormat.getNumberInstance(Locale.US);
+            DecimalFormat formatter = (DecimalFormat) numberFormat;
+            formatter.applyPattern("###,###,##0.######");
+            formatter.setRoundingMode(RoundingMode.DOWN);
+
+            return formatter.format(price);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        return "0.0";
+
+    }
+
     @SuppressLint("all")
     public static String getDeviceId(Context context) {
         return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
