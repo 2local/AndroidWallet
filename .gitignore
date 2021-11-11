@@ -38,6 +38,7 @@ captures/
 
 # IntelliJ
 *.iml
+.idea/
 .idea/workspace.xml
 .idea/tasks.xml
 .idea/gradle.xml
@@ -121,4 +122,5 @@ Thumbs.db
 # Signing config
 signing.properties
 local_key.jks
+
 
