@@ -88,10 +88,9 @@ class FragmentHomeTab : BaseFragment<HomeViewModel>(R.layout.fragment_home_tab) 
                         binding.imageEye.setImageResource(R.drawable.ic_eye_brown_selected)
                     binding.txtTotalBalance.text = getString(
                         R.string.balance_currency,
-                        wallet.currency,
                         if (wallet.showAmount) CommonUtils.formatToDecimalPriceTwoDigits(CommonUtils.stringToBigDecimal(wallet.balance)) else getString(
                             R.string.hidden_stars
-                        )
+                        ), wallet.currency
                     )
 
 

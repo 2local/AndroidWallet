@@ -73,52 +73,61 @@
                 app:layout_constraintTop_toTopOf="@+id/guidelineTop" />
 
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/lntTotalBalance"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_normal"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="@+id/guidelineRight2"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guidelineLeft2"
                 app:layout_constraintTop_toBottomOf="@+id/text_total_balance">
 
+
                 <LinearLayout
+                    android:id="@+id/lnt_balance"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
                         android:id="@+id/txtTotalBalance"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="@dimen/_40dp"
                         android:ellipsize="end"
                         android:singleLine="true"
-                        android:layout_gravity="center_vertical"
                         android:textAppearance="@style/textAppearance.size25"
-                        tools:text="2LC 1,206,574" />
+                        tools:text="1,206,574 2LC" />
 
-                    <ImageView
-                        android:id="@+id/image_eye"
-                        style="@style/icon.medium.padding"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="@dimen/spacing_normal"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:src="@drawable/ic_eye_gray" />
-
+                    <TextView
+                        android:id="@+id/txtTotalBalanceDollar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right|end"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:layout_marginEnd="@dimen/_40dp"
+                        android:textAppearance="@style/textAppearance.size16"
+                        tools:text="$1,200" />
                 </LinearLayout>
 
+                <ImageView
+                    android:id="@+id/image_eye"
+                    style="@style/icon.medium.padding"
+                    android:layout_gravity="top"
+                    android:layout_toEndOf="@+id/lnt_balance"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/ic_eye_gray"
+                    app:layout_constraintEnd_toEndOf="@+id/lnt_balance"
+                    app:layout_constraintTop_toTopOf="@+id/lnt_balance" />
 
-                <TextView
-                    android:id="@+id/txtTotalBalanceDollar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="@style/textAppearance.size16"
-                    tools:text="$1,200" />
-
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             <androidx.constraintlayout.widget.Barrier
