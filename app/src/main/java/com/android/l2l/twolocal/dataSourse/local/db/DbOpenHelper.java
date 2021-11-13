@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.android.l2l.twolocal.model.AddressBookDao;
 import com.android.l2l.twolocal.model.DaoMaster;
-import com.android.l2l.twolocal.model.TransactionsDao;
 import com.android.l2l.twolocal.model.WalletDao;
 import com.android.l2l.twolocal.model.WalletTransactionHistoryDao;
 import com.android.l2l.twolocal.utils.constants.AppConstants;
@@ -28,7 +27,7 @@ public class DbOpenHelper extends DaoMaster.OpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         super.onUpgrade(db, oldVersion, newVersion);
-        // TODO: 1/25/20 handle this on OnUpgrade
+
         if (oldVersion == 1) {
             updateOldVersion1(db);
             oldVersion++;
@@ -67,14 +66,7 @@ public class DbOpenHelper extends DaoMaster.OpenHelper {
     }
 
     private void updateOldVersion1(SQLiteDatabase db) {
-//            db.execSQL("DROP TABLE IF EXISTS transactions");
-        Cursor mCursor1 = db.rawQuery("SELECT * FROM " + TransactionsDao.TABLENAME + " LIMIT 0", null);
-        if (mCursor1.getColumnIndex("CURRENCY") == -1)
-            db.execSQL("ALTER TABLE " + TransactionsDao.TABLENAME + " ADD COLUMN 'CURRENCY' String;");
-
-        Cursor mCursor2 = db.rawQuery("SELECT * FROM " + TransactionsDao.TABLENAME + " LIMIT 0", null);
-        if (mCursor2.getColumnIndex("L2L") == -1)
-            db.execSQL("ALTER TABLE " + TransactionsDao.TABLENAME + " ADD COLUMN 'L2L' String;");
+            db.execSQL("DROP TABLE IF EXISTS transactions");
     }
 
     private void updateOldVersion2(SQLiteDatabase db) {

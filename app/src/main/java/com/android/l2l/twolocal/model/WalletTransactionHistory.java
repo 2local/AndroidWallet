@@ -160,13 +160,40 @@ public class WalletTransactionHistory {
     public Coin getCoin() {
         return CoinHelper.INSTANCE.getCoin(type, null, null);
     }
-//    public String getFiatPrice() {
-//        return fiatPrice;
-//    }
-//
-//    public void setFiatPrice(String fiatPrice) {
-//        this.fiatPrice = fiatPrice;
-//    }
+
+    public int getTransactionTransferTypeStringResource() {
+        if (isSend())
+            return R.string.activity_transaction_history_send;
+        return R.string.activity_transaction_history_receive;
+    }
+
+    public String getTxreceiptStatus() {
+        if (txreceiptStatus!=null)
+            return txreceiptStatus.replace("0x", "").trim();
+        else
+            return "1";
+    }
+
+    public int getTxreceiptStatusString() {
+        if (getTxreceiptStatus().equals(TRANSACTION_SUCCESS))
+            return R.string.complete;
+        else if (getTxreceiptStatus().equals(TRANSACTION_DROPPED))
+            return R.string.dropped;
+        else
+            return R.string.pending;
+    }
+
+    public String getDate() {
+        return CommonUtils.convertTimestampTo_dd_MMM_yyyy_HH_mm(timeStamp);
+    }
+
+    public String getValuePriceFormatted() {
+        return CommonUtils.formatToDecimalPriceSixDigitsOptional(getCoin().convertWeiToNormal(getValue()));
+    }
+
+    public BigDecimal getNormalValue() {
+        return getCoin().convertWeiToNormal(getValue());
+    }
 
     public boolean isSend() {
         return isSend;
@@ -174,12 +201,6 @@ public class WalletTransactionHistory {
 
     public void setSend(boolean send) {
         isSend = send;
-    }
-
-    public int getTransactionTransferTypeStringResource() {
-        if (isSend())
-            return R.string.activity_transaction_history_send;
-        return R.string.activity_transaction_history_receive;
     }
 
     public String getConfirmations() {
@@ -220,22 +241,6 @@ public class WalletTransactionHistory {
 
     public void setInput(String input) {
         this.input = input;
-    }
-
-    public String getTxreceiptStatus() {
-        if (txreceiptStatus!=null)
-            return txreceiptStatus.replace("0x", "").trim();
-        else
-            return "1";
-    }
-
-    public int getTxreceiptStatusString() {
-        if (getTxreceiptStatus().equals(TRANSACTION_SUCCESS))
-            return R.string.complete;
-        else if (getTxreceiptStatus().equals(TRANSACTION_DROPPED))
-            return R.string.dropped;
-        else
-            return R.string.pending;
     }
 
     public void setTxreceiptStatus(String txreceiptStatus) {
@@ -344,18 +349,6 @@ public class WalletTransactionHistory {
 
     public void setType(CryptoCurrencyType type) {
         this.type = type;
-    }
-
-    public String getDate() {
-        return CommonUtils.convertTimestampTo_dd_MMM_yyyy_HH_mm(timeStamp);
-    }
-
-    public String getValuePriceFormatted() {
-        return CommonUtils.formatToDecimalPriceSixDigits(getCoin().convertWeiToNormal(getValue()));
-    }
-
-    public BigDecimal getNormalValue() {
-        return getCoin().convertWeiToNormal(getValue());
     }
 
     public String getTokenName() {
