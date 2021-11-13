@@ -75,7 +75,6 @@ public final class CommonUtils {
         String normalPrice = "0.0";
         if (!TextUtils.isEmpty(price)) {
             price = toEnglish(price);
-//            normalPrice = price.replaceAll("[^0-9\\.]", "");
             normalPrice = price.replaceAll(",", "");
         }
 
@@ -84,9 +83,6 @@ public final class CommonUtils {
         if (normalPrice.startsWith("."))
             normalPrice = "0" + normalPrice;
         return normalPrice;
-//        if (price.contains(","))
-//            return price.replaceAll(",", "");
-//        return price;
     }
 
     public static BigDecimal stringToBigDecimal(String priceStr) {

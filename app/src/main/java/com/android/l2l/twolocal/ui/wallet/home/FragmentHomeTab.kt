@@ -164,7 +164,7 @@ class FragmentHomeTab : BaseFragment<HomeViewModel>(R.layout.fragment_home_tab) 
 
     private fun showTotal2LCBalance(walletBalance: TotalBalance) {
         binding.txtTotalBalance.text =
-            if (walletBalance.showAmount) CommonUtils.formatToDecimalPriceSixDigits(CommonUtils.stringToBigDecimal(walletBalance.balance))
+            if (walletBalance.showAmount) walletBalance.balancePriceFormatter
             else getString(R.string.hidden_stars)
 
         binding.txtBalanceCurrency.text = walletBalance.currency
@@ -174,9 +174,7 @@ class FragmentHomeTab : BaseFragment<HomeViewModel>(R.layout.fragment_home_tab) 
         binding.txtTotalBalanceDollar.text = getString(
             R.string.balance_currency,
             FiatType.USD.mySymbol,
-            if (walletBalance.showAmount) CommonUtils.formatToDecimalPriceSixDigits(CommonUtils.stringToBigDecimal(walletBalance.fiatBalance)) else getString(
-                R.string.hidden_stars
-            )
+            if (walletBalance.showAmount) walletBalance.fiatBalancePriceFormatter else getString(R.string.hidden_stars)
         )
     }
 
