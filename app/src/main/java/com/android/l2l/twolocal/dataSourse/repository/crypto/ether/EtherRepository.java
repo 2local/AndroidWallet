@@ -20,6 +20,7 @@ import com.android.l2l.twolocal.model.mapper.Mapper_EthSendTransaction_To_Wallet
 import com.android.l2l.twolocal.model.enums.FiatType;
 import com.android.l2l.twolocal.model.CoinExchangeRate;
 import com.android.l2l.twolocal.sdk.binancesmartchainsdk.util.CryptoWalletUtils;
+import com.android.l2l.twolocal.utils.CommonUtils;
 import com.android.l2l.twolocal.utils.WalletFactory;
 import com.android.l2l.twolocal.utils.SecurityUtils;
 
@@ -98,6 +99,8 @@ public class EtherRepository implements CryptoCurrencyRepositoryHelper {
                     emitter.onError(new Throwable(etherBalance.getError().getMessage()));
                 else {
                     String amount = Convert.fromWei(etherBalance.getBalance().toString(), Convert.Unit.ETHER).toString();
+                    // there is a special condition when balance return 110, we solve it using below convert
+                    amount =  CommonUtils.removeCharactersPriceIfExists(CommonUtils.formatToDecimalPriceSixDigitsOptional(CommonUtils.stringToBigDecimal(amount)));
                     emitter.onSuccess(new WalletBalance(amount, currencyType.name()));
                 }
             } catch (InterruptedException | ExecutionException interruptedException) {

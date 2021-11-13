@@ -169,7 +169,7 @@ public class Wallet implements Parcelable {
     }
 
     public String getAmountPriceFormat() {
-        return CommonUtils.formatToDecimalPriceSixDigits(CommonUtils.stringToBigDecimal(getAmount()));
+        return CommonUtils.formatToDecimalPriceSixDigitsOptional(CommonUtils.stringToBigDecimal(getAmount()));
     }
 
 
@@ -181,7 +181,7 @@ public class Wallet implements Parcelable {
 
     public String getFiatPriceFormat() {
         if (coin != null)
-            return CommonUtils.formatToDecimalPriceTwoDigits(coin.toFiat(getAmount()));
+            return CommonUtils.formatToDecimalPriceSixDigits(coin.toFiat(getAmount()));
         else return "0";
     }
 

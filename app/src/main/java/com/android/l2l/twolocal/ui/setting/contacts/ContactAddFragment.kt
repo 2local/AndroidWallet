@@ -48,12 +48,14 @@ class ContactAddFragment : BaseFragment<AddContactViewModel>(R.layout.fragment_a
         setupViewModelLiveData()
 
         var currency: CryptoCurrencyType? = null
-        val currencyList= CryptoCurrencyType.walletArray()
-        val adapter = ArrayAdapter(requireContext(), R.layout.item_spinner_layout, currencyList)
+        val currencyListType = CryptoCurrencyType.walletArray()
+        val adapter = ArrayAdapter(requireContext(), R.layout.item_spinner_layout, currencyListType.map {
+            it.symbol
+        })
         binding.spCurrency.setAdapter(adapter)
         binding.spCurrency.onItemClickListener =
             AdapterView.OnItemClickListener { parent, arg1, position, id ->
-                currency = currencyList[position]
+                currency = currencyListType[position]
             }
 
 

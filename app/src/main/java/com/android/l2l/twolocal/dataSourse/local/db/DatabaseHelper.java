@@ -1,17 +1,13 @@
 package com.android.l2l.twolocal.dataSourse.local.db;
 
-
-
 import com.android.l2l.twolocal.model.AddressBook;
 import com.android.l2l.twolocal.model.WalletTransactionHistory;
-import com.android.l2l.twolocal.model.Transactions;
 import com.android.l2l.twolocal.model.Wallet;
 import com.android.l2l.twolocal.model.enums.CryptoCurrencyType;
 
 import java.util.List;
 
 import io.reactivex.Completable;
-import io.reactivex.Observable;
 import io.reactivex.Single;
 
 
