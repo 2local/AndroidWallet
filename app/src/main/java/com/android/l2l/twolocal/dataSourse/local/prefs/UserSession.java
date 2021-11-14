@@ -50,7 +50,9 @@ public class UserSession implements UserSessionHelper {
 
     @Override
     public void clearSession() {
+        String token = getApiToken();
         preferences.clear();
+        saveApiToken(token);
     }
 
     @Override

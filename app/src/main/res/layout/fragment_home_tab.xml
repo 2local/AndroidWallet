@@ -23,12 +23,6 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_begin="@dimen/margin_intermediate" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guidelineLeft2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_begin="@dimen/margin_xxxlarge" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guidelineRight"
@@ -37,12 +31,6 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_end="@dimen/margin_intermediate" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guidelineRight2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_end="@dimen/margin_xxxlarge" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guidelineTop"
@@ -66,11 +54,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/margin_huge"
+                android:layout_marginTop="@dimen/spacing_small"
                 android:text="@string/home_total_balance"
                 android:textAppearance="@style/textAppearance.size18.gray"
-                app:layout_constraintStart_toStartOf="@+id/guidelineLeft2"
-                app:layout_constraintTop_toTopOf="@+id/guidelineTop" />
+                app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -79,10 +67,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_normal"
                 android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="@+id/guidelineRight2"
+                app:layout_constraintEnd_toEndOf="@+id/guidelineRight"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/guidelineLeft2"
+                app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@+id/text_total_balance">
 
 
@@ -94,27 +82,37 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
+
                     <TextView
                         android:id="@+id/txtTotalBalance"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginEnd="@dimen/_40dp"
+                        android:layout_marginEnd="@dimen/_70dp"
                         android:ellipsize="end"
+                        android:paddingEnd="@dimen/spacing_normal"
                         android:singleLine="true"
                         android:textAppearance="@style/textAppearance.size25"
-                        tools:text="1,206,574 2LC" />
+                        tools:text="1,200" />
+
 
                     <TextView
                         android:id="@+id/txtTotalBalanceDollar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right|end"
-                        android:layout_marginTop="@dimen/spacing_small"
-                        android:layout_marginEnd="@dimen/_40dp"
+                        android:layout_marginEnd="@dimen/_32dp"
                         android:textAppearance="@style/textAppearance.size16"
                         tools:text="$1,200" />
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtBalanceCurrency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/textAppearance.size25"
+                    app:layout_constraintEnd_toStartOf="@+id/image_eye"
+                    app:layout_constraintTop_toTopOf="@+id/lnt_balance"
+                    tools:text="2LC" />
 
                 <ImageView
                     android:id="@+id/image_eye"
@@ -135,7 +133,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:barrierDirection="bottom"
-                app:barrierMargin="@dimen/margin_xxxlarge"
+                app:barrierMargin="@dimen/spacing_xlarge"
                 app:constraint_referenced_ids="lntTotalBalance" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -152,7 +150,7 @@
                 android:id="@+id/text_transactions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/android_standard_2x_margin_padding"
+                android:layout_marginTop="@dimen/spacing_xlarge"
                 android:text="@string/home_transactions"
                 android:textAppearance="@style/textAppearance.size16"
                 app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
@@ -219,306 +217,320 @@
 
             </LinearLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/chart_container"
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:barrierMargin="@dimen/margin_small"
+                app:constraint_referenced_ids="income_outcome_container" />
+
+            <com.android.l2l.twolocal.view.ChartItemView
+                android:id="@+id/chart_feb"
+                android:layout_width="wrap_content"
+                android:layout_height="160dp"
+                android:layout_marginBottom="@dimen/_5dp"
+                app:layout_constraintBottom_toTopOf="@+id/text_feb"
+                app:layout_constraintEnd_toEndOf="@id/text_feb"
+                app:layout_constraintStart_toStartOf="@id/text_feb"
+                app:layout_constraintTop_toTopOf="@+id/barrier2" />
+
+
+            <com.android.l2l.twolocal.view.ChartItemView
+                android:id="@+id/chart_mar"
+                android:layout_width="wrap_content"
+                android:layout_height="160dp"
+                android:layout_marginBottom="@dimen/_5dp"
+                app:layout_constraintBottom_toTopOf="@+id/text_mar"
+                app:layout_constraintEnd_toEndOf="@id/text_mar"
+                app:layout_constraintStart_toStartOf="@id/text_mar"
+                app:layout_constraintTop_toTopOf="@+id/barrier2" />
+
+
+            <com.android.l2l.twolocal.view.ChartItemView
+                android:id="@+id/chart_apr"
+                android:layout_width="wrap_content"
+                android:layout_height="160dp"
+                android:layout_marginBottom="@dimen/_5dp"
+                app:layout_constraintBottom_toTopOf="@+id/text_apr"
+                app:layout_constraintEnd_toEndOf="@id/text_apr"
+                app:layout_constraintStart_toStartOf="@id/text_apr"
+                app:layout_constraintTop_toTopOf="@+id/barrier2" />
+
+
+            <com.android.l2l.twolocal.view.ChartItemView
+                android:id="@+id/chart_may"
+                android:layout_width="wrap_content"
+                android:layout_height="160dp"
+                android:layout_marginBottom="@dimen/_5dp"
+                app:layout_constraintBottom_toTopOf="@+id/text_may"
+                app:layout_constraintEnd_toEndOf="@id/text_may"
+                app:layout_constraintStart_toStartOf="@id/text_may"
+                app:layout_constraintTop_toTopOf="@+id/barrier2" />
+
+            <com.android.l2l.twolocal.view.ChartItemView
+                android:id="@+id/chart_jan"
+                android:layout_width="wrap_content"
+                android:layout_height="160dp"
+                android:layout_marginBottom="@dimen/_5dp"
+                app:layout_constraintBottom_toTopOf="@+id/text_jan"
+                app:layout_constraintEnd_toEndOf="@id/text_jan"
+                app:layout_constraintStart_toStartOf="@id/text_jan"
+                app:layout_constraintTop_toTopOf="@+id/barrier2" />
+
+            <com.android.l2l.twolocal.view.ChartItemView
+                android:id="@+id/chart_jun"
+                android:layout_width="wrap_content"
+                android:layout_height="160dp"
+                android:layout_marginBottom="@dimen/_5dp"
+                app:layout_constraintBottom_toTopOf="@+id/text_jun"
+                app:layout_constraintEnd_toEndOf="@id/text_jun"
+                app:layout_constraintStart_toStartOf="@id/text_jun"
+                app:layout_constraintTop_toTopOf="@+id/barrier2" />
+
+
+            <com.android.l2l.twolocal.view.ChartItemView
+                android:id="@+id/chart_jul"
+                android:layout_width="wrap_content"
+                android:layout_height="160dp"
+                android:layout_marginBottom="@dimen/_5dp"
+                app:layout_constraintBottom_toTopOf="@+id/text_jul"
+                app:layout_constraintEnd_toEndOf="@id/text_jul"
+                app:layout_constraintStart_toStartOf="@id/text_jul"
+                app:layout_constraintTop_toTopOf="@+id/barrier2" />
+
+            <com.android.l2l.twolocal.view.ChartItemView
+                android:id="@+id/chart_aug"
+                android:layout_width="wrap_content"
+                android:layout_height="160dp"
+                android:layout_marginBottom="@dimen/_5dp"
+                app:layout_constraintBottom_toTopOf="@+id/text_aug"
+                app:layout_constraintEnd_toEndOf="@id/text_aug"
+                app:layout_constraintStart_toStartOf="@id/text_aug"
+                app:layout_constraintTop_toTopOf="@+id/barrier2" />
+
+
+            <com.android.l2l.twolocal.view.ChartItemView
+                android:id="@+id/chart_sep"
+                android:layout_width="wrap_content"
+                android:layout_height="160dp"
+                android:layout_marginBottom="@dimen/_5dp"
+                app:layout_constraintBottom_toTopOf="@+id/text_sep"
+                app:layout_constraintEnd_toEndOf="@id/text_sep"
+                app:layout_constraintStart_toStartOf="@id/text_sep"
+                app:layout_constraintTop_toTopOf="@+id/barrier2" />
+
+
+            <com.android.l2l.twolocal.view.ChartItemView
+                android:id="@+id/chart_oct"
+                android:layout_width="wrap_content"
+                android:layout_height="160dp"
+                android:layout_marginBottom="@dimen/_5dp"
+                app:layout_constraintBottom_toTopOf="@+id/text_oct"
+                app:layout_constraintEnd_toEndOf="@id/text_oct"
+                app:layout_constraintStart_toStartOf="@id/text_oct"
+                app:layout_constraintTop_toTopOf="@+id/barrier2" />
+
+
+            <com.android.l2l.twolocal.view.ChartItemView
+                android:id="@+id/chart_nov"
+                android:layout_width="wrap_content"
+                android:layout_height="160dp"
+                android:layout_marginBottom="@dimen/_5dp"
+                app:layout_constraintBottom_toTopOf="@+id/text_nov"
+                app:layout_constraintEnd_toEndOf="@id/text_nov"
+                app:layout_constraintStart_toStartOf="@id/text_nov"
+                app:layout_constraintTop_toTopOf="@+id/barrier2" />
+
+
+            <com.android.l2l.twolocal.view.ChartItemView
+                android:id="@+id/chart_dec"
+                android:layout_width="wrap_content"
+                android:layout_height="160dp"
+                android:layout_marginBottom="@dimen/_5dp"
+                app:layout_constraintBottom_toTopOf="@+id/text_dec"
+                app:layout_constraintEnd_toEndOf="@id/text_dec"
+                app:layout_constraintStart_toStartOf="@id/text_dec"
+                app:layout_constraintTop_toTopOf="@+id/barrier2" />
+
+
+            <TextView
+                android:id="@+id/text_jan"
                 android:layout_width="0dp"
-                android:layout_height="180dp"
-                android:layout_marginTop="@dimen/android_standard_margin"
-                app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
-                app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-                app:layout_constraintTop_toBottomOf="@id/income_outcome_container">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:gravity="center"
+                android:text="@string/chart_jan"
+                android:textAppearance="@style/textAppearance.size12.grey"
+                app:layout_constraintEnd_toStartOf="@+id/text_feb"
+                app:layout_constraintStart_toStartOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@+id/chart_jan" />
 
-                <com.android.l2l.twolocal.view.ChartItemView
-                    android:id="@+id/chart_feb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_marginBottom="@dimen/_5dp"
-                    app:layout_constraintBottom_toTopOf="@+id/text_feb"
-                    app:layout_constraintEnd_toEndOf="@id/text_feb"
-                    app:layout_constraintStart_toStartOf="@id/text_feb"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/text_feb"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:gravity="center"
+                android:text="@string/chart_feb"
+                android:textAppearance="@style/textAppearance.size12.grey"
+                app:layout_constraintEnd_toStartOf="@+id/text_mar"
+                app:layout_constraintStart_toEndOf="@+id/text_jan"
+                app:layout_constraintTop_toBottomOf="@+id/chart_feb" />
 
+            <TextView
+                android:id="@+id/text_mar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:gravity="center"
+                android:text="@string/chart_mar"
+                android:textAppearance="@style/textAppearance.size12.grey"
+                app:layout_constraintEnd_toStartOf="@+id/text_apr"
+                app:layout_constraintStart_toEndOf="@+id/text_feb"
+                app:layout_constraintTop_toBottomOf="@+id/chart_mar" />
 
-                <com.android.l2l.twolocal.view.ChartItemView
-                    android:id="@+id/chart_mar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_marginBottom="@dimen/_5dp"
-                    app:layout_constraintBottom_toTopOf="@+id/text_mar"
-                    app:layout_constraintEnd_toEndOf="@id/text_mar"
-                    app:layout_constraintStart_toStartOf="@id/text_mar"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/text_apr"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:gravity="center"
+                android:text="@string/chart_apr"
+                android:textAppearance="@style/textAppearance.size12.grey"
+                app:layout_constraintEnd_toStartOf="@+id/text_may"
+                app:layout_constraintStart_toEndOf="@+id/text_mar"
+                app:layout_constraintTop_toBottomOf="@+id/chart_apr" />
 
+            <TextView
+                android:id="@+id/text_may"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:gravity="center"
+                android:text="@string/chart_may"
+                android:textAppearance="@style/textAppearance.size12.grey"
+                app:layout_constraintEnd_toStartOf="@+id/text_jun"
+                app:layout_constraintStart_toEndOf="@+id/text_apr"
+                app:layout_constraintTop_toBottomOf="@+id/chart_may" />
 
-                <com.android.l2l.twolocal.view.ChartItemView
-                    android:id="@+id/chart_apr"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_marginBottom="@dimen/_5dp"
-                    app:layout_constraintBottom_toTopOf="@+id/text_apr"
-                    app:layout_constraintEnd_toEndOf="@id/text_apr"
-                    app:layout_constraintStart_toStartOf="@id/text_apr"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/text_jun"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:gravity="center"
+                android:text="@string/chart_jun"
+                android:textAppearance="@style/textAppearance.size12.grey"
+                app:layout_constraintEnd_toStartOf="@+id/text_jul"
+                app:layout_constraintStart_toEndOf="@+id/text_may"
+                app:layout_constraintTop_toBottomOf="@+id/chart_jun" />
 
+            <TextView
+                android:id="@+id/text_jul"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:gravity="center"
+                android:text="@string/chart_jul"
+                android:textAppearance="@style/textAppearance.size12.grey"
+                app:layout_constraintEnd_toStartOf="@+id/text_aug"
+                app:layout_constraintStart_toEndOf="@+id/text_jun"
+                app:layout_constraintTop_toBottomOf="@+id/chart_jul" />
 
-                <com.android.l2l.twolocal.view.ChartItemView
-                    android:id="@+id/chart_may"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_marginBottom="@dimen/_5dp"
-                    app:layout_constraintBottom_toTopOf="@+id/text_may"
-                    app:layout_constraintEnd_toEndOf="@id/text_may"
-                    app:layout_constraintStart_toStartOf="@id/text_may"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/text_aug"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:gravity="center"
+                android:text="@string/chart_aug"
+                android:textAppearance="@style/textAppearance.size12.grey"
+                app:layout_constraintEnd_toStartOf="@+id/text_sep"
+                app:layout_constraintStart_toEndOf="@+id/text_jul"
+                app:layout_constraintTop_toBottomOf="@+id/chart_aug" />
 
-                <com.android.l2l.twolocal.view.ChartItemView
-                    android:id="@+id/chart_jan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_marginBottom="@dimen/_5dp"
-                    app:layout_constraintBottom_toTopOf="@+id/text_jan"
-                    app:layout_constraintEnd_toEndOf="@id/text_jan"
-                    app:layout_constraintStart_toStartOf="@id/text_jan"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/text_sep"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:gravity="center"
+                android:text="@string/chart_sep"
+                android:textAppearance="@style/textAppearance.size12.grey"
+                app:layout_constraintEnd_toStartOf="@+id/text_oct"
+                app:layout_constraintStart_toEndOf="@+id/text_aug"
+                app:layout_constraintTop_toBottomOf="@+id/chart_sep" />
 
-                <com.android.l2l.twolocal.view.ChartItemView
-                    android:id="@+id/chart_jun"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_marginBottom="@dimen/_5dp"
-                    app:layout_constraintBottom_toTopOf="@+id/text_jun"
-                    app:layout_constraintEnd_toEndOf="@id/text_jun"
-                    app:layout_constraintStart_toStartOf="@id/text_jun"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/text_oct"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:gravity="center"
+                android:text="@string/chart_oct"
+                android:textAppearance="@style/textAppearance.size12.grey"
+                app:layout_constraintEnd_toStartOf="@+id/text_nov"
+                app:layout_constraintStart_toEndOf="@+id/text_sep"
+                app:layout_constraintTop_toBottomOf="@+id/chart_oct" />
 
+            <TextView
+                android:id="@+id/text_nov"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:gravity="center"
+                android:text="@string/chart_nov"
+                android:textAppearance="@style/textAppearance.size12.grey"
+                app:layout_constraintEnd_toStartOf="@+id/text_dec"
+                app:layout_constraintStart_toEndOf="@+id/text_oct"
+                app:layout_constraintTop_toBottomOf="@+id/chart_nov" />
 
-                <com.android.l2l.twolocal.view.ChartItemView
-                    android:id="@+id/chart_jul"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_marginBottom="@dimen/_5dp"
-                    app:layout_constraintBottom_toTopOf="@+id/text_jul"
-                    app:layout_constraintEnd_toEndOf="@id/text_jul"
-                    app:layout_constraintStart_toStartOf="@id/text_jul"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/text_dec"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:gravity="center"
+                android:text="@string/chart_dec"
+                android:textAppearance="@style/textAppearance.size12.grey"
+                app:layout_constraintEnd_toEndOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@+id/text_nov"
+                app:layout_constraintTop_toBottomOf="@+id/chart_dec" />
 
-                <com.android.l2l.twolocal.view.ChartItemView
-                    android:id="@+id/chart_aug"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_marginBottom="@dimen/_5dp"
-                    app:layout_constraintBottom_toTopOf="@+id/text_aug"
-                    app:layout_constraintEnd_toEndOf="@id/text_aug"
-                    app:layout_constraintStart_toStartOf="@id/text_aug"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
-                <com.android.l2l.twolocal.view.ChartItemView
-                    android:id="@+id/chart_sep"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_marginBottom="@dimen/_5dp"
-                    app:layout_constraintBottom_toTopOf="@+id/text_sep"
-                    app:layout_constraintEnd_toEndOf="@id/text_sep"
-                    app:layout_constraintStart_toStartOf="@id/text_sep"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
-                <com.android.l2l.twolocal.view.ChartItemView
-                    android:id="@+id/chart_oct"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_marginBottom="@dimen/_5dp"
-                    app:layout_constraintBottom_toTopOf="@+id/text_oct"
-                    app:layout_constraintEnd_toEndOf="@id/text_oct"
-                    app:layout_constraintStart_toStartOf="@id/text_oct"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
-                <com.android.l2l.twolocal.view.ChartItemView
-                    android:id="@+id/chart_nov"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_marginBottom="@dimen/_5dp"
-                    app:layout_constraintBottom_toTopOf="@+id/text_nov"
-                    app:layout_constraintEnd_toEndOf="@id/text_nov"
-                    app:layout_constraintStart_toStartOf="@id/text_nov"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
-                <com.android.l2l.twolocal.view.ChartItemView
-                    android:id="@+id/chart_dec"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_marginBottom="@dimen/_5dp"
-                    app:layout_constraintBottom_toTopOf="@+id/text_dec"
-                    app:layout_constraintEnd_toEndOf="@id/text_dec"
-                    app:layout_constraintStart_toStartOf="@id/text_dec"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
-                <TextView
-                    android:id="@+id/text_jan"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="@string/chart_jan"
-                    android:textAppearance="@style/textAppearance.size12.grey"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/text_feb"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <TextView
-                    android:id="@+id/text_feb"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="@string/chart_feb"
-                    android:textAppearance="@style/textAppearance.size12.grey"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/text_mar"
-                    app:layout_constraintStart_toEndOf="@+id/text_jan" />
-
-                <TextView
-                    android:id="@+id/text_mar"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="@string/chart_mar"
-                    android:textAppearance="@style/textAppearance.size12.grey"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/text_apr"
-                    app:layout_constraintStart_toEndOf="@+id/text_feb" />
-
-                <TextView
-                    android:id="@+id/text_apr"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="@string/chart_apr"
-                    android:textAppearance="@style/textAppearance.size12.grey"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/text_may"
-                    app:layout_constraintStart_toEndOf="@+id/text_mar" />
-
-                <TextView
-                    android:id="@+id/text_may"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="@string/chart_may"
-                    android:textAppearance="@style/textAppearance.size12.grey"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/text_jun"
-                    app:layout_constraintStart_toEndOf="@+id/text_apr" />
-
-                <TextView
-                    android:id="@+id/text_jun"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="@string/chart_jun"
-                    android:textAppearance="@style/textAppearance.size12.grey"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/text_jul"
-                    app:layout_constraintStart_toEndOf="@+id/text_may" />
-
-                <TextView
-                    android:id="@+id/text_jul"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="@string/chart_jul"
-                    android:textAppearance="@style/textAppearance.size12.grey"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/text_aug"
-                    app:layout_constraintStart_toEndOf="@+id/text_jun" />
-
-                <TextView
-                    android:id="@+id/text_aug"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="@string/chart_aug"
-                    android:textAppearance="@style/textAppearance.size12.grey"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/text_sep"
-                    app:layout_constraintStart_toEndOf="@+id/text_jul" />
-
-                <TextView
-                    android:id="@+id/text_sep"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="@string/chart_sep"
-                    android:textAppearance="@style/textAppearance.size12.grey"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/text_oct"
-                    app:layout_constraintStart_toEndOf="@+id/text_aug" />
-
-                <TextView
-                    android:id="@+id/text_oct"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="@string/chart_oct"
-                    android:textAppearance="@style/textAppearance.size12.grey"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/text_nov"
-                    app:layout_constraintStart_toEndOf="@+id/text_sep" />
-
-                <TextView
-                    android:id="@+id/text_nov"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="@string/chart_nov"
-                    android:textAppearance="@style/textAppearance.size12.grey"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/text_dec"
-                    app:layout_constraintStart_toEndOf="@+id/text_oct" />
-
-                <TextView
-                    android:id="@+id/text_dec"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="@string/chart_dec"
-                    android:textAppearance="@style/textAppearance.size12.grey"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/text_nov" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="text_dec,text_nov" />
 
 
             <Button
                 android:id="@+id/button_transaction_details"
                 style="@style/button.secondary"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/android_standard_2x_margin_padding"
-                android:layout_marginTop="@dimen/android_standard_2x_margin_padding"
-                android:layout_marginEnd="@dimen/android_standard_2x_margin_padding"
+                android:layout_marginTop="@dimen/spacing_xlarge"
                 android:layout_marginBottom="@dimen/margin_large"
                 android:text="@string/home_transaction_details"
                 android:textColor="@color/white"
                 android:textSize="@dimen/medium_text_size"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/chart_container" />
+                app:layout_constraintLeft_toLeftOf="@id/guidelineLeft"
+                app:layout_constraintRight_toRightOf="@id/guidelineRight"
+                app:layout_constraintTop_toBottomOf="@+id/barrier3" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

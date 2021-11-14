@@ -1,7 +1,6 @@
 package com.android.l2l.twolocal.ui.wallet.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.annotation.Nullable
 import androidx.fragment.app.viewModels
@@ -14,6 +13,7 @@ import com.android.l2l.twolocal.common.findAppComponent
 import com.android.l2l.twolocal.dataSourse.utils.ViewState
 import com.android.l2l.twolocal.databinding.FragmentHomeTabBinding
 import com.android.l2l.twolocal.di.viewModel.AppViewModelFactory
+import com.android.l2l.twolocal.model.TotalBalance
 import com.android.l2l.twolocal.model.Wallet
 import com.android.l2l.twolocal.model.enums.CryptoCurrencyType
 import com.android.l2l.twolocal.model.enums.FiatType
@@ -58,7 +58,7 @@ class FragmentHomeTab : BaseFragment<HomeViewModel>(R.layout.fragment_home_tab) 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         EventBus.getDefault().register(this)
-        addViews()
+        addChartMonthNameViews()
 
         binding.recyclerViewWallets.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
         adapter = WalletHomeRecyclerViewAdapter(requireContext(), wallets)
@@ -80,28 +80,14 @@ class FragmentHomeTab : BaseFragment<HomeViewModel>(R.layout.fragment_home_tab) 
                 is ViewState.Success -> {
                     hideLoading()
                     binding.refreshLayout.isRefreshing = false
-                    val wallet = it.response
+                    val walletBalance = it.response
 
-                    if (wallet.showAmount)
+                    if (walletBalance.showAmount)
                         binding.imageEye.setImageResource(R.drawable.ic_eye_gray)
                     else
                         binding.imageEye.setImageResource(R.drawable.ic_eye_brown_selected)
-                    binding.txtTotalBalance.text = getString(
-                        R.string.balance_currency,
-                        if (wallet.showAmount) CommonUtils.formatToDecimalPriceTwoDigits(CommonUtils.stringToBigDecimal(wallet.balance)) else getString(
-                            R.string.hidden_stars
-                        ), wallet.currency
-                    )
-
-
-                    binding.txtTotalBalanceDollar.text = getString(
-                        R.string.balance_currency,
-                        FiatType.USD.mySymbol,
-                        if (wallet.showAmount) CommonUtils.formatToDecimalPriceSixDigits(CommonUtils.stringToBigDecimal(wallet.fiatBalance)) else getString(
-                            R.string.hidden_stars
-                        )
-                    )
-
+                    showTotal2LCBalance(walletBalance)
+                    showTotal2LCDollarBalance(walletBalance)
                 }
                 is ViewState.Error -> {
                     hideLoading()
@@ -176,7 +162,23 @@ class FragmentHomeTab : BaseFragment<HomeViewModel>(R.layout.fragment_home_tab) 
         viewModel.getL2LTransactionsHistory()
     }
 
-    private fun addViews() {
+    private fun showTotal2LCBalance(walletBalance: TotalBalance) {
+        binding.txtTotalBalance.text =
+            if (walletBalance.showAmount) walletBalance.balancePriceFormatter
+            else getString(R.string.hidden_stars)
+
+        binding.txtBalanceCurrency.text = walletBalance.currency
+    }
+
+    private fun showTotal2LCDollarBalance(walletBalance: TotalBalance) {
+        binding.txtTotalBalanceDollar.text = getString(
+            R.string.balance_currency,
+            FiatType.USD.mySymbol,
+            if (walletBalance.showAmount) walletBalance.fiatBalancePriceFormatter else getString(R.string.hidden_stars)
+        )
+    }
+
+    private fun addChartMonthNameViews() {
 
         incomeViews = arrayListOf()
 
