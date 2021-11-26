@@ -116,14 +116,16 @@ public class BinanceRepository implements CryptoCurrencyRepositoryHelper {
 
         return Single.fromCallable(() -> {
             Credentials credentials = CryptoWalletUtils.getWalletCredential(context, database, currencyType);
-
-            BigInteger valueInWei = web3j
-                    .ethGetBalance(credentials.getAddress(), DefaultBlockParameterName.LATEST)
-                    .send()
-                    .getBalance();
-            String balance = Convert.fromWei(new BigDecimal(valueInWei), Convert.Unit.ETHER).toString();
-            balance =  CommonUtils.removeCharactersPriceIfExists(CommonUtils.formatToDecimalPriceSixDigitsOptional(CommonUtils.stringToBigDecimal(balance)));
-            return new WalletBalance(balance, currencyType.getMyName());
+            if (credentials != null) {
+                BigInteger valueInWei = web3j
+                        .ethGetBalance(credentials.getAddress(), DefaultBlockParameterName.LATEST)
+                        .send()
+                        .getBalance();
+                String balance = Convert.fromWei(new BigDecimal(valueInWei), Convert.Unit.ETHER).toString();
+                balance = CommonUtils.removeCharactersPriceIfExists(CommonUtils.formatToDecimalPriceSixDigitsOptional(CommonUtils.stringToBigDecimal(balance)));
+                return new WalletBalance(balance, currencyType.getMyName());
+            }else
+                return new WalletBalance("0", currencyType.getMyName());
         });
     }
 
@@ -135,6 +137,7 @@ public class BinanceRepository implements CryptoCurrencyRepositoryHelper {
 
     /**
      * get transaction gas price
+     *
      * @return
      */
     private BigInteger getTransactionGasPrice(String gas) {
@@ -153,6 +156,7 @@ public class BinanceRepository implements CryptoCurrencyRepositoryHelper {
 
     /**
      * check user has enough token balance
+     *
      * @return
      */
     private boolean userHasEnoughBalance(BigDecimal amount, BigDecimal gas) {
@@ -407,7 +411,7 @@ public class BinanceRepository implements CryptoCurrencyRepositoryHelper {
     public Observable<List<WalletTransactionHistory>> getTransactionHistory() {
 
         Credentials credentials = CryptoWalletUtils.getWalletCredential(context, database, currencyType);
-        if(credentials!=null) {
+        if (credentials != null) {
             String walletAddress = credentials.getAddress();
             Single<List<WalletTransactionHistory>> apiRequest = getTransactionFromApi(walletAddress);
 
@@ -421,18 +425,18 @@ public class BinanceRepository implements CryptoCurrencyRepositoryHelper {
 
                 return history;
             });
-        }else
+        } else
             return Observable.just(new ArrayList<WalletTransactionHistory>());
     }
 
-    private Single<List<WalletTransactionHistory>> getTransactionFromApi(String walletAddress){
+    private Single<List<WalletTransactionHistory>> getTransactionFromApi(String walletAddress) {
         return etherApiInterface.getBinanceTransactions(walletAddress, "desc", 1, ApiConstants.ETHER_MAX_TRANSACTION_RECORDS)
                 .flatMap(etherTransactionResponse -> {
                     ArrayList<WalletTransactionHistory> transactions = etherTransactionResponse.getResult();
-                    for (int i = transactions.size()-1; i >=0 ; i--) {
+                    for (int i = transactions.size() - 1; i >= 0; i--) {
                         transactions.get(i).setType(currencyType);
                         BigInteger val = new BigInteger(transactions.get(i).getValue());
-                        if(val.compareTo(new BigInteger("0"))==0)
+                        if (val.compareTo(new BigInteger("0")) == 0)
                             transactions.remove(i);
                     }
                     return database.saveWalletTransaction(transactions);

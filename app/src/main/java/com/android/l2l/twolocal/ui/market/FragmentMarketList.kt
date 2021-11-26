@@ -134,9 +134,9 @@ class FragmentMarketList : BaseFragment<MarketListViewModel>(R.layout.fragment_m
         return LatLng(latitude / n, longitude / n)
     }
 
-    override fun onMarkerClick(p0: Marker?): Boolean {
+    override fun onMarkerClick(p0: Marker): Boolean {
         try {
-            if (marketPlaceList.isNotEmpty() && p0 != null) {
+            if (marketPlaceList.isNotEmpty()) {
                 val market = marketPlaceList.findLast {
                     val tt: Double = it.latitude?.toDouble() ?: 0.0
                     tt == p0.position.latitude

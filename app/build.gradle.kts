@@ -8,8 +8,8 @@ plugins {
     id("kotlin-kapt")
     id("kotlin-parcelize")
     id("com.google.secrets_gradle_plugin") version "0.5"
-//    id("com.google.gms.google-services")
-//    id("com.google.firebase.crashlytics")
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 apply {
     from("../app_properties.gradle")
@@ -153,7 +153,7 @@ dependencies {
     // Import the BoM for the Firebase platform
     implementation(Dependencies.STURTUP)
     implementation(
-        platform("com.google.firebase:firebase-bom:28.0.1")
+        platform("com.google.firebase:firebase-bom:29.0.0")
     )
     // Declare the dependencies for the Crashlytics and Analytics libraries
     // When using the BoM, you don't specify versions in Firebase library dependencies

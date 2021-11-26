@@ -121,12 +121,16 @@ public class BSCRepository implements CryptoCurrencyRepositoryHelper {
         Credentials credentials = CryptoWalletUtils.getWalletCredential(context, database, currencyType);
         if (credentials == null && currencyType == CryptoCurrencyType.TwoLC) {
             return getTokenBalanceFromBSC_API();
-        } else
+        } else if(credentials != null)
             return getTokenBalanceFromWeb3(credentials);
+        else
+            return Single.just(new WalletBalance("0", currencyType.getMyName()));
     }
 
     private Single<WalletBalance> getTokenBalanceFromBSC_API() {
-        String walletAddress = userSession.getProfileInfo().getWallet();
+        String walletAddress = "";
+        if(userSession.getProfileInfo()!=null)
+            walletAddress = userSession.getProfileInfo().getWallet();
         Single<WalletBalance> apiRequest;
         if (!TextUtils.isEmpty(walletAddress)) {
             apiRequest = etherApiInterface.getBSC_BEP20_token_balance(walletAddress, getContractAddress())
@@ -479,7 +483,7 @@ public class BSCRepository implements CryptoCurrencyRepositoryHelper {
         String walletAddress = "";
         if (credentials != null)
             walletAddress = credentials.getAddress();
-        else if (currencyType == CryptoCurrencyType.TwoLC)
+        else if (currencyType == CryptoCurrencyType.TwoLC && userSession.getProfileInfo()!=null)
             walletAddress = userSession.getProfileInfo().getWallet();
         Single<List<WalletTransactionHistory>> apiRequest = getTransactionFromApi(walletAddress);
 
