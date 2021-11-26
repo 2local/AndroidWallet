@@ -94,15 +94,18 @@ public class EtherRepository implements CryptoCurrencyRepositoryHelper {
         return Single.create(emitter -> {
             try {
                 Credentials credentials = CryptoWalletUtils.getWalletCredential(context, database, currencyType);
-                EthGetBalance etherBalance = web3j.ethGetBalance(credentials.getAddress(), DefaultBlockParameterName.LATEST).sendAsync().get();
-                if (etherBalance.hasError())
-                    emitter.onError(new Throwable(etherBalance.getError().getMessage()));
-                else {
-                    String amount = Convert.fromWei(etherBalance.getBalance().toString(), Convert.Unit.ETHER).toString();
-                    // there is a special condition when balance return 110, we solve it using below convert
-                    amount =  CommonUtils.removeCharactersPriceIfExists(CommonUtils.formatToDecimalPriceSixDigitsOptional(CommonUtils.stringToBigDecimal(amount)));
-                    emitter.onSuccess(new WalletBalance(amount, currencyType.name()));
-                }
+                if(credentials!=null) {
+                    EthGetBalance etherBalance = web3j.ethGetBalance(credentials.getAddress(), DefaultBlockParameterName.LATEST).sendAsync().get();
+                    if (etherBalance.hasError())
+                        emitter.onError(new Throwable(etherBalance.getError().getMessage()));
+                    else {
+                        String amount = Convert.fromWei(etherBalance.getBalance().toString(), Convert.Unit.ETHER).toString();
+                        // there is a special condition when balance return 110, we solve it using below convert
+                        amount = CommonUtils.removeCharactersPriceIfExists(CommonUtils.formatToDecimalPriceSixDigitsOptional(CommonUtils.stringToBigDecimal(amount)));
+                        emitter.onSuccess(new WalletBalance(amount, currencyType.name()));
+                    }
+                }else
+                    emitter.onError(new Throwable("Credential error!"));
             } catch (InterruptedException | ExecutionException interruptedException) {
                 interruptedException.printStackTrace();
                 if (!emitter.isDisposed())
