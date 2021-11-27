@@ -1,6 +1,7 @@
 package com.android.l2l.twolocal.ui.wallet.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.annotation.Nullable
 import androidx.fragment.app.viewModels
@@ -10,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.l2l.twolocal.R
 import com.android.l2l.twolocal.common.binding.viewBinding
 import com.android.l2l.twolocal.common.findAppComponent
+import com.android.l2l.twolocal.common.gone
+import com.android.l2l.twolocal.common.visible
 import com.android.l2l.twolocal.dataSourse.utils.ViewState
 import com.android.l2l.twolocal.databinding.FragmentHomeTabBinding
 import com.android.l2l.twolocal.di.viewModel.AppViewModelFactory
@@ -27,7 +30,11 @@ import com.android.l2l.twolocal.ui.wallet.send.SendTokenActivity
 import com.android.l2l.twolocal.ui.wallet.transaction.TransactionHistoryActivity
 import com.android.l2l.twolocal.utils.CommonUtils
 import com.android.l2l.twolocal.utils.LiveDataCombineUtil
+import com.android.l2l.twolocal.utils.RemoteConfigUtils
 import com.android.l2l.twolocal.view.ChartItemView
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.google.firebase.remoteconfig.ktx.remoteConfig
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -49,6 +56,7 @@ class FragmentHomeTab : BaseFragment<HomeViewModel>(R.layout.fragment_home_tab) 
     private lateinit var adapter: WalletHomeRecyclerViewAdapter
     private val wallets: MutableList<Wallet> = arrayListOf()
     private lateinit var incomeViews: MutableList<ChartItemView>
+    private lateinit var remoteConfig: FirebaseRemoteConfig
 
     override fun onCreate(@Nullable savedInstanceState: Bundle?) {
         DaggerWalletComponent.factory().create(requireActivity().findAppComponent(), CryptoCurrencyType.TwoLC).inject(this)
@@ -58,6 +66,7 @@ class FragmentHomeTab : BaseFragment<HomeViewModel>(R.layout.fragment_home_tab) 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         EventBus.getDefault().register(this)
+        remoteConfig = Firebase.remoteConfig
         addChartMonthNameViews()
 
         binding.recyclerViewWallets.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
@@ -70,8 +79,6 @@ class FragmentHomeTab : BaseFragment<HomeViewModel>(R.layout.fragment_home_tab) 
                 ReceiveActivity.start(requireContext(), wallets[position].type)
             } else if (view.id == R.id.btnSend) {
                 SendTokenActivity.start(requireContext(), wallets[position].type)
-            } else if (view.id == R.id.btnBuy) {
-
             }
         }
 
@@ -80,14 +87,7 @@ class FragmentHomeTab : BaseFragment<HomeViewModel>(R.layout.fragment_home_tab) 
                 is ViewState.Success -> {
                     hideLoading()
                     binding.refreshLayout.isRefreshing = false
-                    val walletBalance = it.response
-
-                    if (walletBalance.showAmount)
-                        binding.imageEye.setImageResource(R.drawable.ic_eye_gray)
-                    else
-                        binding.imageEye.setImageResource(R.drawable.ic_eye_brown_selected)
-                    showTotal2LCBalance(walletBalance)
-                    showTotal2LCDollarBalance(walletBalance)
+                    showTotal2LCBalance(it.response)
                 }
                 is ViewState.Error -> {
                     hideLoading()
@@ -160,22 +160,50 @@ class FragmentHomeTab : BaseFragment<HomeViewModel>(R.layout.fragment_home_tab) 
             viewModel.getAllWallets()
         }
         viewModel.getL2LTransactionsHistory()
+        showAnnouncementAndMaintenanceMessage()
+    }
+
+    private fun toggleBalanceEyesBlind(walletBalance: TotalBalance) {
+        if (walletBalance.showAmount)
+            binding.imageEye.setImageResource(R.drawable.ic_eye_gray)
+        else
+            binding.imageEye.setImageResource(R.drawable.ic_eye_brown_selected)
     }
 
     private fun showTotal2LCBalance(walletBalance: TotalBalance) {
-        binding.txtTotalBalance.text =
-            if (walletBalance.showAmount) walletBalance.balancePriceFormatter
-            else getString(R.string.hidden_stars)
-
+        if (RemoteConfigUtils.getMaintenanceMode(remoteConfig)) {
+            binding.txtTotalBalance.text = CommonUtils.formatToDecimalPriceSixDigitsOptional(CommonUtils.stringToBigDecimal("0"))
+            binding.txtTotalBalanceDollar.text = getString(
+                R.string.balance_currency,
+                FiatType.USD.mySymbol,
+                CommonUtils.formatToDecimalPriceSixDigitsOptional(CommonUtils.stringToBigDecimal("0"))
+            )
+        } else {
+            binding.txtTotalBalance.text =
+                if (walletBalance.showAmount) walletBalance.balancePriceFormatter
+                else getString(R.string.hidden_stars)
+            binding.txtTotalBalanceDollar.text = getString(
+                R.string.balance_currency,
+                FiatType.USD.mySymbol,
+                if (walletBalance.showAmount) walletBalance.fiatBalancePriceFormatter else getString(R.string.hidden_stars)
+            )
+        }
         binding.txtBalanceCurrency.text = walletBalance.currency
+        toggleBalanceEyesBlind(walletBalance)
     }
 
-    private fun showTotal2LCDollarBalance(walletBalance: TotalBalance) {
-        binding.txtTotalBalanceDollar.text = getString(
-            R.string.balance_currency,
-            FiatType.USD.mySymbol,
-            if (walletBalance.showAmount) walletBalance.fiatBalancePriceFormatter else getString(R.string.hidden_stars)
-        )
+
+    private fun showAnnouncementAndMaintenanceMessage() {
+        if (RemoteConfigUtils.getMaintenanceMode(remoteConfig)) {
+            binding.textAnnouncement.text = RemoteConfigUtils.getMaintenanceMessage(remoteConfig)
+            binding.textAnnouncement.visible()
+            binding.textAnnouncement.isSelected = true
+        } else if (RemoteConfigUtils.showAnnouncement(remoteConfig)) {
+            binding.textAnnouncement.text = RemoteConfigUtils.getAnnouncementMessage(remoteConfig)
+            binding.textAnnouncement.visible()
+            binding.textAnnouncement.isSelected = true
+        }else
+            binding.textAnnouncement.gone()
     }
 
     private fun addChartMonthNameViews() {

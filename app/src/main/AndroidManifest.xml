@@ -121,6 +121,8 @@
                 android:value="androidx.startup" />
             <meta-data  android:name="com.android.l2l.twolocal.common.initializer.BranchInitializer"
                 android:value="androidx.startup" />
+            <meta-data  android:name="com.android.l2l.twolocal.common.initializer.RemoteConfigInitializer"
+                android:value="androidx.startup" />
         </provider>
 
     </application>

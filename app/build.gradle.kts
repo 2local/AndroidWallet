@@ -3,7 +3,6 @@ import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 plugins {
     id("org.greenrobot.greendao")
     id("com.android.application")
-    kotlin("android")
     id("kotlin-android")
     id("kotlin-kapt")
     id("kotlin-parcelize")
@@ -159,6 +158,7 @@ dependencies {
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation("com.google.firebase:firebase-crashlytics-ktx")
     implementation("com.google.firebase:firebase-analytics-ktx")
+    implementation("com.google.firebase:firebase-config-ktx")
     implementation("io.branch.sdk.android:library")
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 // Branch.io
