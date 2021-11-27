@@ -14,7 +14,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
-open class AuthenticationRepository @Inject constructor(
+class AuthenticationRepository @Inject constructor(
     private val remoteDataSource: AuthenticationRemoteDataSourceHelper,
     private val localDataSource: AuthenticationLocalDataSource
 ) : AuthenticationRepositoryHelper {

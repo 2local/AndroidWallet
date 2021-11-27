@@ -50,6 +50,25 @@
                 app:tv_title="" />
 
             <TextView
+                android:id="@+id/text_announcement"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:freezesText="true"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:textAppearance="@style/textAppearance.size14.red"
+                android:visibility="gone"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
+                app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+            <TextView
                 android:id="@+id/text_total_balance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -58,7 +77,7 @@
                 android:text="@string/home_total_balance"
                 android:textAppearance="@style/textAppearance.size18.gray"
                 app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+                app:layout_constraintTop_toBottomOf="@+id/text_announcement" />
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
