@@ -36,7 +36,7 @@ object Versions {
     const val VECTOR_DRAWABLE = "1.1.0"
     const val BROKER_CODE = "1.1.1"
     const val BROKER_LIFE_CYCLE = "1.1.1"
-    const val MAP = "17.0.0"
+    const val MAP = "18.0.0"
     const val RECYCLER_VIEW = "1.2.1"
     const val RX_JAVA = "2.2.17"
     const val RX_ANDROID = "2.1.1"
@@ -45,6 +45,6 @@ object Versions {
     const val GRADLE = "4.1.1"
     const val KOTLIN = "1.5.20"
     const val GREEN_DAO_PLUGIN = "3.3.0"
-    const val GOOGLE_SERVICES_PLUGIN = "4.3.4"
-    const val CRASHLYTICS_PLUGIN = "2.3.0"
+    const val GOOGLE_SERVICES_PLUGIN = "4.3.10"
+    const val CRASHLYTICS_PLUGIN = "2.8.0"
 }

@@ -3,13 +3,12 @@ import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 plugins {
     id("org.greenrobot.greendao")
     id("com.android.application")
-    kotlin("android")
     id("kotlin-android")
     id("kotlin-kapt")
     id("kotlin-parcelize")
     id("com.google.secrets_gradle_plugin") version "0.5"
-//    id("com.google.gms.google-services")
-//    id("com.google.firebase.crashlytics")
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 apply {
     from("../app_properties.gradle")
@@ -153,12 +152,13 @@ dependencies {
     // Import the BoM for the Firebase platform
     implementation(Dependencies.STURTUP)
     implementation(
-        platform("com.google.firebase:firebase-bom:28.0.1")
+        platform("com.google.firebase:firebase-bom:29.0.0")
     )
     // Declare the dependencies for the Crashlytics and Analytics libraries
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation("com.google.firebase:firebase-crashlytics-ktx")
     implementation("com.google.firebase:firebase-analytics-ktx")
+    implementation("com.google.firebase:firebase-config-ktx")
     implementation("io.branch.sdk.android:library")
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 // Branch.io
