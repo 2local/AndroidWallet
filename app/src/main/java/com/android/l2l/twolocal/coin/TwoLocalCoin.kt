@@ -19,7 +19,7 @@ data class TwoLocalCoin(val currency: FiatType? = null, val exchangeRate: CoinEx
         const val WALLET_NAME = "2LC"
         const val WALLET_SYMBOL = "2LC"
         const val WALLET_NETWORK = "BEP-20"
-        const val BITRUE_EXCHANGE_RATE_PAIR_2LC_USDT = "2LCUSDT"
+        const val LATOEKN_EXCHANGE_RATE_PAIR_2LC_USDT = "66592399-0a85-4e7c-8a32-fe7cf97b663c"
         const val TWOlc_WALLET_CONTRACT = "0x11f6ecc9e2658627e0876212f1078b9f84d3196e"
 
         override fun getDefaultWallet(address: String, uniqueKey: String): Wallet {
