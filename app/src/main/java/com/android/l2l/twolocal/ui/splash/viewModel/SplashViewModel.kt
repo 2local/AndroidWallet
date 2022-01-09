@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.android.l2l.twolocal.coin.TwoLocalCoin
 import com.android.l2l.twolocal.common.withIO
 import com.android.l2l.twolocal.dataSourse.local.prefs.UserSessionHelper
+import com.android.l2l.twolocal.dataSourse.remote.api.ApiConstants
 import com.android.l2l.twolocal.dataSourse.repository.exchangeRate.ExchangeRateRepositoryHelper
 import com.android.l2l.twolocal.dataSourse.repository.profile.ProfileRepositoryHelper
 import com.android.l2l.twolocal.dataSourse.repository.wallet.WalletRepositoryHelper
@@ -17,10 +18,10 @@ import com.android.l2l.twolocal.model.*
 import com.android.l2l.twolocal.model.enums.CryptoCurrencyType
 import com.android.l2l.twolocal.model.enums.TokenExchangeRatePairs
 import com.android.l2l.twolocal.model.mapper.Mapper_ExchangeRate
-import com.android.l2l.twolocal.model.response.ExchangeRateResponse
+import com.android.l2l.twolocal.model.response.ExchangeRateBitrueResponse
+import com.android.l2l.twolocal.model.response.ExchangeRateLatokenResponse
 import com.android.l2l.twolocal.model.response.base.ApiSingleResponse
 import com.android.l2l.twolocal.ui.base.BaseViewModel
-import com.android.l2l.twolocal.utils.constants.AppConstants.*
 import io.reactivex.Single
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.cancel
@@ -58,18 +59,23 @@ class SplashViewModel
 
     fun getCryptoPrice() {
         Single.zip(
-            exchangeRateRepository.getCoinExchangeRate(TokenExchangeRatePairs.TwoLC.pair)
-                .onErrorResumeNext { Single.just(ExchangeRateResponse(TokenExchangeRatePairs.TwoLC.pair, "0")) },
-            exchangeRateRepository.getCoinExchangeRate(TokenExchangeRatePairs.BINANCE.pair)
-                .onErrorResumeNext { Single.just(ExchangeRateResponse(TokenExchangeRatePairs.BINANCE.pair, "0")) },
-            exchangeRateRepository.getCoinExchangeRate(TokenExchangeRatePairs.ETHEREUM.pair)
-                .onErrorResumeNext { Single.just(ExchangeRateResponse(TokenExchangeRatePairs.ETHEREUM.pair, "0")) },
+            exchangeRateRepository.getCoinExchangeRateFromLatoken(TokenExchangeRatePairs.TwoLC.pair, ApiConstants.LATOKEN_USD_PAIR_ID)
+                .onErrorResumeNext {
+                    Single.just(ExchangeRateLatokenResponse(TokenExchangeRatePairs.TwoLC.pair, "0"))
+                }.map {
+                    it.symbol = TwoLocalCoin.WALLET_SYMBOL
+                    it
+                },
+            exchangeRateRepository.getCoinExchangeRateFromBitrue(TokenExchangeRatePairs.BINANCE.pair)
+                .onErrorResumeNext { Single.just(ExchangeRateBitrueResponse(TokenExchangeRatePairs.BINANCE.pair, "0")) },
+            exchangeRateRepository.getCoinExchangeRateFromBitrue(TokenExchangeRatePairs.ETHEREUM.pair)
+                .onErrorResumeNext { Single.just(ExchangeRateBitrueResponse(TokenExchangeRatePairs.ETHEREUM.pair, "0")) },
             profileRepository.profile()
                 .onErrorResumeNext { Single.just(ApiSingleResponse("", 401)) },
             {
-                    towlc_usdt: ExchangeRateResponse,
-                    bnb_usdt: ExchangeRateResponse,
-                    eth_usdt: ExchangeRateResponse,
+                    towlc_usdt: ExchangeRateLatokenResponse,
+                    bnb_usdt: ExchangeRateBitrueResponse,
+                    eth_usdt: ExchangeRateBitrueResponse,
                     profileInfo: ApiSingleResponse<ProfileInfo>,
                 ->
                 val coinPrices: MutableList<CoinExchangeRate> = mutableListOf()
