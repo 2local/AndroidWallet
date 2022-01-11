@@ -17,10 +17,13 @@ public class ApiConstants {
     public static final String UPDATE_PROFILE_ENDPOINT = "api/profile/update-profile";
     public static final String GET_PROFILE_DATA_ENDPOINT = "api/profile/get-profile";
     public static final String VALIDATE_TWO_FA = "api/auth/validate-twofa/";
-    public static final String GET_EXCHANGE_RATE_ENDPOINT = "https://www.bitrue.com/api/v1/ticker/price";
+    public static final String GET_EXCHANGE_RATE_ENDPOINT_BITRUE = "https://www.bitrue.com/api/v1/ticker/price";
+    public static final String GET_EXCHANGE_RATE_ENDPOINT_LATOKEN = "https://api.latoken.com/v2/ticker/";
     public static final String GOOGLE_QR_CODE = "https://www.google.com/maps/search/?api=1&query=";
 
     //API keys
+    public static final String LATOKEN_USD_PAIR_ID =  "0c3a106d-bde3-4c13-a26e-3fd2394529e5";
+
     public static final String BSC_SCAN_PAI_KEY =  BuildConfig.BSC_SCAN_PAI_KEY;
     public static final String ETHER_SCAN_PAI_KEY =  BuildConfig.ETHER_SCAN_PAI_KEY;
     public static final String ETHER_MAINNET_INFURA_API_KEY =  BuildConfig.ETHER_MAINNET_INFURA_API_KEY;

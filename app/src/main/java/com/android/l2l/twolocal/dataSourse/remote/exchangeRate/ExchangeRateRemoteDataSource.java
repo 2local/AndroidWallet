@@ -1,6 +1,7 @@
 package com.android.l2l.twolocal.dataSourse.remote.exchangeRate;
 
-import com.android.l2l.twolocal.model.response.ExchangeRateResponse;
+import com.android.l2l.twolocal.model.response.ExchangeRateBitrueResponse;
+import com.android.l2l.twolocal.model.response.ExchangeRateLatokenResponse;
 
 import javax.inject.Inject;
 
@@ -16,8 +17,13 @@ public class ExchangeRateRemoteDataSource implements ExchangeRateRemoteDataSourc
     }
 
     @Override
-    public Single<ExchangeRateResponse> getCoinsExchangeRate(String symbol) {
-        return apiInterface.getCoinsExchangeRate(symbol);
+    public Single<ExchangeRateBitrueResponse> getCoinsExchangeRateFromBitrue(String symbol) {
+        return apiInterface.getCoinsExchangeRateFromBitrue(symbol);
+    }
+
+    @Override
+    public Single<ExchangeRateLatokenResponse> get2lcExchangeRateFromLatoken(String latokenCoinID, String latokenPairID) {
+        return apiInterface.getCoinsExchangeRateFromLatoken(latokenCoinID, latokenPairID);
     }
 
 
