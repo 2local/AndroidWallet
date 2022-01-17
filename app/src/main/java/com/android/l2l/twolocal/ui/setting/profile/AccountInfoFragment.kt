@@ -28,7 +28,7 @@ class AccountInfoFragment : BaseFragment<AccountInfoViewModel>(R.layout.fragment
 
     override val viewModel: AccountInfoViewModel by viewModels { viewModelFactory }
     private val binding: FragmentAccountInfoBinding by viewBinding(FragmentAccountInfoBinding::bind)
-    private lateinit var profileInfo: ProfileInfo
+    private var profileInfo: ProfileInfo? = null
 
 
     override fun onCreate(@Nullable savedInstanceState: Bundle?) {
@@ -81,7 +81,7 @@ class AccountInfoFragment : BaseFragment<AccountInfoViewModel>(R.layout.fragment
                 is ViewState.Success -> {
                     hideLoading()
                     onSuccessDialog(it.response.message)
-//                    onSuccessDialog(getString(R.string.profile_info_updated))
+                    findNavController().popBackStack()
                 }
                 is ViewState.Error -> {
                     hideLoading()
@@ -130,7 +130,7 @@ class AccountInfoFragment : BaseFragment<AccountInfoViewModel>(R.layout.fragment
         profileUpdateInfo.city = binding.textCity.text.toString()
         profileUpdateInfo.address = binding.textAddress.text.toString()
         profileUpdateInfo.post_code = binding.textPostalCode.text.toString()
-        profileUpdateInfo.user_Id = profileInfo.user_Id
+        profileUpdateInfo.user_Id = profileInfo?.user_Id
         return profileUpdateInfo
     }
 }

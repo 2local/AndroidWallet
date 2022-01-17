@@ -25,7 +25,7 @@ import org.greenrobot.eventbus.EventBus
 import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
-class BottomSheetRemoveWallet : BottomSheetDialogFragment() { //TODO create base bottom sheet
+class BottomSheetRemoveWallet : BottomSheetDialogFragment() {
 
     @Inject
     lateinit var viewModelFactory: AppViewModelFactory
@@ -45,14 +45,14 @@ class BottomSheetRemoveWallet : BottomSheetDialogFragment() { //TODO create base
         }
     }
 
-    private fun handelBundle(arguments: Bundle?) {
+    private fun handleBundle(arguments: Bundle?) {
         arguments?.let {
             walletType = it.get(WALLET_KEY) as CryptoCurrencyType
         }
     }
 
     override fun onCreate(@Nullable savedInstanceState: Bundle?) {
-        handelBundle(arguments)
+        handleBundle(arguments)
         DaggerWalletComponent.factory().create(requireActivity().findAppComponent(), walletType).inject(this)
         super.onCreate(savedInstanceState)
     }
@@ -64,18 +64,12 @@ class BottomSheetRemoveWallet : BottomSheetDialogFragment() { //TODO create base
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        handelBundle(arguments)
+        handleBundle(arguments)
 
         viewModel.removeWalletLiveData.observe(viewLifecycleOwner, {res->
             when (res) {
                 is ViewState.Success -> {
-                    EventBus.getDefault().post(RefreshWalletListEvent())
-//                    MessageUtils.showSuccessDialog(requireContext(), getString(R.string.bottom_sheet_remove_wallet)).show()
-
-                    MessageUtils.showSuccessDialog(getString(R.string.bottom_sheet_remove_wallet), requireContext()) {
-                        this.dismiss()
-                        callbackClickListener?.onCallbackClick(res.response)
-                    }.show()
+                    onWalletRemovedSuccessfully(res.response)
                 }
                 else -> {
                 }
@@ -110,7 +104,17 @@ class BottomSheetRemoveWallet : BottomSheetDialogFragment() { //TODO create base
         }
     }
 
+    private fun onWalletRemovedSuccessfully(success: Boolean) {
+        EventBus.getDefault().post(RefreshWalletListEvent())
+
+        MessageUtils.showMessageToast(getString(R.string.bottom_sheet_remove_wallet), requireContext())
+        callbackClickListener?.onCallbackClick(success)
+        this.dismiss()
+    }
+
     private fun removeWalletConfirm(){
+
+
         AlertDialog.Builder(context)
             .setTitle(getString(R.string.bottom_sheet_remove_wallet_question))
             .setMessage(getString(R.string.bottom_sheet_remove_wallet_please_write_recovery))

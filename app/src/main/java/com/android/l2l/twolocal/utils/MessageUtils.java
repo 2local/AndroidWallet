@@ -98,11 +98,18 @@ public final class MessageUtils {
         return dialog;
     }
 
-    public static void onMessageToast(String message, View view) {
+    public static void showMessageSnackbar(String message, View view) {
         if(message !=null) {
             Snackbar snack = Snackbar.make(view, message, Snackbar.LENGTH_LONG);
             snack.setDuration(6000);
             snack.show();
         }
     }
+
+    public static void showMessageToast(String message, Context context) {
+        if(message !=null) {
+            Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+        }
+    }
+
 }

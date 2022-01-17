@@ -6,7 +6,6 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.android.l2l.twolocal.dataSourse.utils.error.GeneralError
-import com.android.l2l.twolocal.utils.CommonUtils
 import com.android.l2l.twolocal.utils.MessageUtils
 import com.google.android.material.snackbar.Snackbar
 
@@ -60,7 +59,7 @@ class BaseViewActions private constructor() {
     }
 
     fun onMessageToast(message: String?) {
-        MessageUtils.onMessageToast(message, (context as AppCompatActivity).findViewById(android.R.id.content))
+        MessageUtils.showMessageSnackbar(message, (context as AppCompatActivity).findViewById(android.R.id.content))
     }
 
     fun onErrorDialog(error: GeneralError) {
