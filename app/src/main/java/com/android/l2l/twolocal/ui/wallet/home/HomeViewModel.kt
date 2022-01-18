@@ -57,7 +57,7 @@ class HomeViewModel
     val expenseLiveData: LiveData<ViewState<MutableList<Double>>>
         get() = _expenseLiveData
 
-    fun getAllWallets() {
+    fun getAllWalletsBalance() {
         twoLCWalletTotalAmount()
         getListOfWallets()
 
@@ -107,30 +107,16 @@ class HomeViewModel
             }, { it.printStackTrace() })
     }
 
-//    private fun getTotalBalanceOfAllWallets() {
-//        walletRepository.getWalletList().withIO()
-//            .doOnSubscribe {
-//                addToDisposable(it)
-//            }
-//            .doOnError {
-//                _totalBalanceLiveData.value = ViewState.Error(GeneralError().withError(it))
-//            }
-//            .subscribe({ walletList ->
-//
-//                onTotalWalletsAmount()
-//
-//            }, { it.printStackTrace() })
-//    }
-
     private fun twoLCWalletTotalAmount() {
         val isShowAmount = userSession.getBalanceSeen()
 
-        val twolcWallet: Wallet? = walletRepository.getWallet(CryptoCurrencyType.TwoLC)
-        if (twolcWallet != null) {
+        val _2lcWallet: Wallet? = walletRepository.getWallet(CryptoCurrencyType.TwoLC)
+        if (_2lcWallet != null) {
 
-            val totalPrice = twolcWallet.fiatPrice.toDouble()
-            val twolc = twolcWallet.amount
-            val totalBalance = TotalBalance(twolcWallet.type.symbol, twolc, totalPrice.toString(), isShowAmount)
+            val totalBalance = TotalBalance(_2lcWallet.type.symbol, _2lcWallet.amount, _2lcWallet.fiatPrice.toDouble().toString(), isShowAmount)
+            _totalBalanceLiveData.value = ViewState.Success(totalBalance)
+        }else {
+            val totalBalance = TotalBalance(CryptoCurrencyType.TwoLC.symbol, "0", "0", isShowAmount)
             _totalBalanceLiveData.value = ViewState.Success(totalBalance)
         }
     }
