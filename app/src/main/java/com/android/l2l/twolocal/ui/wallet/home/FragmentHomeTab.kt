@@ -41,6 +41,7 @@ import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import java.math.BigDecimal
 import java.util.*
 import javax.inject.Inject
 
@@ -57,10 +58,14 @@ class FragmentHomeTab : BaseFragment<HomeViewModel>(R.layout.fragment_home_tab) 
     private val wallets: MutableList<Wallet> = arrayListOf()
     private lateinit var incomeViews: MutableList<ChartItemView>
     private lateinit var remoteConfig: FirebaseRemoteConfig
+    private var forceRefreshBalance = true
+    private var isInstructionShown = false
 
     override fun onCreate(@Nullable savedInstanceState: Bundle?) {
         DaggerWalletComponent.factory().create(requireActivity().findAppComponent(), CryptoCurrencyType.TwoLC).inject(this)
         super.onCreate(savedInstanceState)
+        forceRefreshBalance = true
+        isInstructionShown = false
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -82,7 +87,7 @@ class FragmentHomeTab : BaseFragment<HomeViewModel>(R.layout.fragment_home_tab) 
             }
         }
 
-        viewModel.totalBalanceLiveData.observe(viewLifecycleOwner, {
+        viewModel.tlcTotalBalanceLiveData.observe(viewLifecycleOwner, {
             when (it) {
                 is ViewState.Success -> {
                     hideLoading()
@@ -138,6 +143,11 @@ class FragmentHomeTab : BaseFragment<HomeViewModel>(R.layout.fragment_home_tab) 
 
         }.observe(viewLifecycleOwner) { }
 
+        LiveDataCombineUtil.combine(viewModel.tlcTotalBalanceLiveData, viewModel.walletListLiveData) { t1, t2 ->
+            if (t1 is ViewState.Success && t2 is ViewState.Success)
+                showInstructionMessage(t1.response, t2.response)
+        }.observe(viewLifecycleOwner) { }
+
         binding.imageEye.setOnClickListener {
             viewModel.toggleBlindAmount()
         }
@@ -158,7 +168,9 @@ class FragmentHomeTab : BaseFragment<HomeViewModel>(R.layout.fragment_home_tab) 
 
         lifecycleScope.launch {
             delay(300)
-            viewModel.getAllWalletsBalance()
+            viewModel.getAllWalletsBalance(forceRefreshBalance)
+            if (forceRefreshBalance)
+                forceRefreshBalance = false
         }
         viewModel.getL2LTransactionsHistory()
         showAnnouncementAndMaintenanceMessage()
@@ -203,8 +215,25 @@ class FragmentHomeTab : BaseFragment<HomeViewModel>(R.layout.fragment_home_tab) 
             binding.textAnnouncement.text = RemoteConfigUtils.getAnnouncementMessage(remoteConfig)
             binding.textAnnouncement.visible()
             binding.textAnnouncement.isSelected = true
-        }else
+        } else
             binding.textAnnouncement.gone()
+    }
+
+    private fun showInstructionMessage(walletBalance: TotalBalance, wallets: List<Wallet>) {
+        if (isInstructionShown) return
+        val balance = CommonUtils.stringToBigDecimal(walletBalance.balance)
+        val userHasWallet =
+            wallets.find { it.isUserVerifiedMnemonic }// cannot use wallets.size because one temporary wallet will be created after get profile API
+
+        val userBalanceIsZero = balance.compareTo(BigDecimal("0")) == 0
+        val userHasNoWallet = userHasWallet == null
+        val instructionIsEnable = RemoteConfigUtils.isInstructionEnable(remoteConfig)
+        if (instructionIsEnable && userHasNoWallet && userBalanceIsZero) {
+            isInstructionShown = true
+            DialogWalletInstruction.newInstance(
+                RemoteConfigUtils.getInstructionMessage(remoteConfig)
+            ).show(childFragmentManager, "")
+        }
     }
 
     private fun addChartMonthNameViews() {
