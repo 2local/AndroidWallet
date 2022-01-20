@@ -1,7 +1,6 @@
 package com.android.l2l.twolocal.ui.wallet.home;
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -41,9 +40,9 @@ class HomeViewModel
 ) : BaseViewModel() {
 
 
-    private val _totalBalanceLiveData = MutableLiveData<ViewState<TotalBalance>>()
-    val totalBalanceLiveData: LiveData<ViewState<TotalBalance>>
-        get() = _totalBalanceLiveData
+    private val _tlcTotalBalanceLiveData = MutableLiveData<ViewState<TotalBalance>>()
+    val tlcTotalBalanceLiveData: LiveData<ViewState<TotalBalance>>
+        get() = _tlcTotalBalanceLiveData
 
     private val _walletListLiveData = MutableLiveData<ViewState<List<Wallet>>>()
     val walletListLiveData: LiveData<ViewState<List<Wallet>>>
@@ -57,54 +56,56 @@ class HomeViewModel
     val expenseLiveData: LiveData<ViewState<MutableList<Double>>>
         get() = _expenseLiveData
 
-    fun getAllWalletsBalance() {
+    fun getAllWalletsBalance(forceRefreshBalance: Boolean?= true) {
         twoLCWalletTotalAmount()
         getListOfWallets()
 
 
-        val ether: Single<WalletBalance> =
-            ethRepository.getWalletBalance().onErrorReturnItem(WalletBalance("0", CryptoCurrencyType.ETHEREUM.name))
-        val l2l: Single<WalletBalance> =
-            bscRepository.getWalletBalance().onErrorReturnItem(WalletBalance("0", CryptoCurrencyType.TwoLC.name))
-        val bnb: Single<WalletBalance> =
-            bnbRepository.getWalletBalance().onErrorReturnItem(WalletBalance("0", CryptoCurrencyType.BINANCE.name))
-        Single.zip(l2l, ether, bnb,
-            {
-                    l2lBalance: WalletBalance,
-                    etherBalance: WalletBalance,
-                    bnbBalance: WalletBalance,
-                ->
+        if(forceRefreshBalance==true) {
+            val ether: Single<WalletBalance> =
+                ethRepository.getWalletBalance().onErrorReturnItem(WalletBalance("0", CryptoCurrencyType.ETHEREUM.name))
+            val l2l: Single<WalletBalance> =
+                bscRepository.getWalletBalance().onErrorReturnItem(WalletBalance("0", CryptoCurrencyType.TwoLC.name))
+            val bnb: Single<WalletBalance> =
+                bnbRepository.getWalletBalance().onErrorReturnItem(WalletBalance("0", CryptoCurrencyType.BINANCE.name))
+            Single.zip(l2l, ether, bnb,
+                {
+                        l2lBalance: WalletBalance,
+                        etherBalance: WalletBalance,
+                        bnbBalance: WalletBalance,
+                    ->
 
-                val etherWallet: Wallet? = walletRepository.getWallet(CryptoCurrencyType.ETHEREUM)
-                if (etherWallet != null) {
-                    etherWallet.amount = etherBalance.balance
-                    walletRepository.saveWallet(etherWallet)
+                    val etherWallet: Wallet? = walletRepository.getWallet(CryptoCurrencyType.ETHEREUM)
+                    if (etherWallet != null) {
+                        etherWallet.amount = etherBalance.balance
+                        walletRepository.saveWallet(etherWallet)
+                    }
+
+                    val l2lWallet: Wallet? = walletRepository.getWallet(CryptoCurrencyType.TwoLC)
+                    if (l2lWallet != null) {
+                        l2lWallet.amount = l2lBalance.balance
+                        walletRepository.saveWallet(l2lWallet)
+                    }
+
+                    val bnbWallet: Wallet? = walletRepository.getWallet(CryptoCurrencyType.BINANCE)
+                    if (bnbWallet != null) {
+                        bnbWallet.amount = bnbBalance.balance
+                        walletRepository.saveWallet(bnbWallet)
+                    }
+
+                }).withIO()
+                .doOnSubscribe {
+                    addToDisposable(it)
+                    _tlcTotalBalanceLiveData.value = ViewState.Loading
                 }
-
-                val l2lWallet: Wallet? = walletRepository.getWallet(CryptoCurrencyType.TwoLC)
-                if (l2lWallet != null) {
-                    l2lWallet.amount = l2lBalance.balance
-                    walletRepository.saveWallet(l2lWallet)
+                .doOnError {
+                    _tlcTotalBalanceLiveData.value = ViewState.Error(GeneralError().withError(it))
                 }
-
-                val bnbWallet: Wallet? = walletRepository.getWallet(CryptoCurrencyType.BINANCE)
-                if (bnbWallet != null) {
-                    bnbWallet.amount = bnbBalance.balance
-                    walletRepository.saveWallet(bnbWallet)
-                }
-
-            }).withIO()
-            .doOnSubscribe {
-                addToDisposable(it)
-                _totalBalanceLiveData.value = ViewState.Loading
-            }
-            .doOnError {
-                _totalBalanceLiveData.value = ViewState.Error(GeneralError().withError(it))
-            }
-            .subscribe({
-                twoLCWalletTotalAmount()
-                getListOfWallets()
-            }, { it.printStackTrace() })
+                .subscribe({
+                    twoLCWalletTotalAmount()
+                    getListOfWallets()
+                }, { it.printStackTrace() })
+        }
     }
 
     private fun twoLCWalletTotalAmount() {
@@ -113,11 +114,12 @@ class HomeViewModel
         val _2lcWallet: Wallet? = walletRepository.getWallet(CryptoCurrencyType.TwoLC)
         if (_2lcWallet != null) {
 
-            val totalBalance = TotalBalance(_2lcWallet.type.symbol, _2lcWallet.amount, _2lcWallet.fiatPrice.toDouble().toString(), isShowAmount)
-            _totalBalanceLiveData.value = ViewState.Success(totalBalance)
-        }else {
+            val totalBalance =
+                TotalBalance(_2lcWallet.type.symbol, _2lcWallet.amount, _2lcWallet.fiatPrice.toDouble().toString(), isShowAmount)
+            _tlcTotalBalanceLiveData.value = ViewState.Success(totalBalance)
+        } else {
             val totalBalance = TotalBalance(CryptoCurrencyType.TwoLC.symbol, "0", "0", isShowAmount)
-            _totalBalanceLiveData.value = ViewState.Success(totalBalance)
+            _tlcTotalBalanceLiveData.value = ViewState.Success(totalBalance)
         }
     }
 
@@ -132,7 +134,7 @@ class HomeViewModel
                 addToDisposable(it)
             }
             .doOnError {
-                _totalBalanceLiveData.value = ViewState.Error(GeneralError().withError(it))
+                _tlcTotalBalanceLiveData.value = ViewState.Error(GeneralError().withError(it))
             }
             .subscribe({ walletList ->
                 twoLCWalletTotalAmount()
