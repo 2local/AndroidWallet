@@ -3,7 +3,6 @@ package com.android.l2l.twolocal.ui.market
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +20,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
-class BottomSheetMarketPlaceDetail : BottomSheetDialogFragment() { //TODO create base bottom sheet
+class BottomSheetMarketPlaceDetail : BottomSheetDialogFragment() {
 
     @Inject
     lateinit var viewModelFactory: AppViewModelFactory
@@ -57,7 +56,7 @@ class BottomSheetMarketPlaceDetail : BottomSheetDialogFragment() { //TODO create
         marketPlace?.let {
             binding.marketPlaceUrl.text = it.address
             binding.companyName.text = it.companyName
-            binding.marketPlaceAddress.text = it.representative
+            binding.txtRepresentative.text = it.representative
         }
 
 
@@ -84,7 +83,7 @@ class BottomSheetMarketPlaceDetail : BottomSheetDialogFragment() { //TODO create
                 }
             } catch (e: java.lang.Exception) {
                 e.printStackTrace()
-                MessageUtils.showErrorDialog(requireContext(), getString(R.string.can_not_launch_the_web_url))
+                MessageUtils.showErrorDialog(requireContext(), getString(R.string.fragment_market_place_can_not_launch_the_web_url))
             }
         }
 

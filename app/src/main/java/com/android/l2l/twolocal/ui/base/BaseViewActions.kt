@@ -36,15 +36,15 @@ class BaseViewActions private constructor() {
         }
     }
 
-    fun onMessageToast(error: GeneralError) {
+    fun showMessageSnackbar(error: GeneralError) {
         if (error.message != null)
-            onMessageToast(error.message)
+            showMessageSnackbar(error.message)
         else if (error.messageRes != null && error.messageRes != 0)
-            onMessageToast(error.messageRes!!)
+            showMessageSnackbar(error.messageRes!!)
     }
 
-    fun onMessageToast(message: Int) {
-        onMessageToast(context.getString(message))
+    fun showMessageSnackbar(message: Int) {
+        showMessageSnackbar(context.getString(message))
     }
 
     fun onErrorToast(@StringRes message: Int) {
@@ -58,7 +58,7 @@ class BaseViewActions private constructor() {
         }
     }
 
-    fun onMessageToast(message: String?) {
+    fun showMessageSnackbar(message: String?) {
         MessageUtils.showMessageSnackbar(message, (context as AppCompatActivity).findViewById(android.R.id.content))
     }
 

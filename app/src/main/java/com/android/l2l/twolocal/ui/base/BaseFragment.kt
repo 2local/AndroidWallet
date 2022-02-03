@@ -2,14 +2,10 @@ package com.android.l2l.twolocal.ui.base;
 
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
 import com.android.l2l.twolocal.dataSourse.utils.error.GeneralError
-import org.greenrobot.eventbus.EventBus
 
 /**
  * All Fragments must extends from this Base class
@@ -53,15 +49,15 @@ abstract class BaseFragment<VM : BaseViewModel>(@LayoutRes contentLayoutId: Int 
     }
 
     fun onMessageToast(message: Int) {
-        viewActions.onMessageToast(getString(message))
+        viewActions.showMessageSnackbar(getString(message))
     }
 
     override fun onMessageToast(message: String?) {
-        viewActions.onMessageToast(message)
+        viewActions.showMessageSnackbar(message)
     }
 
     fun onMessageToast(error: GeneralError) {
-        viewActions.onMessageToast(error)
+        viewActions.showMessageSnackbar(error)
     }
 
     fun onErrorDialog(message: String?) {

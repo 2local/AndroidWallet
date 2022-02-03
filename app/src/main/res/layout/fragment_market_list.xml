@@ -1,11 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/lay_wrapper"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_margin="@dimen/spacing_large"
+        app:cardBackgroundColor="@color/white_trans"
+        app:cardCornerRadius="@dimen/border_radius_normal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/spacing_small">
+
+            <ImageView
+                android:id="@+id/img_search"
+                style="@style/icon.large.padding"
+                app:srcCompat="@drawable/ic_search" />
+
+            <EditText
+                android:id="@+id/edt_search"
+                style="@style/editText.singleLine"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/spacing_small"
+                android:layout_marginEnd="@dimen/spacing_normal"
+                android:background="@android:color/transparent"
+                android:gravity="start|center_vertical"
+                android:hint="@string/fragment_market_place_search_hint"
+                android:imeOptions="actionSearch"
+                android:textAppearance="@style/textAppearance.size14" />
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
 
     <fragment
         android:id="@+id/map"

@@ -40,4 +40,5 @@
     <color name="divider_color">#d0d0d0</color>
     <color name="icon_color">#d0d0d0</color>
 
+    <color name="white_trans">#aa111111</color>
 </resources>

@@ -88,7 +88,6 @@
     </style>
 
     <style name="textAppearance">
-        <item name="android:textStyle">normal</item>
         <item name="android:textColor">@color/black_text</item>
         <item name="android:textSize">14sp</item>
     </style>

@@ -16,7 +16,6 @@ import com.android.l2l.twolocal.ui.authentication.di.DaggerAuthenticationCompone
 import com.android.l2l.twolocal.ui.authentication.viewModel.formState.TwoFAFormState
 import com.android.l2l.twolocal.ui.authentication.viewModel.TwoFactorViewModel
 import com.android.l2l.twolocal.ui.base.BaseViewActions
-import com.android.l2l.twolocal.ui.splash.SplashActivity
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 
@@ -49,7 +48,7 @@ class DialogTowFactorVerification : DialogFragment(R.layout.dialog_two_fa_confir
         viewModel.loginFormState.observe(viewLifecycleOwner, {
             when (it) {
                 is TwoFAFormState.InvalidCode -> {
-                    viewAction.onMessageToast(it.error)
+                    viewAction.showMessageSnackbar(it.error)
                 }
                 else -> {
                 }
