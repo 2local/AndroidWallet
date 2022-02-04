@@ -119,7 +119,7 @@ class FragmentLogin: BaseFragment<LoginViewModel>(R.layout.fragment_login) {
         val executor = ContextCompat.getMainExecutor(requireContext())
         val biometricManager = BiometricManager.from(requireContext())
 
-        when (biometricManager.canAuthenticate()) {
+        when (biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_WEAK)) {
             BiometricManager.BIOMETRIC_SUCCESS ->
                 authUser(executor)
             BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE ->

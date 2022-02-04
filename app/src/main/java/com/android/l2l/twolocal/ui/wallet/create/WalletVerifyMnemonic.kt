@@ -60,7 +60,7 @@ class WalletVerifyMnemonic : BaseFragment<EtherVerifyMnemonicViewModel>(R.layout
 
         binding.btnGoNext.setOnClickListener {
             val mnemonic = binding.tvMnemonic.text.toString().replace(NMEMONIC_SPACE_SEPARATOR, " ")
-            viewModel.verifyMnemonic(walletType, mnemonic.trim())
+            viewModel.verifyMnemonic(mnemonic.trim())
         }
 
         binding.toolbar.getCloseBtn().setOnClickListener {

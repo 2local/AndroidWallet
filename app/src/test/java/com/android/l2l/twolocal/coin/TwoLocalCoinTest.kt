@@ -29,7 +29,7 @@ class TwoLocalCoinTest{
 
     @Test
     fun `2lc to fiat usd`() {
-        val coinPrice = CoinExchangeRate(TwoLocalCoin.BITRUE_EXCHANGE_RATE_PAIR_2LC_USDT,0.0032, 0.0)
+        val coinPrice = CoinExchangeRate(TwoLocalCoin.LATOEKN_EXCHANGE_RATE_PAIR_2LC_USDT,0.0032, 0.0)
         val twoLocalCoin = TwoLocalCoin(FiatType.USD, coinPrice)
         val result1 = twoLocalCoin.toFiat("1")
         val expecting1 = BigDecimal("0.0032")
@@ -59,7 +59,7 @@ class TwoLocalCoinTest{
 
     @Test
     fun `2lc to fiat eur`() {
-        val coinPrice = CoinExchangeRate(TwoLocalCoin.BITRUE_EXCHANGE_RATE_PAIR_2LC_USDT,0.0, 0.0032)
+        val coinPrice = CoinExchangeRate(TwoLocalCoin.LATOEKN_EXCHANGE_RATE_PAIR_2LC_USDT,0.0, 0.0032)
         val twoLocalCoin = TwoLocalCoin(FiatType.EUR, coinPrice)
 
         val result1 = twoLocalCoin.toFiat("1")
@@ -93,7 +93,7 @@ class TwoLocalCoinTest{
 
     @Test
     fun `eur to 2lc`() {
-        val coinPrice = CoinExchangeRate(TwoLocalCoin.BITRUE_EXCHANGE_RATE_PAIR_2LC_USDT,0.0, 0.0032)
+        val coinPrice = CoinExchangeRate(TwoLocalCoin.LATOEKN_EXCHANGE_RATE_PAIR_2LC_USDT,0.0, 0.0032)
         val twoLocalCoin = TwoLocalCoin(FiatType.EUR, coinPrice)
         val result1 = twoLocalCoin.toCurrency("1657.88")
         val expecting1 = BigDecimal("518087.5000000000")
@@ -130,7 +130,7 @@ class TwoLocalCoinTest{
 
     @Test
     fun `usd to 2lc`() {
-        val coinPrice = CoinExchangeRate(TwoLocalCoin.BITRUE_EXCHANGE_RATE_PAIR_2LC_USDT,0.0032, 0.0)
+        val coinPrice = CoinExchangeRate(TwoLocalCoin.LATOEKN_EXCHANGE_RATE_PAIR_2LC_USDT,0.0032, 0.0)
         val twoLocalCoin = TwoLocalCoin(FiatType.USD, coinPrice)
 
         val result1 = twoLocalCoin.toCurrency("1657.88")

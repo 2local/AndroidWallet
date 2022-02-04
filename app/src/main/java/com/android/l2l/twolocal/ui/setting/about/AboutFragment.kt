@@ -43,7 +43,7 @@ class AboutFragment : BaseFragment<BaseViewModel>(R.layout.fragment_about) {
         binding.itemVersionName.text = getString(R.string.fragment_about_version_prefix, versionName)
 
         binding.privacyPolicy.setOnClickListener {
-            val i = Intent(Intent.ACTION_VIEW).apply {
+            Intent(Intent.ACTION_VIEW).apply {
                 data = Uri.parse(AppConstants.PRIVACY_POLICY)
                 requireActivity().startActivity(this)
             }

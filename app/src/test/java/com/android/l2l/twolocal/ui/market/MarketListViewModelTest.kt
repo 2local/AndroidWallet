@@ -1,19 +1,13 @@
 package com.android.l2l.twolocal.ui.market
 
-import android.content.Context
-import android.content.SharedPreferences
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.android.l2l.twolocal.dataSourse.local.prefs.UserSession
 import com.android.l2l.twolocal.dataSourse.remote.auth.AuthenticationApiInterface
-import com.android.l2l.twolocal.dataSourse.repository.auth.AuthenticationRepository
 import com.android.l2l.twolocal.dataSourse.repository.market.MarketRepositoryHelper
 import com.android.l2l.twolocal.dataSourse.utils.ViewState
 import com.android.l2l.twolocal.model.Company
 import com.android.l2l.twolocal.model.MarketPlace
-import com.android.l2l.twolocal.model.ProfileInfo
-import com.android.l2l.twolocal.model.TwoFAVerify
 import com.android.l2l.twolocal.model.response.base.ApiSingleResponse
-import com.android.l2l.twolocal.ui.authentication.viewModel.TwoFactorViewModel
 import com.google.common.truth.Truth
 import io.reactivex.Scheduler
 import io.reactivex.Single
@@ -25,7 +19,6 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import org.mockito.ArgumentMatchers
 import org.mockito.Mockito
 import java.util.concurrent.Callable
 
@@ -61,7 +54,7 @@ class MarketListViewModelTest{
         //GIVEN
         val res = ApiSingleResponse<Company>("", 200)
         val companyList = mutableListOf<MarketPlace>()
-        val marketPlace = MarketPlace()
+        val marketPlace = MarketPlace(id = 0, longitude = "0", latitude = "0")
         companyList.add(marketPlace)
         val company = Company(companyList)
         res.record = company
@@ -99,7 +92,7 @@ class MarketListViewModelTest{
         //GIVEN
         val res = ApiSingleResponse<Company>("", 500)
         val companyList = mutableListOf<MarketPlace>()
-        val marketPlace = MarketPlace()
+        val marketPlace = MarketPlace(id = 0, longitude = "0", latitude = "0")
         companyList.add(marketPlace)
         val company = Company(companyList)
         res.record = company
