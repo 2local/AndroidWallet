@@ -5,7 +5,6 @@ import com.android.l2l.twolocal.dataSourse.local.prefs.UserSession
 import com.android.l2l.twolocal.dataSourse.remote.auth.AuthenticationApiInterface
 import com.android.l2l.twolocal.dataSourse.repository.profile.ProfileRepositoryHelper
 import com.android.l2l.twolocal.dataSourse.utils.ViewState
-import com.android.l2l.twolocal.model.UpdateProfile
 import com.android.l2l.twolocal.model.response.base.ApiBaseResponse
 import com.android.l2l.twolocal.ui.setting.profile.viewmodel.AccountInfoViewModel
 import com.google.common.truth.Truth
@@ -58,8 +57,8 @@ class SettingViewModelTest{
         val res = ApiBaseResponse(200, "")
 
         //WHEN
-        Mockito.`when`(repository.signOut()).thenReturn(Single.just(true))
-        viewModel.signOut()
+        Mockito.`when`(repository.resetWalletAndSignOut()).thenReturn(Single.just(true))
+        viewModel.resetWalletAndSignOut()
 
         //THEN
         viewModel.logoutLiveData.observeForever() {

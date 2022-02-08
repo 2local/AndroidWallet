@@ -5,8 +5,9 @@ import com.android.l2l.twolocal.dataSourse.local.prefs.UserSession
 import com.android.l2l.twolocal.dataSourse.remote.auth.AuthenticationApiInterface
 import com.android.l2l.twolocal.dataSourse.repository.profile.ProfileRepositoryHelper
 import com.android.l2l.twolocal.dataSourse.utils.ViewState
-import com.android.l2l.twolocal.model.UpdateProfile
+import com.android.l2l.twolocal.model.ProfileInfo
 import com.android.l2l.twolocal.model.response.base.ApiBaseResponse
+import com.android.l2l.twolocal.model.response.base.ApiSingleResponse
 import com.google.common.truth.Truth
 import io.reactivex.Scheduler
 import io.reactivex.Single
@@ -42,7 +43,7 @@ class AccountInfoViewModelTest{
         appPreferences = Mockito.mock(UserSession::class.java)
         authenticationApi = Mockito.mock(AuthenticationApiInterface::class.java)
         repository = Mockito.mock(ProfileRepositoryHelper::class.java)
-        viewModel = AccountInfoViewModel(repository, appPreferences)
+        viewModel = AccountInfoViewModel(repository)
 
 
         RxAndroidPlugins.setInitMainThreadSchedulerHandler { scheduler: Callable<Scheduler?>? -> Schedulers.trampoline() }
@@ -51,7 +52,7 @@ class AccountInfoViewModelTest{
     @Test
     fun `update profile empty username inputs return error response`() {
         //GIVEN
-        val updateProfile = UpdateProfile()
+        val updateProfile = ProfileInfo()
         //WHEN
         viewModel.updateProfile(updateProfile)
 
@@ -64,7 +65,7 @@ class AccountInfoViewModelTest{
     @Test
     fun `update profile invalid username inputs return error response`() {
         //GIVEN
-        val updateProfile = UpdateProfile()
+        val updateProfile = ProfileInfo()
         updateProfile.name = "1sampleusername"
         updateProfile.mobile_number = "9138970886"
         //WHEN
@@ -79,7 +80,7 @@ class AccountInfoViewModelTest{
     @Test
     fun `update profile empty mobile inputs return error response`() {
         //GIVEN
-        val updateProfile = UpdateProfile()
+        val updateProfile = ProfileInfo()
         updateProfile.name = "sampleusername"
         //WHEN
         viewModel.updateProfile(updateProfile)
@@ -93,7 +94,7 @@ class AccountInfoViewModelTest{
     @Test
     fun `update profile valid inputs return valid response`() {
         //GIVEN
-        val updateProfile = UpdateProfile()
+        val updateProfile = ProfileInfo()
         updateProfile.name = "sampleusername"
         updateProfile.mobile_number = "9138970886"
         //WHEN
@@ -108,8 +109,8 @@ class AccountInfoViewModelTest{
     @Test
     fun `update profile with valid inputs return success`() {
         //GIVEN
-        val res = ApiBaseResponse(200, "")
-        val updateProfile = UpdateProfile()
+        val res = ApiSingleResponse<ProfileInfo>("", 200)
+        val updateProfile = ProfileInfo()
         updateProfile.name = "sampleusername"
         updateProfile.mobile_number = "9138970886"
 
@@ -126,8 +127,8 @@ class AccountInfoViewModelTest{
     @Test
     fun `update profile with valid inputs return error response`() {
         //GIVEN
-        val res = ApiBaseResponse(500, "")
-        val updateProfile = UpdateProfile()
+        val res = ApiSingleResponse<ProfileInfo>("", 500)
+        val updateProfile = ProfileInfo()
         updateProfile.name = "sampleusername"
         updateProfile.mobile_number = "9138970886"
 

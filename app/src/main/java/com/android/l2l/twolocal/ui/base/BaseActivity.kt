@@ -1,9 +1,7 @@
 package com.android.l2l.twolocal.ui.base;
 
 import android.os.Bundle;
-import android.view.LayoutInflater
 import android.view.MenuItem;
-import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 
 
@@ -53,11 +51,11 @@ abstract class BaseActivity(@LayoutRes contentLayoutId : Int = 0) : AppCompatAct
     }
 
     fun onMessageToast(message: Int) {
-        viewActions.onMessageToast(getString(message))
+        viewActions.showMessageSnackbar(getString(message))
     }
 
     override fun onMessageToast(message: String?) {
-        viewActions.onMessageToast(message)
+        viewActions.showMessageSnackbar(message)
     }
 
     fun onErrorDialog(message: String?) {

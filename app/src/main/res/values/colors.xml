@@ -40,4 +40,5 @@
     <color name="divider_color">#202020</color>
     <color name="icon_color">#202020</color>
 
+    <color name="white_trans">#aaffffff</color>
 </resources>

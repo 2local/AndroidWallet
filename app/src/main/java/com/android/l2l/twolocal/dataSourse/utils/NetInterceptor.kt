@@ -45,7 +45,7 @@ class NetInterceptor(private val apiHeaders: ApiHeaders) : Interceptor {
                 val responseBody = response.body
                 val source = responseBody!!.source()
                 source.request(Long.MAX_VALUE) // request the entire body.
-                val buffer = source.buffer()
+                val buffer = source.buffer
                 // clone buffer before reading from it
                 bodyString = buffer.clone().readString(Charset.forName("UTF-8"))
             } catch (e: Exception) {

@@ -40,7 +40,7 @@ class WalletTest {
     @Test
     fun `check wallet equality when wallets has different values, but has same type`() {
         //GIVEN
-        val twoLocalCoinPrice = CoinExchangeRate(TwoLocalCoin.BITRUE_EXCHANGE_RATE_PAIR_2LC_USDT,0.0032, 10.0)
+        val twoLocalCoinPrice = CoinExchangeRate(TwoLocalCoin.LATOEKN_EXCHANGE_RATE_PAIR_2LC_USDT,0.0032, 10.0)
         val ethereumCoinPrice = CoinExchangeRate(EthereumCoin.BITRUE_EXCHANGE_RATE_PAIR_ETH_USDT,0.0032, 10.0)
         val twoLocalCoin = TwoLocalCoin(FiatType.USD, twoLocalCoinPrice)
         val ethereumCoin = EthereumCoin(FiatType.EUR, ethereumCoinPrice)
