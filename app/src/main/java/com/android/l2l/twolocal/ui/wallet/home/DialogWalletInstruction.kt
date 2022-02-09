@@ -1,6 +1,7 @@
 package com.android.l2l.twolocal.ui.wallet.home
 
 import android.os.Bundle
+import android.util.Base64
 import android.util.Log
 import android.view.View
 import androidx.core.os.bundleOf
@@ -51,7 +52,7 @@ class DialogWalletInstruction : DialogFragment(R.layout.dialog_wallet_instructio
                     "<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />" +
                     "</head><body>" + "$message</body></html>"
 
-            binding.webView.loadData(content, "text/html; charset=UTF-8", null)
+            binding.webView.loadData(Base64.encodeToString(content.toByteArray(), Base64.DEFAULT) ,"text/html; charset=UTF-8", "base64")
         }
     }
 
