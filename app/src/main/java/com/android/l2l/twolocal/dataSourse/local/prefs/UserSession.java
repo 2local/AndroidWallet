@@ -18,6 +18,7 @@ public class UserSession implements UserSessionHelper {
     private static final String BALANCE_SEEN = "balance_seen";
     private static final String API_AUTH_KEY = "api_key";
     private static final String SHOW_INTRO_KEY = "show_intro";
+    private static final String SHOW_INSTRUCTION_KEY = "show_instruction";
 
     private static final String USER_PROFILE_KEY_v2 = "USER_PROFILE_KEY_v2";
     private static final String COIN_EXCHANGE_RATE = "COIN_EXCHANGE_RATE";
@@ -141,6 +142,16 @@ public class UserSession implements UserSessionHelper {
     @Override
     public void saveCoinExchangeRates(List<CoinExchangeRate> exchangeRate) {
         preferences.setObject(COIN_EXCHANGE_RATE, exchangeRate);
+    }
+
+    @Override
+    public boolean showInstruction() {
+        return preferences.getPreferenceValue(SHOW_INSTRUCTION_KEY, true);
+    }
+
+    @Override
+    public void changeShowInstruction(boolean show) {
+        preferences.setPreferenceValue(SHOW_INSTRUCTION_KEY, show);
     }
 
 
