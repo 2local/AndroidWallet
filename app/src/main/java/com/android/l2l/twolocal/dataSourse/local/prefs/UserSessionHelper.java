@@ -41,4 +41,7 @@ public interface UserSessionHelper {
 
     List<CoinExchangeRate> getCoinExchangeRates();
     void saveCoinExchangeRates(List<CoinExchangeRate> exchangeRate);
+
+    boolean showInstruction();
+    void changeShowInstruction(boolean show);
 }

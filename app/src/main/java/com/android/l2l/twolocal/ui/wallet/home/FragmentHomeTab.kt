@@ -59,13 +59,11 @@ class FragmentHomeTab : BaseFragment<HomeViewModel>(R.layout.fragment_home_tab) 
     private lateinit var incomeViews: MutableList<ChartItemView>
     private lateinit var remoteConfig: FirebaseRemoteConfig
     private var forceRefreshBalance = true
-    private var isInstructionShown = false
 
     override fun onCreate(@Nullable savedInstanceState: Bundle?) {
         DaggerWalletComponent.factory().create(requireActivity().findAppComponent(), CryptoCurrencyType.TwoLC).inject(this)
         super.onCreate(savedInstanceState)
         forceRefreshBalance = true
-        isInstructionShown = false
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -220,7 +218,9 @@ class FragmentHomeTab : BaseFragment<HomeViewModel>(R.layout.fragment_home_tab) 
     }
 
     private fun showInstructionMessage(walletBalance: TotalBalance, wallets: List<Wallet>) {
-        if (isInstructionShown) return
+        val isInstructionShown = viewModel.showInstructionDialog()
+        if (!isInstructionShown)
+            return
         val balance = CommonUtils.stringToBigDecimal(walletBalance.balance)
         val userHasWallet =
             wallets.find { it.isUserVerifiedMnemonic }// cannot use wallets.size because one temporary wallet will be created after get profile API
@@ -228,11 +228,11 @@ class FragmentHomeTab : BaseFragment<HomeViewModel>(R.layout.fragment_home_tab) 
         val userBalanceIsZero = balance.compareTo(BigDecimal("0")) == 0
         val userHasNoWallet = userHasWallet == null
         val instructionIsEnable = RemoteConfigUtils.isInstructionEnable(remoteConfig)
-        if (instructionIsEnable && userHasNoWallet && userBalanceIsZero) {
-            isInstructionShown = true
+        if (instructionIsEnable && userHasNoWallet && userBalanceIsZero && isInstructionShown) {
             DialogWalletInstruction.newInstance(
                 RemoteConfigUtils.getInstructionMessage(remoteConfig)
             ).show(childFragmentManager, "")
+            viewModel.changeShowInstruction(false)
         }
     }
 

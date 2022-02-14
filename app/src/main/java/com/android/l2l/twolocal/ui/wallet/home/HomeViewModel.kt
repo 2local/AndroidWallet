@@ -56,12 +56,12 @@ class HomeViewModel
     val expenseLiveData: LiveData<ViewState<MutableList<Double>>>
         get() = _expenseLiveData
 
-    fun getAllWalletsBalance(forceRefreshBalance: Boolean?= true) {
+    fun getAllWalletsBalance(forceRefreshBalance: Boolean? = true) {
         twoLCWalletTotalAmount()
         getListOfWallets()
 
 
-        if(forceRefreshBalance==true) {
+        if (forceRefreshBalance == true) {
             val ether: Single<WalletBalance> =
                 ethRepository.getWalletBalance().onErrorReturnItem(WalletBalance("0", CryptoCurrencyType.ETHEREUM.name))
             val l2l: Single<WalletBalance> =
@@ -208,6 +208,13 @@ class HomeViewModel
             }, { it.printStackTrace() })
     }
 
+    fun showInstructionDialog(): Boolean {
+        return userSession.showInstruction()
+    }
+
+    fun changeShowInstruction(show: Boolean) {
+        userSession.changeShowInstruction(show)
+    }
 
     override fun onCleared() {
         super.onCleared()
