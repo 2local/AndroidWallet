@@ -150,7 +150,7 @@
             android:layout_marginStart="@dimen/spacing_medium"
             android:layout_marginEnd="@dimen/spacing_medium"
             android:layout_weight="1"
-            android:background="@drawable/selector_button_colorprimary_stroke_no_padding"
+            android:background="@drawable/selector_button_secondary_stroke_no_padding"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"

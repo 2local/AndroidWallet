@@ -20,7 +20,7 @@ import com.android.l2l.twolocal.ui.base.BaseFragment
 import com.android.l2l.twolocal.utils.setEditTextError
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
-
+import com.android.l2l.twolocal.common.onMessageToast
 
 @ExperimentalCoroutinesApi
 class FragmentRegister : BaseFragment<RegisterViewModel>(R.layout.fragment_register) {

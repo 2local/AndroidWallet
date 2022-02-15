@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import com.android.l2l.twolocal.R
 import com.android.l2l.twolocal.common.binding.viewBinding
 import com.android.l2l.twolocal.common.findAppComponent
+import com.android.l2l.twolocal.common.onMessageToast
 import com.android.l2l.twolocal.dataSourse.utils.ViewState
 import com.android.l2l.twolocal.databinding.BottomsheetRemoveWalletBinding
 import com.android.l2l.twolocal.di.viewModel.AppViewModelFactory
@@ -107,14 +108,12 @@ class BottomSheetRemoveWallet : BottomSheetDialogFragment() {
     private fun onWalletRemovedSuccessfully(success: Boolean) {
         EventBus.getDefault().post(RefreshWalletListEvent())
 
-        MessageUtils.showMessageToast(getString(R.string.bottom_sheet_remove_wallet), requireContext())
+        onMessageToast(getString(R.string.bottom_sheet_remove_wallet))
         callbackClickListener?.onCallbackClick(success)
         this.dismiss()
     }
 
     private fun removeWalletConfirm(){
-
-
         AlertDialog.Builder(context)
             .setTitle(getString(R.string.bottom_sheet_remove_wallet_question))
             .setMessage(getString(R.string.bottom_sheet_remove_wallet_please_write_recovery))

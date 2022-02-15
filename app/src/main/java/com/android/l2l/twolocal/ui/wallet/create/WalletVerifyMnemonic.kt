@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.android.l2l.twolocal.R
 import com.android.l2l.twolocal.common.binding.viewBinding
 import com.android.l2l.twolocal.common.findAppComponent
+import com.android.l2l.twolocal.common.onErrorDialog
 import com.android.l2l.twolocal.dataSourse.utils.ViewState
 import com.android.l2l.twolocal.databinding.FragmentWalletVerifyMnemonicBinding
 import com.android.l2l.twolocal.di.viewModel.AppViewModelFactory
@@ -74,7 +75,7 @@ class WalletVerifyMnemonic : BaseFragment<EtherVerifyMnemonicViewModel>(R.layout
             addLstFourWordsToView()
         }
 
-        viewModel.loadMnemonic(walletType)
+        viewModel.loadMnemonic()
     }
 
     private fun setUpListeners() {

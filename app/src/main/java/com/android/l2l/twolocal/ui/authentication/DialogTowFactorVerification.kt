@@ -8,6 +8,8 @@ import androidx.fragment.app.viewModels
 import com.android.l2l.twolocal.R
 import com.android.l2l.twolocal.common.binding.viewBinding
 import com.android.l2l.twolocal.common.findAppComponent
+import com.android.l2l.twolocal.common.onErrorDialog
+import com.android.l2l.twolocal.common.onMessageSnackbar
 import com.android.l2l.twolocal.dataSourse.utils.ViewState
 import com.android.l2l.twolocal.databinding.DialogTwoFaConfirmationBinding
 import com.android.l2l.twolocal.di.viewModel.AppViewModelFactory
@@ -16,6 +18,8 @@ import com.android.l2l.twolocal.ui.authentication.di.DaggerAuthenticationCompone
 import com.android.l2l.twolocal.ui.authentication.viewModel.formState.TwoFAFormState
 import com.android.l2l.twolocal.ui.authentication.viewModel.TwoFactorViewModel
 import com.android.l2l.twolocal.ui.base.BaseViewActions
+import com.android.l2l.twolocal.ui.base.BaseViewActions.hideLoading
+import com.android.l2l.twolocal.ui.base.BaseViewActions.showLoading
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 
@@ -44,11 +48,11 @@ class DialogTowFactorVerification : DialogFragment(R.layout.dialog_two_fa_confir
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupClickListeners()
-       val viewAction = BaseViewActions.getInstance(requireContext())
+       val viewAction = BaseViewActions.getSweetAlertDialog(requireContext())
         viewModel.loginFormState.observe(viewLifecycleOwner, {
             when (it) {
                 is TwoFAFormState.InvalidCode -> {
-                    viewAction.showMessageSnackbar(it.error)
+                    onMessageSnackbar(it.error)
                 }
                 else -> {
                 }
@@ -59,18 +63,18 @@ class DialogTowFactorVerification : DialogFragment(R.layout.dialog_two_fa_confir
         viewModel.loginLiveData.observe(viewLifecycleOwner, {
             when (it) {
                 is ViewState.Loading -> {
-                    viewAction.showLoading()
+                    showLoading(viewAction)
                 }
                 is ViewState.Success -> {
-                    viewAction.hideLoading()
+                    hideLoading(viewAction)
                     MainActivity.start(requireContext())
                     dismiss()
                     requireActivity().finish()
 
                 }
                 is ViewState.Error -> {
-                    viewAction.hideLoading()
-                    viewAction.onErrorDialog(it.error)
+                    hideLoading(viewAction)
+                    onErrorDialog(it.error)
                 }
                 else -> {
                 }

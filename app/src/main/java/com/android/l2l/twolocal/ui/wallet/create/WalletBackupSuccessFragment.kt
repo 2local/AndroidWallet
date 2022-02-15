@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import com.android.l2l.twolocal.R
 import com.android.l2l.twolocal.common.binding.viewBinding
 import com.android.l2l.twolocal.common.findAppComponent
+import com.android.l2l.twolocal.common.onErrorDialog
 import com.android.l2l.twolocal.dataSourse.utils.ViewState
 import com.android.l2l.twolocal.databinding.FragmentWalletBackupSuccessBinding
 import com.android.l2l.twolocal.di.viewModel.AppViewModelFactory

@@ -29,6 +29,8 @@ import android.view.inputmethod.EditorInfo
 
 import android.widget.TextView
 import com.android.l2l.twolocal.common.hideKeyboard
+import com.android.l2l.twolocal.common.onErrorDialog
+import com.android.l2l.twolocal.common.onMessageToast
 
 
 @ExperimentalCoroutinesApi

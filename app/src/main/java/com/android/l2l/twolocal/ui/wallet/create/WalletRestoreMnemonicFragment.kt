@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.android.l2l.twolocal.R
 import com.android.l2l.twolocal.common.binding.viewBinding
 import com.android.l2l.twolocal.common.findAppComponent
+import com.android.l2l.twolocal.common.onErrorDialog
 import com.android.l2l.twolocal.dataSourse.utils.ViewState
 import com.android.l2l.twolocal.databinding.FragmentWalletMnemonicRestoreBinding
 import com.android.l2l.twolocal.di.viewModel.AppViewModelFactory
@@ -20,6 +21,7 @@ import com.android.l2l.twolocal.ui.base.BaseFragment
 import com.android.l2l.twolocal.ui.scanner.ScanActivity
 import com.android.l2l.twolocal.ui.wallet.di.DaggerWalletComponent
 import com.android.l2l.twolocal.ui.wallet.create.viewmoel.EtherRestoreViewModel
+import com.android.l2l.twolocal.utils.setEditTextError
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 
@@ -69,7 +71,10 @@ class WalletRestoreMnemonicFragment : BaseFragment<EtherRestoreViewModel>(R.layo
         binding.btnSubmit.setOnClickListener {
             if (binding.etMnemonic.text?.isNotBlank() == true)
                 viewModel.restoreWalletFromMnemonic(binding.etMnemonic.text.toString())
+            else
+                binding.etMnemonic.setEditTextError(R.string.error_empty_input)
         }
+
         binding.tvClear.setOnClickListener {
             binding.etMnemonic.text?.clear()
         }

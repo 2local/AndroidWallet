@@ -86,7 +86,7 @@ class BottomSheetTransactionDetail : BottomSheetDialogFragment() { //TODO create
                     else if (it.response.txreceiptStatus == "2")//pending
                         binding.txtStatus.setTextColor(ContextCompat.getColor(requireContext(), R.color.red))
                     else
-                        binding.txtStatus.setTextColor(ContextCompat.getColor(requireContext(), R.color.button_brown))
+                        binding.txtStatus.setTextColor(ContextCompat.getColor(requireContext(), R.color.secondaryColor))
                 }
                 else -> {
 

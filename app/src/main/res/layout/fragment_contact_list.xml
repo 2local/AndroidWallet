@@ -63,7 +63,7 @@
             android:layout_marginTop="@dimen/android_standard_padding"
             android:layout_marginEnd="@dimen/android_standard_2x_margin_padding"
             android:layout_marginBottom="@dimen/android_standard_padding"
-            android:background="@drawable/selector_button_colorprimary_solid"
+            android:background="@drawable/selector_button_secondary_solid"
             android:clickable="true"
             android:elevation="@dimen/standard_elevation"
             android:focusable="true"

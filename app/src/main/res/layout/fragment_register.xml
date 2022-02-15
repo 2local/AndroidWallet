@@ -94,7 +94,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/button_login_standard_margin_top"
-            android:background="@drawable/selector_button_colorprimary_solid"
+            android:background="@drawable/selector_button_secondary_solid"
             android:clickable="true"
             android:elevation="@dimen/standard_elevation"
             android:focusable="true"
