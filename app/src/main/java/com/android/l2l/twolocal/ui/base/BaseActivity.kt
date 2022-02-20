@@ -28,6 +28,7 @@ abstract class BaseActivity(@LayoutRes contentLayoutId : Int = 0) : AppCompatAct
     }
 
     fun showLoading() {
+        viewActions?.dismiss()
         viewActions = BaseViewActions.getSweetAlertDialog(this)
         BaseViewActions.showLoading(viewActions!!)
     }

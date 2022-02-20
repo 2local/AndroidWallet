@@ -25,6 +25,7 @@ abstract class BaseFragment<VM : BaseViewModel>(@LayoutRes contentLayoutId: Int 
     }
 
     fun showLoading() {
+        viewActions?.dismiss()
         viewActions = BaseViewActions.getSweetAlertDialog(requireContext())
         BaseViewActions.showLoading(viewActions!!)
     }

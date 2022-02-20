@@ -52,7 +52,7 @@ class WalletBackupFragment : BaseFragment<EtherBackupViewModel>(R.layout.fragmen
         super.onViewCreated(view, savedInstanceState)
 
         handleBundle(arguments)
-        viewModel.createWallet(walletType)
+        viewModel.createWallet()
         binding.txtCreateWallet.text = getString(R.string.create_wallet_wallet, walletType.symbol)
         viewModel.mnemonicLiveData.observe(viewLifecycleOwner, {
             when (it) {
@@ -76,7 +76,7 @@ class WalletBackupFragment : BaseFragment<EtherBackupViewModel>(R.layout.fragmen
                 }
                 is ViewState.Success -> {
                     hideLoading()
-                    viewModel.loadMnemonic(walletType)
+                    viewModel.loadMnemonic()
 
                 }
                 is ViewState.Error -> {
