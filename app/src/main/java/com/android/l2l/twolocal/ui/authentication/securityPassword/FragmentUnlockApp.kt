@@ -29,6 +29,7 @@ import com.android.l2l.twolocal.ui.authentication.securityPassword.viewmodel.Sec
 import com.android.l2l.twolocal.ui.authentication.securityPassword.viewmodel.UnlockViewModel
 import com.android.l2l.twolocal.ui.splash.SplashActivity
 import com.android.l2l.twolocal.utils.setEditTextError
+import com.android.l2l.twolocal.common.onMessageToast
 
 @ExperimentalCoroutinesApi
 class FragmentUnlockApp : BaseFragment<UnlockViewModel>(R.layout.fragment_unlock_app) {

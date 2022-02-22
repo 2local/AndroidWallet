@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.*
 import androidx.viewbinding.ViewBinding
+import cn.pedant.SweetAlert.SweetAlertDialog
 import com.android.l2l.twolocal.dataSourse.utils.error.GeneralError
 import com.android.l2l.twolocal.di.viewModel.AppViewModelFactory
 import com.android.l2l.twolocal.model.event.RefreshWalletEvent
@@ -17,53 +18,24 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
 
-abstract class BaseActivity(@LayoutRes contentLayoutId : Int = 0) : AppCompatActivity(contentLayoutId), BaseView {
+abstract class BaseActivity(@LayoutRes contentLayoutId : Int = 0) : AppCompatActivity(contentLayoutId) {
 
-    lateinit var viewActions: BaseViewActions
+    private var viewActions: SweetAlertDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState);
-        viewActions = BaseViewActions.getInstance(this)
         EventBus.getDefault().register(this)
     }
 
-
-    override fun showLoading(message: String?) {
+    fun showLoading() {
+        viewActions?.dismiss()
+        viewActions = BaseViewActions.getSweetAlertDialog(this)
+        BaseViewActions.showLoading(viewActions!!)
     }
 
-    override fun showLoading() {
-    }
-
-    override fun hideLoading() {
-    }
-
-    override fun unauthorizedUser(response: String?) {
-    }
-
-    override fun onTimeout(throwable: Throwable?) {
-    }
-
-    override fun onNetworkError(throwable: Throwable?) {
-    }
-
-    override fun onErrorToast(error: GeneralError?) {
-        viewActions.onErrorToast(error?.message)
-    }
-
-    fun onMessageToast(message: Int) {
-        viewActions.showMessageSnackbar(getString(message))
-    }
-
-    override fun onMessageToast(message: String?) {
-        viewActions.showMessageSnackbar(message)
-    }
-
-    fun onErrorDialog(message: String?) {
-        viewActions.onErrorDialog(message)
-    }
-
-    fun onSuccessDialog(message: String?) {
-        viewActions.onSuccessDialog(message)
+    fun hideLoading() {
+        if(viewActions!=null)
+            BaseViewActions.hideLoading(viewActions!!)
     }
 
     override fun onDestroy() {

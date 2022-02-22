@@ -34,7 +34,7 @@ class EtherVerifyMnemonicViewModel
     val verifyMnemonicLiveData: LiveData<ViewState<Boolean>>
         get() = _verifyMnemonicLiveData
 
-    fun loadMnemonic(walletType: CryptoCurrencyType) {
+    fun loadMnemonic() {
         etherRepository.getMnemonic().withIO()
             .doOnSubscribe {
                 addToDisposable(it)

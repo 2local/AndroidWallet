@@ -74,6 +74,7 @@ public class BSCRepository implements CryptoCurrencyRepositoryHelper {
     private final Web3j web3j;
     private final CryptoCurrencyType currencyType;
     private final BigInteger BSC_GAS_LIMIT = new BigInteger("61000");
+    private final Byte chainID;
 
     @Inject
     public BSCRepository(Context context,
@@ -81,13 +82,15 @@ public class BSCRepository implements CryptoCurrencyRepositoryHelper {
                          CryptoCurrencyRemoteDataSourceHelper etherApiInterface,
                          AppDatabase database,
                          UserSession userSession,
-                         CryptoCurrencyType currencyType) {
+                         CryptoCurrencyType currencyType,
+                         Byte chainID) {
         this.context = context;
         this.web3j = web3j;
         this.database = database;
         this.userSession = userSession;
         this.etherApiInterface = etherApiInterface;
         this.currencyType = currencyType;
+        this.chainID = chainID;
     }
 
     private String getContractAddress() {
@@ -147,7 +150,7 @@ public class BSCRepository implements CryptoCurrencyRepositoryHelper {
     private Single<WalletBalance> getTokenBalanceFromWeb3(Credentials credentials) {
         return Single.fromCallable(() -> {
 
-            TransactionManager transactionManager = new RawTransactionManager(web3j, credentials, getChainID());
+            TransactionManager transactionManager = new RawTransactionManager(web3j, credentials, chainID);
             Erc20TokenWrapper contract = Erc20TokenWrapper.load(getContractAddress(), web3j, transactionManager, BigInteger.ZERO, BigInteger.ZERO);
             Address address = new Address(credentials.getAddress());
             BigInteger tokenBalance = contract.balanceOf(address).getValue();
@@ -284,7 +287,7 @@ public class BSCRepository implements CryptoCurrencyRepositoryHelper {
                 BigInteger gasWeiPrice = getTransactionGasPrice(gas.toString());
 
 
-                TransactionManager transactionManager = new RawTransactionManager(web3j, credentials, getChainID());
+                TransactionManager transactionManager = new RawTransactionManager(web3j, credentials, chainID);
                 Erc20TokenWrapper contract = Erc20TokenWrapper.load(getContractAddress(), web3j, transactionManager, gasWeiPrice, BSC_GAS_LIMIT);
 
 //                String tokenName = contract.name().getValue();
@@ -595,11 +598,4 @@ public class BSCRepository implements CryptoCurrencyRepositoryHelper {
         return Convert.fromWei(String.valueOf(new BigInteger(value).multiply(BSC_GAS_LIMIT)), Convert.Unit.GWEI).toString();
     }
 
-    private int getChainID() {
-        return isMainNet() ? (byte) 56 : (byte) 97;
-    }
-
-    private boolean isMainNet() {
-        return true;
-    }
 }

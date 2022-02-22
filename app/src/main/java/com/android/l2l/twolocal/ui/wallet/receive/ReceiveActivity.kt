@@ -10,6 +10,7 @@ import androidx.core.os.bundleOf
 import com.android.l2l.twolocal.common.binding.viewBinding
 import com.android.l2l.twolocal.common.findAppComponent
 import com.android.l2l.twolocal.common.hideKeyboard
+import com.android.l2l.twolocal.common.onMessageToast
 import com.android.l2l.twolocal.dataSourse.utils.ViewState
 import com.android.l2l.twolocal.databinding.ActivityReceiveBinding
 import com.android.l2l.twolocal.di.viewModel.AppViewModelFactory

@@ -43,25 +43,30 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_large">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_mnemonic"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:imeOptions="actionNext"
-                    android:lines="5"
-                    android:paddingStart="@dimen/spacing_medium"
-                    android:paddingTop="@dimen/spacing_medium"
-                    android:paddingEnd="@dimen/margin_xxxlarge"
-                    android:paddingBottom="@dimen/spacing_medium" />
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:textColorHint="@color/grey_text"
+                    >
 
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_mnemonic"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:lines="4"
+                        android:paddingTop="@dimen/spacing_medium"
+                        android:paddingBottom="@dimen/_35dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:id="@+id/tv_clear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end|bottom"
-                    android:layout_marginTop="@dimen/margin_large"
-                    android:layout_marginBottom="@dimen/margin_small"
+                    android:layout_gravity="end|top"
+                    android:layout_marginTop="@dimen/_95dp"
                     android:gravity="center"
                     android:lineSpacingExtra="@dimen/spacing_medium"
                     android:padding="@dimen/margin_small"
@@ -72,10 +77,10 @@
                     android:id="@+id/image_scan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|right"
+                    android:layout_gravity="top|right"
                     android:layout_marginRight="@dimen/_50dp"
+                    android:layout_marginTop="@dimen/_95dp"
                     android:focusable="true"
-                    android:layout_marginBottom="@dimen/margin_small"
                     android:padding="@dimen/margin_small"
                     android:src="@drawable/ic_scan"
                     android:textColor="@color/colorPrimary" />

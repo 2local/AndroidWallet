@@ -21,8 +21,7 @@ import javax.inject.Inject
 @SuppressLint("CheckResult")
 class SendConfirmViewModel
 @Inject constructor(
-    private val etherRepository: CryptoCurrencyRepositoryHelper,
-//    private val l2lRepository: L2LRepositoryHelper,
+    private val cryptoRepository: CryptoCurrencyRepositoryHelper,
 ) : BaseViewModel() {
 
 
@@ -36,10 +35,8 @@ class SendConfirmViewModel
         get() = _networkFeeLiveData
 
 
-
-
     fun sendEther(to: String, amount: String, gasLimit: String) {
-        etherRepository.sendAmount(to,  CommonUtils.stringToBigDecimal(amount), CommonUtils.stringToBigDecimal(gasLimit)).withIO()
+        cryptoRepository.sendAmount(to,  CommonUtils.stringToBigDecimal(amount), CommonUtils.stringToBigDecimal(gasLimit)).withIO()
             .doOnSubscribe {
                 addToDisposable(it)
                 _sendTokenLiveData.value = ViewState.Loading
@@ -53,9 +50,8 @@ class SendConfirmViewModel
             }, { it.printStackTrace() })
     }
 
-    fun getNetworkFee(walletType: CryptoCurrencyType) {
-//        if (walletType == WalletType.ETHEREUM) {
-            etherRepository.getNetworkFee().withIO()
+    fun getNetworkFee() {
+        cryptoRepository.getNetworkFee().withIO()
                 .doOnSubscribe {
                     addToDisposable(it)
                     _networkFeeLiveData.value = ViewState.Loading
@@ -67,18 +63,6 @@ class SendConfirmViewModel
                     _networkFeeLiveData.value = ViewState.Success(wallet)
 
                 }, { it.printStackTrace() })
-//        }
-//        if (walletType == WalletType.TwoLC) {
-//            l2lRepository.getNetworkFee().withIO()
-//                .doOnSubscribe {
-//                    addToDisposable(it)
-//                    _networkFeeLiveData.value = ViewState.Loading
-//                }
-//                .subscribe({ wallet ->
-//                    _networkFeeLiveData.value = ViewState.Success(wallet)
-//
-//                }, { it.printStackTrace() })
-//        }
     }
 
     override fun onCleared() {

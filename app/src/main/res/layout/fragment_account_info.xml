@@ -276,7 +276,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/android_standard_2x_margin_padding"
                 android:layout_marginBottom="@dimen/android_standard_2x_margin_padding"
-                android:background="@drawable/selector_button_colorprimary_solid"
+                android:background="@drawable/selector_button_secondary_solid"
                 android:text="@string/fragment_account_info_save_changes"
                 android:textColor="@color/white"
                 android:textSize="@dimen/medium_text_size" />
