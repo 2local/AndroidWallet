@@ -137,11 +137,6 @@ dependencies {
     //MAP
     implementation(Dependencies.MAP)
 
-    //GLIDE
-    implementation(Dependencies.GLIDE)
-    annotationProcessor(Dependencies.GLIDE)
-    kapt(Dependencies.GLIDE_COMPILER)
-
     //dagger
     implementation(Dependencies.dagger)
     kapt(Dependencies.daggerCompiler)
@@ -161,6 +156,8 @@ dependencies {
     implementation("com.google.firebase:firebase-config-ktx")
     implementation("io.branch.sdk.android:library")
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+    implementation ("org.jetbrains.kotlin:kotlin-reflect:1.5.31")
+
 // Branch.io
     implementation("io.branch.sdk.android:library:5.0.4")
     implementation("org.greenrobot:eventbus:3.2.0")

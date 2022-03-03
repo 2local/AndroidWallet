@@ -29,7 +29,7 @@ public class ApiConstants {
     public static final String ETHER_MAINNET_INFURA_API_KEY =  BuildConfig.ETHER_MAINNET_INFURA_API_KEY;
 
     //ether
-    public static final String ETHER_SCAN_URL = "https://api-cn.etherscan.com/api";
+    public static final String ETHER_SCAN_URL = "https://api.etherscan.io/api";
     public static final String ETHER_TRANSACTION_DETAIL_URL = "https://etherscan.io/tx/";
     public static final String ETHER_WEB3_MAINNET_INFURA_URL = "https://mainnet.infura.io/v3/" + ETHER_MAINNET_INFURA_API_KEY;
 

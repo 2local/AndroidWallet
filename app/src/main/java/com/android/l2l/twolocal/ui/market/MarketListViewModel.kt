@@ -1,6 +1,7 @@
 package com.android.l2l.twolocal.ui.market;
 
 import android.annotation.SuppressLint
+import android.text.Editable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -37,9 +38,17 @@ class MarketListViewModel
                 _marketPlaceListLiveData.value = ViewState.Success(it.record.companies)
             }, {
                 _marketPlaceListLiveData.value = ViewState.Error(GeneralError().withError(it))
-                it.printStackTrace() })
+                it.printStackTrace()
+            })
     }
 
+    fun filterMarketPlace(marketPlaceList: MutableList<MarketPlace>, searchQuery: Editable): List<MarketPlace> {
+        return marketPlaceList.filter {
+            it.companyName?.contains(searchQuery) == true
+                    || it.address?.contains(searchQuery) == true
+                    || it.representative?.contains(searchQuery) == true
+        }
+    }
 
     override fun onCleared() {
         super.onCleared()

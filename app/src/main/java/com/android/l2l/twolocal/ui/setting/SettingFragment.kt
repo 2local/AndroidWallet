@@ -9,11 +9,8 @@ import androidx.annotation.Nullable
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.android.l2l.twolocal.R
+import com.android.l2l.twolocal.common.*
 import com.android.l2l.twolocal.common.binding.viewBinding
-import com.android.l2l.twolocal.common.findAppComponent
-import com.android.l2l.twolocal.common.getBackStackData
-import com.android.l2l.twolocal.common.invisible
-import com.android.l2l.twolocal.common.visible
 import com.android.l2l.twolocal.dataSourse.utils.ViewState
 import com.android.l2l.twolocal.databinding.FragmentSettingsBinding
 import com.android.l2l.twolocal.di.viewModel.AppViewModelFactory
@@ -79,7 +76,7 @@ class SettingFragment : BaseFragment<SettingViewModel>(R.layout.fragment_setting
 
         viewModel.getCurrency()
 
-        getBackStackData<String>(CURRENCY_KEY) { data ->
+        getBackStackData<String>(CURRENCY_KEY) {
             viewModel.getCurrency()
         }
 

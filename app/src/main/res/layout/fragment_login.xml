@@ -71,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_huge"
-            android:background="@drawable/selector_button_colorprimary_solid"
+            android:background="@drawable/selector_button_secondary_solid"
             android:text="@string/fragment_login_btn_login"
             android:textColor="@color/white" />
 

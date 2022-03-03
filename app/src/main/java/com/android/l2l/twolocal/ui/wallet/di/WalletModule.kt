@@ -94,7 +94,8 @@ class WalletModule {
                 CryptoCurrencyRemoteDataSource(provideEtherApiInterface(retrofit)),
                 appDatabase,
                 userSession,
-                walletType
+                walletType,
+                provideBSCChainID()
             )
             CryptoCurrencyType.BINANCE -> BinanceRepository(
                 context,
@@ -110,7 +111,8 @@ class WalletModule {
                 CryptoCurrencyRemoteDataSource(provideEtherApiInterface(retrofit)),
                 appDatabase,
                 userSession,
-                walletType
+                walletType,
+                provideBSCChainID()
             )
         }
 
@@ -172,7 +174,7 @@ class WalletModule {
     @Named("ETH")
     fun provideWeb3jETHER(): Web3j {
         return Web3j.build(HttpService(ETHER_WEB3_MAINNET_INFURA_URL))
-        //        return  Web3j.build(new HttpService("https://main-light.eth.linkpool.io"));
+//        return  Web3j.build(new HttpService("https://main-light.eth.linkpool.io"));
 //        return Web3j.build(HttpService("http://192.168.1.107:7545"));
     }
 
@@ -181,7 +183,16 @@ class WalletModule {
     @Named("BSC")
     fun provideWeb3jBSC(): Web3j {
         return Web3j.build(HttpService(BSC_WEB3_MAINNET_URL))
-        //        return  Web3j.build(new HttpService("https://bsc-dataseed1.binance.org:443"));
+ //        return  Web3j.build(new HttpService("https://bsc-dataseed1.binance.org:443"));
 //        return Web3j.build(HttpService("https://data-seed-prebsc-1-s1.binance.org:8545"));
+    }
+
+    @Provides
+    fun provideBSCChainID(): Byte {
+        return if (isBSCMainNet()) 56.toByte() else 97.toByte()
+    }
+
+    private fun isBSCMainNet(): Boolean {
+        return true
     }
 }

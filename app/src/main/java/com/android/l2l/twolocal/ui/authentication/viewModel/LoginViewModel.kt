@@ -82,7 +82,9 @@ class LoginViewModel
                 } else {
                     _loginLiveData.value = ViewState.Error(GeneralError().withError(message = it.message))
                 }
-            }, { })
+            }, {
+                it.printStackTrace()
+            })
 
     }
 

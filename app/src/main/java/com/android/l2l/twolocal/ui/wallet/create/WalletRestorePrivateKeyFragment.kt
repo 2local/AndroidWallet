@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.android.l2l.twolocal.R
 import com.android.l2l.twolocal.common.binding.viewBinding
 import com.android.l2l.twolocal.common.findAppComponent
+import com.android.l2l.twolocal.common.onErrorDialog
 import com.android.l2l.twolocal.dataSourse.utils.ViewState
 import com.android.l2l.twolocal.databinding.FragmentWalletPrivateKeyRestoreBinding
 import com.android.l2l.twolocal.di.viewModel.AppViewModelFactory
@@ -20,6 +21,7 @@ import com.android.l2l.twolocal.ui.base.BaseFragment
 import com.android.l2l.twolocal.ui.scanner.ScanActivity
 import com.android.l2l.twolocal.ui.wallet.di.DaggerWalletComponent
 import com.android.l2l.twolocal.ui.wallet.create.viewmoel.EtherRestoreViewModel
+import com.android.l2l.twolocal.utils.setEditTextError
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 
@@ -69,6 +71,8 @@ class WalletRestorePrivateKeyFragment : BaseFragment<EtherRestoreViewModel>(R.la
         binding.btnSubmit.setOnClickListener {
             if (binding.etPrivateKey.text?.isNotBlank() == true)
                 viewModel.restoreWalletFromPrivateKey(binding.etPrivateKey.text.toString())
+            else
+                binding.etPrivateKey.setEditTextError(R.string.error_empty_input)
         }
         binding.tvClear.setOnClickListener {
             binding.etPrivateKey.text?.clear()

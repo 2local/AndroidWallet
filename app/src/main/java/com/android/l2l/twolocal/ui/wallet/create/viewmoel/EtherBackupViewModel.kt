@@ -32,7 +32,7 @@ class EtherBackupViewModel
     val createWalletLiveData: LiveData<ViewState<Boolean>>
         get() = _createMnemonicLiveData
 
-    fun createWallet(walletType: CryptoCurrencyType) {
+    fun createWallet() {
         etherRepository.createEtherWallet().withIO()
             .doOnSubscribe {
                 addToDisposable(it)
@@ -48,7 +48,7 @@ class EtherBackupViewModel
             }, { it.printStackTrace() })
     }
 
-    fun loadMnemonic(walletType: CryptoCurrencyType) {
+    fun loadMnemonic() {
         etherRepository.getMnemonic().withIO()
             .doOnSubscribe {
                 addToDisposable(it)

@@ -4,6 +4,8 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.android.l2l.twolocal.dataSourse.local.prefs.UserSession
 import com.android.l2l.twolocal.dataSourse.remote.auth.AuthenticationApiInterface
 import com.android.l2l.twolocal.dataSourse.repository.auth.AuthenticationRepository
+import com.android.l2l.twolocal.dataSourse.repository.wallet.WalletRepository
+import com.android.l2l.twolocal.dataSourse.repository.wallet.WalletRepositoryHelper
 import com.android.l2l.twolocal.dataSourse.utils.ViewState
 import com.android.l2l.twolocal.model.ProfileInfo
 import com.android.l2l.twolocal.model.output.LoginOutput
@@ -30,7 +32,8 @@ class LoginViewModelTest {
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    lateinit var repository: AuthenticationRepository
+    lateinit var authenticationRepository: AuthenticationRepository
+    lateinit var walletRepository: WalletRepository
     private lateinit var viewModel: LoginViewModel
 
     //    private lateinit var authenticationRemoteDataSource: AuthenticationRemoteDataSource
@@ -43,8 +46,9 @@ class LoginViewModelTest {
     fun setup() {
         appPreferences = Mockito.mock(UserSession::class.java)
         authenticationApi = Mockito.mock(AuthenticationApiInterface::class.java)
-        repository = Mockito.mock(AuthenticationRepository::class.java)
-        viewModel = LoginViewModel(repository, appPreferences)
+        authenticationRepository = Mockito.mock(AuthenticationRepository::class.java)
+        walletRepository = Mockito.mock(WalletRepository::class.java)
+        viewModel = LoginViewModel(authenticationRepository, appPreferences, walletRepository)
 
         RxAndroidPlugins.setInitMainThreadSchedulerHandler { scheduler: Callable<Scheduler?>? -> Schedulers.trampoline() }
     }
@@ -105,7 +109,7 @@ class LoginViewModelTest {
         val res = ApiSingleResponse<ProfileInfo>("", 500)
 
         //WHEN
-        Mockito.`when`(repository.login(loginOutput)).thenReturn(Single.just(res))
+        Mockito.`when`(authenticationRepository.login(loginOutput)).thenReturn(Single.just(res))
         viewModel.loginUserApiRequest(loginOutput)
 
         //THEN
@@ -126,7 +130,7 @@ class LoginViewModelTest {
         res.record = profileInfo
 
         //WHEN
-        Mockito.`when`(repository.login(loginOutput)).thenReturn(Single.just(res))
+        Mockito.`when`(authenticationRepository.login(loginOutput)).thenReturn(Single.just(res))
         viewModel.loginUserApiRequest(loginOutput)
 
         //THEN

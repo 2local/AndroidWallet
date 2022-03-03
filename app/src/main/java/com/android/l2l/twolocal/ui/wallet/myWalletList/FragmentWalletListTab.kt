@@ -6,11 +6,8 @@ import androidx.annotation.Nullable
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.l2l.twolocal.R
+import com.android.l2l.twolocal.common.*
 import com.android.l2l.twolocal.common.binding.viewBinding
-import com.android.l2l.twolocal.common.findAppComponent
-import com.android.l2l.twolocal.common.gone
-import com.android.l2l.twolocal.common.invisible
-import com.android.l2l.twolocal.common.visible
 import com.android.l2l.twolocal.dataSourse.utils.ViewState
 import com.android.l2l.twolocal.databinding.FragmentWalletListTabBinding
 import com.android.l2l.twolocal.di.viewModel.AppViewModelFactory

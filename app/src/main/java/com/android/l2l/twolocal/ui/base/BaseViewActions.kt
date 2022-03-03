@@ -2,70 +2,64 @@ package com.android.l2l.twolocal.ui.base;
 
 import android.content.Context
 import android.view.View
-import androidx.annotation.StringRes
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.Toast
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.android.l2l.twolocal.dataSourse.utils.error.GeneralError
-import com.android.l2l.twolocal.utils.CommonUtils
 import com.android.l2l.twolocal.utils.MessageUtils
 import com.google.android.material.snackbar.Snackbar
 
+object BaseViewActions {
 
-class BaseViewActions private constructor() {
 
-    private var mProgressDialog: SweetAlertDialog? = null
-    private lateinit var context: Context
+    fun getSweetAlertDialog(context: Context): SweetAlertDialog {
+        return MessageUtils.showLoadingDialog(context)
+    }
 
-    companion object {
-        fun getInstance(context: Context) = BaseViewActions().also {
-            it.context = context
+    fun showLoading(mProgressDialog: SweetAlertDialog) {
+        if (!mProgressDialog.isShowing)
+            mProgressDialog.show()
+
+    }
+
+    fun hideLoading(mProgressDialog: SweetAlertDialog) {
+        if (mProgressDialog.isShowing) {
+            mProgressDialog.cancel()
         }
     }
 
-
-    fun showLoading() {
-        mProgressDialog = MessageUtils.showLoadingDialog(context)
-        mProgressDialog?.show()
-    }
-
-    fun hideLoading() {
-        mProgressDialog?.let {
-            if (it.isShowing) {
-                it.cancel()
-                it.dismissWithAnimation()
-            }
-        }
-    }
-
-    fun onMessageToast(error: GeneralError) {
+    fun onMessageToast(context: Context, error: GeneralError) {
         if (error.message != null)
-            onMessageToast(error.message)
+            onMessageToast(context, error.message)
         else if (error.messageRes != null && error.messageRes != 0)
-            onMessageToast(error.messageRes!!)
+            onMessageToast(context, error.messageRes!!)
     }
 
-    fun onMessageToast(message: Int) {
-        onMessageToast(context.getString(message))
+    fun onMessageToast(context: Context, message: Int) {
+        onMessageToast(context, context.getString(message))
     }
 
-    fun onErrorToast(@StringRes message: Int) {
-        onErrorToast(context.getString(message))
+    fun onMessageSnackbar(context: Context, message: Int) {
+        onMessageSnackbar(context, context.getString(message))
     }
 
-    fun onErrorToast(message: String?) {
-        message?.let {
-            val snack = Snackbar.make(View(context), it, Snackbar.LENGTH_LONG)
-            snack.show()
-        }
+    fun onMessageSnackbar(context: Context, error: GeneralError) {
+        if (error.message != null)
+            onMessageSnackbar(context, error.message)
+        else if (error.messageRes != null && error.messageRes != 0)
+            onMessageSnackbar(context, error.messageRes!!)
     }
 
-    fun onMessageToast(message: String?) {
-        MessageUtils.onMessageToast(message, (context as AppCompatActivity).findViewById(android.R.id.content))
+    fun onMessageSnackbar(context: Context, message: String?) {
+        if (message != null)
+            Snackbar.make(View(context), message, Snackbar.LENGTH_LONG).show()
     }
 
-    fun onErrorDialog(error: GeneralError) {
-        if (mProgressDialog != null)
-            if (mProgressDialog!!.isShowing) mProgressDialog!!.dismissWithAnimation()
+
+    fun onMessageToast(context: Context, message: String?) {
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+    }
+
+    fun onErrorDialog(context: Context, error: GeneralError) {
 
         val message = if (error.message != null)
             error.message
@@ -73,24 +67,20 @@ class BaseViewActions private constructor() {
             context.getString(error.messageRes!!)
         else ""
 
-        mProgressDialog = MessageUtils.showErrorDialog(context, message)
+        val mProgressDialog = MessageUtils.showErrorDialog(context, message)
         mProgressDialog!!.show()
     }
 
-    fun onErrorDialog(message: String?) {
-        if (mProgressDialog != null)
-            if (mProgressDialog!!.isShowing) mProgressDialog!!.dismissWithAnimation()
-        message?.let {
-            mProgressDialog = MessageUtils.showErrorDialog(context, message)
+    fun onErrorDialog(context: Context, message: String?) {
+        if (message != null) {
+            val mProgressDialog = MessageUtils.showErrorDialog(context, message)
             mProgressDialog!!.show()
         }
     }
 
-    fun onSuccessDialog(message: String?) {
-        if (mProgressDialog != null)
-            if (mProgressDialog!!.isShowing) mProgressDialog!!.dismissWithAnimation()
-        message?.let {
-            mProgressDialog = MessageUtils.showSuccessDialog(context, message)
+    fun onSuccessDialog(context: Context, message: String?) {
+        if (message != null) {
+            val mProgressDialog = MessageUtils.showSuccessDialog(context, message)
             mProgressDialog!!.show()
         }
     }

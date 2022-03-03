@@ -8,9 +8,6 @@
     <color name="black">#202020</color>
     <color name="white">#fff</color>
 
-    <color name="button_brown_pressed">#D97438</color>
-    <color name="button_brown">#EF8749</color>
-
     <color name="background_color">#E0E0EB</color>
 
     <color name="color_blue">#5F64E9</color>
@@ -40,4 +37,5 @@
     <color name="divider_color">#202020</color>
     <color name="icon_color">#202020</color>
 
+    <color name="white_trans">#aaffffff</color>
 </resources>

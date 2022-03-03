@@ -28,12 +28,6 @@ class App : Application() {
 
 //        setupBouncyCastle()
 
-//        // Enable branch
-//        // Branch logging for debugging
-//        Branch.enableLogging()
-//
-//        // Branch object initialization
-//        Branch.getAutoInstance(this)
     }
 
     private fun createComponent() {

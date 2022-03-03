@@ -51,7 +51,6 @@ class FragmentHomeTabTest {
         onView(withId(R.id.txtTotalBalance)).check(matches(isDisplayed()))
         onView(withId(R.id.recyclerViewWallets)).check(matches(isDisplayed()))
         onView(withId(R.id.text_transactions)).check(matches(isDisplayed()))
-        onView(withId(R.id.chart_container)).check(matches(isDisplayed()))
         onView(withId(R.id.ic_setting)).check(matches(isDisplayed()))
 
         onView(withId(R.id.txt_title)).check(matches(withEffectiveVisibility(Visibility.INVISIBLE)))

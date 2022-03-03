@@ -34,7 +34,7 @@ class EtherVerifyMnemonicViewModel
     val verifyMnemonicLiveData: LiveData<ViewState<Boolean>>
         get() = _verifyMnemonicLiveData
 
-    fun loadMnemonic(walletType: CryptoCurrencyType) {
+    fun loadMnemonic() {
         etherRepository.getMnemonic().withIO()
             .doOnSubscribe {
                 addToDisposable(it)
@@ -47,7 +47,7 @@ class EtherVerifyMnemonicViewModel
             }, { it.printStackTrace() })
     }
 
-    fun verifyMnemonic(walletType: CryptoCurrencyType, mnemonic: String ) {
+    fun verifyMnemonic(mnemonic: String ) {
         etherRepository.getMnemonic().withIO()
             .doOnSubscribe {
                 addToDisposable(it)

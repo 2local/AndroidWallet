@@ -51,7 +51,7 @@
         <item name="iconTint">@color/white</item>
         <item name="drawableTint">@color/white</item>
         <item name="backgroundTint">?attr/colorSecondary</item>
-        <item name="rippleColor">@color/button_brown_pressed</item>
+        <item name="rippleColor">@color/secondaryColorVariant</item>
     </style>
 
     <style name="button.red">
@@ -88,7 +88,6 @@
     </style>
 
     <style name="textAppearance">
-        <item name="android:textStyle">normal</item>
         <item name="android:textColor">@color/black_text</item>
         <item name="android:textSize">14sp</item>
     </style>

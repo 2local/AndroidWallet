@@ -29,15 +29,21 @@ class ChartItemView @JvmOverloads constructor(
         val minValue = 4
 
         var inc: Double = element
-        if (inc != 0.0) {
+        val layoutParams = binding.viewIncomeFeb.layoutParams
+
+        if (inc != 0.0 && maxValue!=0.0) {
             inc = maxLength * (inc / maxValue)
-            val layoutParams = binding.viewIncomeFeb.layoutParams
 
             if (inc == 0.0 || inc < minValue) inc = minValue.toDouble()
             layoutParams.height = inc.toInt()
             binding.viewIncomeFeb.visibility = View.VISIBLE
-            binding.viewIncomeFeb.layoutParams = layoutParams
+        }else {
+            layoutParams.height = 0
+            binding.viewIncomeFeb.visibility = View.GONE
         }
+
+        binding.viewIncomeFeb.layoutParams = layoutParams
+
     }
 
     fun setExpenseFebChart(maxValue: Double, element: Double) {
@@ -45,15 +51,21 @@ class ChartItemView @JvmOverloads constructor(
         val minValue = 4
 
         var inc: Double = element
-        if (inc != 0.0) {
+        val layoutParams = binding.viewExpenseFeb.layoutParams
+
+        if (inc != 0.0 && maxValue!=0.0) {
             inc = maxLength * (inc / maxValue)
-            val layoutParams = binding.viewExpenseFeb.layoutParams
 
             if (inc == 0.0 || inc < minValue) inc = minValue.toDouble()
             layoutParams?.height = inc.toInt()
             binding.viewExpenseFeb.visibility = View.VISIBLE
-            binding.viewExpenseFeb.layoutParams = layoutParams
+        }else {
+            layoutParams.height = 0
+            binding.viewExpenseFeb.visibility = View.GONE
         }
+
+        binding.viewExpenseFeb.layoutParams = layoutParams
+
     }
 
     override fun onDetachedFromWindow() {

@@ -28,6 +28,7 @@ import javax.inject.Inject
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.android.l2l.twolocal.common.hideKeyboard
+import com.android.l2l.twolocal.common.onMessageToast
 import com.android.l2l.twolocal.ui.MainActivity
 import com.android.l2l.twolocal.ui.splash.SplashActivity
 
@@ -111,15 +112,15 @@ class FragmentLogin: BaseFragment<LoginViewModel>(R.layout.fragment_login) {
         }
     }
 
-    fun showTwoFactorDialog() {
+    private fun showTwoFactorDialog() {
         DialogTowFactorVerification.newInstance().show(childFragmentManager, "")
     }
 
-    fun showBiometricLogin() {
+    private fun showBiometricLogin() {
         val executor = ContextCompat.getMainExecutor(requireContext())
         val biometricManager = BiometricManager.from(requireContext())
 
-        when (biometricManager.canAuthenticate()) {
+        when (biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_WEAK)) {
             BiometricManager.BIOMETRIC_SUCCESS ->
                 authUser(executor)
             BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE ->

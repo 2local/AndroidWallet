@@ -13,7 +13,6 @@ import com.android.l2l.twolocal.di.viewModel.AppViewModelFactory
 import com.android.l2l.twolocal.model.MarketPlace
 import com.android.l2l.twolocal.ui.base.BaseFragment
 import com.android.l2l.twolocal.ui.market.di.DaggerMarketComponent
-import com.android.l2l.twolocal.ui.wallet.detail.rename.BottomSheetRenameWallet
 import com.android.l2l.twolocal.utils.CommonUtils
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -26,7 +25,12 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
-import com.google.android.gms.maps.MapFragment
+import android.view.inputmethod.EditorInfo
+
+import android.widget.TextView
+import com.android.l2l.twolocal.common.hideKeyboard
+import com.android.l2l.twolocal.common.onErrorDialog
+import com.android.l2l.twolocal.common.onMessageToast
 
 
 @ExperimentalCoroutinesApi
@@ -36,7 +40,7 @@ class FragmentMarketList : BaseFragment<MarketListViewModel>(R.layout.fragment_m
     lateinit var viewModelFactory: AppViewModelFactory
 
     override val viewModel: MarketListViewModel by viewModels { viewModelFactory }
-//    private val binding: FragmentMarketListBinding by viewBinding(FragmentMarketListBinding::bind)
+    private val binding: FragmentMarketListBinding by viewBinding(FragmentMarketListBinding::bind)
 
     private val marketPlaceList: MutableList<MarketPlace> = arrayListOf()
     private var mMap: GoogleMap? = null
@@ -60,20 +64,48 @@ class FragmentMarketList : BaseFragment<MarketListViewModel>(R.layout.fragment_m
                 }
                 is ViewState.Success -> {
                     hideLoading()
-                    handleONSuccess(it.response)
+                    handleOnSuccess(it.response)
                 }
                 is ViewState.Error -> {
                     hideLoading()
                     if (it.error.message.isNullOrBlank())
-                        onErrorDialog(getString(R.string.failed_to_get_market_place_list))
+                        onErrorDialog(getString(R.string.fragment_market_place_failed_to_get_market_place_list))
                     else
                         onErrorDialog(it.error.message)
                 }
             }
         })
+
+        binding.imgSearch.setOnClickListener {
+            performSearch()
+        }
+
+        binding.edtSearch.setOnEditorActionListener(TextView.OnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                performSearch()
+                return@OnEditorActionListener true
+            }
+            false
+        })
     }
 
-    private fun handleONSuccess(response: List<MarketPlace>) {
+    private fun performSearch() {
+        val searchQuery = binding.edtSearch.text
+        val searchResultList = viewModel.filterMarketPlace(marketPlaceList, searchQuery)
+
+        if (searchQuery.isBlank()) {
+            addMarkers(marketPlaceList)
+            moveCameraToCenter(marketPlaceList)
+        } else {
+            if(searchResultList.isEmpty())
+                onMessageToast(R.string.fragment_market_place_item_not_found)
+            addMarkers(searchResultList)
+            moveCameraToCenter(searchResultList)
+        }
+        hideKeyboard()
+    }
+
+    private fun handleOnSuccess(response: List<MarketPlace>) {
         marketPlaceList.addAll(response)
         if (marketPlaceList.isEmpty())
             onErrorDialog(getString(R.string.no_market_place_found))

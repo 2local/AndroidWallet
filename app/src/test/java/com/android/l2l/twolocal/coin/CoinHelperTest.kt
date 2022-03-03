@@ -18,7 +18,7 @@ class CoinHelperTest {
     fun `convert 2lc coin currency to usd fiat`() {
         //GIVEN
         val coinsExchangeRate = mutableListOf<CoinExchangeRate>()
-        coinsExchangeRate.add(CoinExchangeRate(TwoLocalCoin.BITRUE_EXCHANGE_RATE_PAIR_2LC_USDT, 4.9, 5.6))
+        coinsExchangeRate.add(CoinExchangeRate(TwoLocalCoin.LATOEKN_EXCHANGE_RATE_PAIR_2LC_USDT, 4.9, 5.6))
         val coin = CoinHelper.getCoin(CryptoCurrencyType.TwoLC, FiatType.USD, coinsExchangeRate)
 
         //THEN
@@ -30,7 +30,7 @@ class CoinHelperTest {
     fun `convert 2lc coin usd fiat to currency`() {
         //GIVEN
         val coinsExchangeRate = mutableListOf<CoinExchangeRate>()
-        coinsExchangeRate.add(CoinExchangeRate(TwoLocalCoin.BITRUE_EXCHANGE_RATE_PAIR_2LC_USDT, 4.9, 5.6))
+        coinsExchangeRate.add(CoinExchangeRate(TwoLocalCoin.LATOEKN_EXCHANGE_RATE_PAIR_2LC_USDT, 4.9, 5.6))
         val coin = CoinHelper.getCoin(CryptoCurrencyType.TwoLC, FiatType.USD, coinsExchangeRate)
 
         //THEN

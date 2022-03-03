@@ -23,40 +23,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_medium"
-        android:layout_marginEnd="@dimen/spacing_medium"
         android:layout_marginTop="@dimen/android_standard_margin"
-        tools:text="Global Edutainment "
+        android:layout_marginEnd="@dimen/spacing_medium"
         android:textAppearance="@style/textAppearance.size20" />
-    <!--
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:orientation="horizontal">
-
-            <RatingBar
-                style="@style/Widget.AppCompat.RatingBar.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#fff"
-                android:backgroundTint="#fff"
-                android:paddingTop="2dp"
-                android:paddingBottom="2dp"
-                android:rating="3"
-                android:stepSize="2" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/android_standard_margin"
-                android:text="@string/d"
-                tools:text="(21)" />
-        </LinearLayout> -->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/android_standard_2x_margin_padding"
+        android:layout_marginStart="@dimen/spacing_large"
         android:layout_marginTop="12dp"
         android:orientation="horizontal"
         android:visibility="gone">
@@ -76,7 +50,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/android_standard_2x_margin_padding"
+        android:layout_marginStart="@dimen/spacing_large"
         android:layout_marginTop="12dp"
         android:orientation="horizontal"
         android:visibility="gone">
@@ -107,41 +81,30 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!--    <LinearLayout-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginTop="12dp"-->
-    <!--        android:orientation="horizontal">-->
 
-    <!--        <ImageView-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:src="@drawable/ic_clock_gray" />-->
-
-    <!--        <TextView-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginStart="@dimen/android_standard_margin"-->
-    <!--            tools:text="Opens at 9am - 6pm" />-->
-    <!--    </LinearLayout>-->
-
-    <!--    TODO: change button padding, use view with drawable instead -->
     <LinearLayout
         android:id="@+id/marketPlaceAddressContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_medium"
-        android:layout_marginEnd="@dimen/spacing_medium"
         android:layout_marginTop="@dimen/spacing_large"
+        android:layout_marginEnd="@dimen/spacing_medium"
         android:orientation="horizontal"
         android:visibility="visible">
 
-        <TextView
-            android:id="@+id/marketPlaceAddress"
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="address"
-            android:textAppearance="@style/textAppearance.size16" />
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/ic_user" />
+
+        <TextView
+            android:id="@+id/txt_representative"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_normal"
+            android:textAppearance="@style/textAppearance.size16"
+            tools:text="representative" />
 
     </LinearLayout>
 
@@ -150,17 +113,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_medium"
-        android:layout_marginEnd="@dimen/spacing_medium"
         android:layout_marginTop="@dimen/spacing_large"
+        android:layout_marginEnd="@dimen/spacing_medium"
         android:orientation="horizontal"
         android:visibility="visible">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/ic_web" />
 
         <TextView
             android:id="@+id/marketPlaceUrl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="http://www.google.com"
-            android:textAppearance="@style/textAppearance.size16" />
+            android:layout_marginStart="@dimen/spacing_normal"
+            android:textAppearance="@style/textAppearance.size16"
+            tools:text="http://www.google.com" />
 
     </LinearLayout>
 
@@ -180,7 +150,7 @@
             android:layout_marginStart="@dimen/spacing_medium"
             android:layout_marginEnd="@dimen/spacing_medium"
             android:layout_weight="1"
-            android:background="@drawable/selector_button_colorprimary_stroke_no_padding"
+            android:background="@drawable/selector_button_secondary_stroke_no_padding"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"

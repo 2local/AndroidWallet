@@ -7,7 +7,7 @@
         <item name="android:gravity">right|center_vertical</item>
         <item name="android:textSize">14sp</item>
         <item name="android:inputType">text</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/black_text</item>
         <item name="cornerRadius">@dimen/border_radius_large</item>
         <!--        <item name="android:background">@android:color/transparent</item>-->
     </style>

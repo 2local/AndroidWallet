@@ -7,10 +7,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.l2l.twolocal.R
+import com.android.l2l.twolocal.common.*
 import com.android.l2l.twolocal.common.binding.viewBinding
-import com.android.l2l.twolocal.common.findAppComponent
-import com.android.l2l.twolocal.common.gone
-import com.android.l2l.twolocal.common.visible
 import com.android.l2l.twolocal.dataSourse.utils.ViewState
 import com.android.l2l.twolocal.databinding.FragmentContactListBinding
 import com.android.l2l.twolocal.di.viewModel.AppViewModelFactory

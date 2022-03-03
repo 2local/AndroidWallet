@@ -279,8 +279,10 @@
     <string name="add_market_place">Add MarketPlace</string>
 
 
-    <string name="failed_to_get_market_place_list">An error happened when getting market place list, please try later.</string>
-    <string name="can_not_launch_the_web_url">an error happened while openning the link.</string>
+    <string name="fragment_market_place_failed_to_get_market_place_list">An error happened when getting market place list, please try later.</string>
+    <string name="fragment_market_place_can_not_launch_the_web_url">an error happened while openning the link.</string>
+    <string name="fragment_market_place_search_hint">Search here</string>
+    <string name="fragment_market_place_item_not_found">There is no result!</string>
 
     <string name="no_market_place_found">No market place has found</string>
     <string name="eth">ETH</string>

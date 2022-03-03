@@ -14,6 +14,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 import androidx.navigation.fragment.findNavController
 import com.android.l2l.twolocal.common.hideKeyboard
+import com.android.l2l.twolocal.common.onMessageToast
 import com.android.l2l.twolocal.databinding.FragmentChangeLocalPasswordBinding
 import com.android.l2l.twolocal.ui.setting.di.DaggerSettingComponent
 import com.android.l2l.twolocal.ui.setting.localPassword.viewModel.ChangeLocalPasswordViewModel

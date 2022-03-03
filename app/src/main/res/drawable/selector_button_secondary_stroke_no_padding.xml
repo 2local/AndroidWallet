@@ -4,7 +4,7 @@
         <shape>
             <solid android:color="@color/float_transparent" />
             <stroke android:width="@dimen/default_button_stroke_width"
-                android:color="@color/button_brown" />
+                android:color="@color/secondaryColor" />
             <corners android:radius="@dimen/standard_button_radius" />
         </shape>
     </item>
@@ -13,7 +13,7 @@
         <shape>
             <solid android:color="@color/float_transparent" />
             <stroke android:width="@dimen/default_button_stroke_width_large"
-                android:color="@color/button_brown" />
+                android:color="@color/secondaryColor" />
             <corners android:radius="@dimen/standard_button_radius" />
         </shape>
 
