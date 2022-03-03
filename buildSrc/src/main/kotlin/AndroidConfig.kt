@@ -5,8 +5,8 @@ object AndroidConfig {
     const val BUILD_TOOLS_VERSION = "30.0.2"
 
     const val ID = "two.local.io"
-    const val VERSION_CODE = 89
-    const val VERSION_NAME = "2.5.6"
+    const val VERSION_CODE = 90
+    const val VERSION_NAME = "2.5.7"
 }
 
 
