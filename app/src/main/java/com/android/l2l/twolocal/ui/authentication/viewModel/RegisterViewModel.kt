@@ -11,10 +11,11 @@ import com.android.l2l.twolocal.dataSourse.utils.ViewState
 import com.android.l2l.twolocal.dataSourse.utils.error.GeneralError
 import com.android.l2l.twolocal.dataSourse.utils.error.withError
 import com.android.l2l.twolocal.model.ProfileInfo
-import com.android.l2l.twolocal.model.output.RegisterOutput
+import com.android.l2l.twolocal.model.request.RegisterRequest
 import com.android.l2l.twolocal.ui.authentication.viewModel.formState.LoginFormState
 import com.android.l2l.twolocal.ui.base.BaseViewModel
 import com.android.l2l.twolocal.utils.CommonUtils
+import com.android.l2l.twolocal.utils.PriceFormatUtils
 import com.android.l2l.twolocal.utils.InputValidationRegex.isValidPassword
 import com.android.l2l.twolocal.utils.InputValidationRegex.isValidateEmail
 import com.android.l2l.twolocal.utils.InputValidationRegex.isValidateUsername
@@ -40,14 +41,14 @@ class RegisterViewModel
         get() = _registerLiveData
 
 
-    fun registerUser(user: RegisterOutput) {
+    fun registerUser(user: RegisterRequest) {
         val loginEnable = registerDataChanged(user.name, user.username, user.password)
         if (loginEnable is LoginFormState.IsDataValid && loginEnable.isValid) {
             registerUserApiRequest(user)
         }
     }
 
-    private fun registerUserApiRequest(user: RegisterOutput) {
+    private fun registerUserApiRequest(user: RegisterRequest) {
         user.name = CommonUtils.encodeBase64ToString(user.name)
         user.username = CommonUtils.encodeBase64ToString(user.username)
         user.password = CommonUtils.encodeBase64ToString(user.password)

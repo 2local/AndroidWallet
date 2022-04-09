@@ -2,9 +2,8 @@ package com.android.l2l.twolocal.dataSourse.remote.auth;
 
 import com.android.l2l.twolocal.model.ProfileInfo;
 import com.android.l2l.twolocal.model.TwoFAVerify;
-import com.android.l2l.twolocal.model.output.LoginOutput;
-import com.android.l2l.twolocal.model.output.RegisterOutput;
-import com.android.l2l.twolocal.model.response.RegisterResponse;
+import com.android.l2l.twolocal.model.request.LoginRequest;
+import com.android.l2l.twolocal.model.request.RegisterRequest;
 import com.android.l2l.twolocal.model.response.base.ApiSingleResponse;
 
 import java.util.HashMap;
@@ -26,13 +25,13 @@ public class AuthenticationRemoteDataSource implements AuthenticationRemoteDataS
 
 
     @Override
-    public Single<ApiSingleResponse<ProfileInfo>> login(LoginOutput loginOutput) {
+    public Single<ApiSingleResponse<ProfileInfo>> login(LoginRequest loginOutput) {
         return apiInterface.login(loginOutput);
     }
 
 
     @Override
-    public Single<ApiSingleResponse<ProfileInfo>> signUp(RegisterOutput registerOutput) {
+    public Single<ApiSingleResponse<ProfileInfo>> signUp(RegisterRequest registerOutput) {
         return apiInterface.signUp(registerOutput)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io());

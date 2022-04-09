@@ -20,6 +20,7 @@ import com.android.l2l.twolocal.model.enums.CryptoCurrencyType
 import com.android.l2l.twolocal.ui.base.BaseActivity
 import com.android.l2l.twolocal.ui.wallet.di.DaggerWalletComponent
 import com.android.l2l.twolocal.utils.CommonUtils
+import com.android.l2l.twolocal.utils.PriceFormatUtils
 import com.android.l2l.twolocal.utils.InputTextWatcher
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject

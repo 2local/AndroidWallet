@@ -3,7 +3,7 @@ package com.android.l2l.twolocal.coin
 import android.text.TextUtils
 import com.android.l2l.twolocal.model.CoinExchangeRate
 import com.android.l2l.twolocal.model.enums.FiatType
-import com.android.l2l.twolocal.utils.CommonUtils
+import com.android.l2l.twolocal.utils.PriceFormatUtils
 import com.google.common.truth.Truth
 import org.junit.Before
 import org.junit.Test
@@ -100,28 +100,28 @@ class EthereumCoinTest{
         Truth.assertThat(result3).isEqualTo(expecting3)
 
         //condition 4
-        val result4 = CommonUtils.formatToDecimalPriceSixDigits(ethereumCoin.toCurrency("16322"))
-        val expecting4 = CommonUtils.formatToDecimalPriceSixDigits(BigDecimal("6.386358"))
+        val result4 = PriceFormatUtils.formatToDecimalPriceSixDigits(ethereumCoin.toCurrency("16322"))
+        val expecting4 = PriceFormatUtils.formatToDecimalPriceSixDigits(BigDecimal("6.386358"))
         Truth.assertThat(result4).isEqualTo(expecting4)
 
         //condition 5
-        val result44 = CommonUtils.formatToDecimalPriceSixDigits(ethereumCoin.toCurrency("0"))
-        val expecting44 = CommonUtils.formatToDecimalPriceSixDigits(BigDecimal("0.000000"))
+        val result44 = PriceFormatUtils.formatToDecimalPriceSixDigits(ethereumCoin.toCurrency("0"))
+        val expecting44 = PriceFormatUtils.formatToDecimalPriceSixDigits(BigDecimal("0.000000"))
         Truth.assertThat(result44).isEqualTo(expecting44)
 
         //condition 6
-        val result444 = CommonUtils.formatToDecimalPriceSixDigits(ethereumCoin.toCurrency(""))
-        val expecting444 =CommonUtils.formatToDecimalPriceSixDigits( BigDecimal("0.000000"))
+        val result444 = PriceFormatUtils.formatToDecimalPriceSixDigits(ethereumCoin.toCurrency(""))
+        val expecting444 = PriceFormatUtils.formatToDecimalPriceSixDigits( BigDecimal("0.000000"))
         Truth.assertThat(result444).isEqualTo(expecting444)
 
         //condition 7
-        val result5 = CommonUtils.formatToDecimalPriceSixDigits(ethereumCoin.toCurrency("16322.44"))
-        val expecting5 = CommonUtils.formatToDecimalPriceSixDigits(BigDecimal("6.386530"))
+        val result5 = PriceFormatUtils.formatToDecimalPriceSixDigits(ethereumCoin.toCurrency("16322.44"))
+        val expecting5 = PriceFormatUtils.formatToDecimalPriceSixDigits(BigDecimal("6.386530"))
         Truth.assertThat(result5).isEqualTo(expecting5)
 
         //condition 8
-        val result6 = CommonUtils.formatToDecimalPriceSixDigits(ethereumCoin.toCurrency("16"))
-        val expecting6 = CommonUtils.formatToDecimalPriceSixDigits(BigDecimal("0.006260"))
+        val result6 = PriceFormatUtils.formatToDecimalPriceSixDigits(ethereumCoin.toCurrency("16"))
+        val expecting6 = PriceFormatUtils.formatToDecimalPriceSixDigits(BigDecimal("0.006260"))
         Truth.assertThat(result6).isEqualTo(expecting6)
     }
 
@@ -146,27 +146,27 @@ class EthereumCoinTest{
         Truth.assertThat(result3).isEqualTo(expecting3)
 
         //condition 4
-        val result4 = CommonUtils.formatToDecimalPriceSixDigits(ethereumCoin.toCurrency("16322"))
+        val result4 = PriceFormatUtils.formatToDecimalPriceSixDigits(ethereumCoin.toCurrency("16322"))
         val expecting4 = BigDecimal("6.386358").toString()
         Truth.assertThat(result4).isEqualTo(expecting4)
 
         //condition 5
-        val result44 = CommonUtils.formatToDecimalPriceSixDigits(ethereumCoin.toCurrency("0"))
+        val result44 = PriceFormatUtils.formatToDecimalPriceSixDigits(ethereumCoin.toCurrency("0"))
         val expecting44 = BigDecimal("0.00").toString()
         Truth.assertThat(result44).isEqualTo(expecting44)
 
         //condition 7
-        val result444 = CommonUtils.formatToDecimalPriceSixDigits(ethereumCoin.toCurrency(""))
+        val result444 = PriceFormatUtils.formatToDecimalPriceSixDigits(ethereumCoin.toCurrency(""))
         val expecting444 = BigDecimal("0.00").toString()
         Truth.assertThat(result444).isEqualTo(expecting444)
 
         //condition 8
-        val result5 = CommonUtils.formatToDecimalPriceSixDigits(ethereumCoin.toCurrency("16322.44"))
+        val result5 = PriceFormatUtils.formatToDecimalPriceSixDigits(ethereumCoin.toCurrency("16322.44"))
         val expecting5 = BigDecimal("6.38653").toString()
         Truth.assertThat(result5).isEqualTo(expecting5)
 
         //condition 9
-        val result6 = CommonUtils.formatToDecimalPriceSixDigits(ethereumCoin.toCurrency("16"))
+        val result6 = PriceFormatUtils.formatToDecimalPriceSixDigits(ethereumCoin.toCurrency("16"))
         val expecting6 = BigDecimal("0.00626").toString()
         Truth.assertThat(result6).isEqualTo(expecting6)
     }

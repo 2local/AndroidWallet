@@ -1,14 +1,14 @@
-package com.android.l2l.twolocal.model.output;
+package com.android.l2l.twolocal.model.request;
 
 import com.google.gson.annotations.SerializedName;
 
-public class LoginOutput {
+public class LoginRequest {
     @SerializedName("email")
     private String username;
     @SerializedName("password")
     private String password;
 
-    public LoginOutput(String username, String password) {
+    public LoginRequest(String username, String password) {
         this.username = username;
         this.password = password;
     }

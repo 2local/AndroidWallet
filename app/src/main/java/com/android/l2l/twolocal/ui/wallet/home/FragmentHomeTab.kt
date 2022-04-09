@@ -1,7 +1,6 @@
 package com.android.l2l.twolocal.ui.wallet.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.annotation.Nullable
 import androidx.fragment.app.viewModels
@@ -29,7 +28,7 @@ import com.android.l2l.twolocal.ui.wallet.create.CreateWalletActivity
 import com.android.l2l.twolocal.ui.wallet.receive.ReceiveActivity
 import com.android.l2l.twolocal.ui.wallet.send.SendTokenActivity
 import com.android.l2l.twolocal.ui.wallet.transaction.TransactionHistoryActivity
-import com.android.l2l.twolocal.utils.CommonUtils
+import com.android.l2l.twolocal.utils.PriceFormatUtils
 import com.android.l2l.twolocal.utils.LiveDataCombineUtil
 import com.android.l2l.twolocal.utils.RemoteConfigUtils
 import com.android.l2l.twolocal.view.ChartItemView
@@ -184,11 +183,12 @@ class FragmentHomeTab : BaseFragment<HomeViewModel>(R.layout.fragment_home_tab) 
 
     private fun showTotal2LCBalance(walletBalance: TotalBalance) {
         if (RemoteConfigUtils.getMaintenanceMode(remoteConfig)) {
-            binding.txtTotalBalance.text = CommonUtils.formatToDecimalPriceSixDigitsOptional(CommonUtils.stringToBigDecimal("0"))
+            binding.txtTotalBalance.text = PriceFormatUtils.formatToDecimalPriceSixDigitsOptional(
+                PriceFormatUtils.stringToBigDecimal("0"))
             binding.txtTotalBalanceDollar.text = getString(
                 R.string.balance_currency,
                 FiatType.USD.mySymbol,
-                CommonUtils.formatToDecimalPriceSixDigitsOptional(CommonUtils.stringToBigDecimal("0"))
+                PriceFormatUtils.formatToDecimalPriceSixDigitsOptional(PriceFormatUtils.stringToBigDecimal("0"))
             )
         } else {
             binding.txtTotalBalance.text =
@@ -222,7 +222,7 @@ class FragmentHomeTab : BaseFragment<HomeViewModel>(R.layout.fragment_home_tab) 
         val isInstructionShown = viewModel.showInstructionDialog()
         if (!isInstructionShown)
             return
-        val balance = CommonUtils.stringToBigDecimal(walletBalance.balance)
+        val balance = PriceFormatUtils.stringToBigDecimal(walletBalance.balance)
         val userHasWallet =
             wallets.find { it.isUserVerifiedMnemonic }// cannot use wallets.size because one temporary wallet will be created after get profile API
 

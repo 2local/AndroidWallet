@@ -6,6 +6,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.android.l2l.twolocal.ui.MainActivity
 import com.android.l2l.twolocal.utils.CommonUtils
+import com.android.l2l.twolocal.utils.PriceFormatUtils
 import com.google.common.truth.Truth
 
 import org.junit.Test

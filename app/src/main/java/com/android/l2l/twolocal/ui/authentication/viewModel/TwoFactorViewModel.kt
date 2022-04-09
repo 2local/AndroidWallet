@@ -14,7 +14,6 @@ import com.android.l2l.twolocal.dataSourse.utils.error.withError
 import com.android.l2l.twolocal.model.TwoFAVerify
 import com.android.l2l.twolocal.ui.authentication.viewModel.formState.TwoFAFormState
 import com.android.l2l.twolocal.ui.base.BaseViewModel
-import com.android.l2l.twolocal.utils.CommonUtils
 import com.android.l2l.twolocal.utils.InputValidationRegex.isValidateVerification
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.cancel

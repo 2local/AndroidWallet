@@ -6,6 +6,7 @@ import com.android.l2l.twolocal.dataSourse.local.db.convertor.WalletTypeConverte
 import com.android.l2l.twolocal.coin.Coin;
 import com.android.l2l.twolocal.model.enums.CryptoCurrencyType;
 import com.android.l2l.twolocal.utils.CommonUtils;
+import com.android.l2l.twolocal.utils.PriceFormatUtils;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -188,7 +189,7 @@ public class WalletTransactionHistory {
     }
 
     public String getValuePriceFormatted() {
-        return CommonUtils.formatToDecimalPriceSixDigitsOptional(getCoin().convertWeiToNormal(getValue()));
+        return PriceFormatUtils.formatToDecimalPriceSixDigitsOptional(getCoin().convertWeiToNormal(getValue()));
     }
 
     public BigDecimal getNormalValue() {

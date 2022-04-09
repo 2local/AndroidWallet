@@ -5,9 +5,8 @@ import com.android.l2l.twolocal.dataSourse.local.AuthenticationLocalDataSource
 import com.android.l2l.twolocal.dataSourse.remote.auth.AuthenticationRemoteDataSourceHelper
 import com.android.l2l.twolocal.model.ProfileInfo
 import com.android.l2l.twolocal.model.TwoFAVerify
-import com.android.l2l.twolocal.model.output.LoginOutput
-import com.android.l2l.twolocal.model.output.RegisterOutput
-import com.android.l2l.twolocal.model.response.RegisterResponse
+import com.android.l2l.twolocal.model.request.LoginRequest
+import com.android.l2l.twolocal.model.request.RegisterRequest
 import com.android.l2l.twolocal.model.response.base.ApiSingleResponse
 import io.reactivex.Single
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -19,11 +18,11 @@ class AuthenticationRepository @Inject constructor(
     private val localDataSource: AuthenticationLocalDataSource
 ) : AuthenticationRepositoryHelper {
 
-    override fun login(login: LoginOutput): Single<ApiSingleResponse<ProfileInfo>> {
+    override fun login(login: LoginRequest): Single<ApiSingleResponse<ProfileInfo>> {
         return remoteDataSource.login(login)
     }
 
-    override fun signUp(registerOutput: RegisterOutput): Single<ApiSingleResponse<ProfileInfo>> {
+    override fun signUp(registerOutput: RegisterRequest): Single<ApiSingleResponse<ProfileInfo>> {
         return remoteDataSource.signUp(registerOutput)
     }
 

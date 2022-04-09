@@ -7,7 +7,7 @@ import com.android.l2l.twolocal.dataSourse.local.db.convertor.WalletTypeConverte
 import com.android.l2l.twolocal.coin.Coin;
 import com.android.l2l.twolocal.model.enums.CryptoCurrencyType;
 import com.android.l2l.twolocal.model.enums.FiatType;
-import com.android.l2l.twolocal.utils.CommonUtils;
+import com.android.l2l.twolocal.utils.PriceFormatUtils;
 import com.google.gson.annotations.SerializedName;
 
 import org.greenrobot.greendao.annotation.Convert;
@@ -169,7 +169,7 @@ public class Wallet implements Parcelable {
     }
 
     public String getAmountPriceFormat() {
-        return CommonUtils.formatToDecimalPriceSixDigitsOptional(CommonUtils.stringToBigDecimal(getAmount()));
+        return PriceFormatUtils.formatToDecimalPriceSixDigitsOptional(PriceFormatUtils.stringToBigDecimal(getAmount()));
     }
 
 
@@ -181,7 +181,7 @@ public class Wallet implements Parcelable {
 
     public String getFiatPriceFormat() {
         if (coin != null)
-            return CommonUtils.formatToDecimalPriceSixDigits(coin.toFiat(getAmount()));
+            return PriceFormatUtils.formatToDecimalPriceSixDigits(coin.toFiat(getAmount()));
         else return "0";
     }
 

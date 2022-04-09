@@ -6,7 +6,7 @@ import com.android.l2l.twolocal.model.CoinExchangeRate
 import com.android.l2l.twolocal.model.Wallet
 import com.android.l2l.twolocal.model.enums.CryptoCurrencyType
 import com.android.l2l.twolocal.model.enums.FiatType
-import com.android.l2l.twolocal.utils.CommonUtils
+import com.android.l2l.twolocal.utils.PriceFormatUtils
 import kotlinx.parcelize.Parcelize
 import org.web3j.utils.Convert
 import java.math.BigDecimal
@@ -46,7 +46,7 @@ data class EthereumCoin(val currency: FiatType? = null, val exchangeRate: CoinEx
     override fun convertDollarToCurrency(dollarAmount: String): BigDecimal {
         try {
             if (exchangeRate != null && exchangeRate.usd != 0.0)
-                return CommonUtils.stringToBigDecimal(dollarAmount).divide(BigDecimal.valueOf(exchangeRate.usd), 10, RoundingMode.CEILING)
+                return PriceFormatUtils.stringToBigDecimal(dollarAmount).divide(BigDecimal.valueOf(exchangeRate.usd), 10, RoundingMode.CEILING)
         } catch (e: NumberFormatException) {
             e.printStackTrace()
         }
@@ -56,7 +56,7 @@ data class EthereumCoin(val currency: FiatType? = null, val exchangeRate: CoinEx
     override fun convertCurrencyDollar(currencyAmount: String): BigDecimal {
         try {
             if (exchangeRate != null && exchangeRate.usd != 0.0)
-                return BigDecimal.valueOf(exchangeRate.usd).multiply(CommonUtils.stringToBigDecimal(currencyAmount))
+                return BigDecimal.valueOf(exchangeRate.usd).multiply(PriceFormatUtils.stringToBigDecimal(currencyAmount))
         } catch (e: NumberFormatException) {
             e.printStackTrace()
         }
@@ -66,7 +66,7 @@ data class EthereumCoin(val currency: FiatType? = null, val exchangeRate: CoinEx
     override fun convertCurrencyEuro(currencyAmount: String): BigDecimal {
         try {
             if (exchangeRate != null && exchangeRate.euro != 0.0)
-                return BigDecimal.valueOf(exchangeRate.euro).multiply(CommonUtils.stringToBigDecimal(currencyAmount))
+                return BigDecimal.valueOf(exchangeRate.euro).multiply(PriceFormatUtils.stringToBigDecimal(currencyAmount))
         } catch (e: NumberFormatException) {
             e.printStackTrace()
         }
@@ -76,7 +76,7 @@ data class EthereumCoin(val currency: FiatType? = null, val exchangeRate: CoinEx
     override fun convertEuroToCurrency(euroAmount: String): BigDecimal {
         try {
             if (exchangeRate != null && exchangeRate.euro != 0.0)
-                return CommonUtils.stringToBigDecimal(euroAmount).divide(BigDecimal.valueOf(exchangeRate.euro), 10, RoundingMode.CEILING)
+                return PriceFormatUtils.stringToBigDecimal(euroAmount).divide(BigDecimal.valueOf(exchangeRate.euro), 10, RoundingMode.CEILING)
         } catch (e: NumberFormatException) {
             e.printStackTrace()
         }

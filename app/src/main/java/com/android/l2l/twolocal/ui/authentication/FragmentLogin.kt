@@ -1,7 +1,6 @@
 package com.android.l2l.twolocal.ui.authentication
 
 import android.os.Bundle
-import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.annotation.Nullable
@@ -16,7 +15,7 @@ import com.android.l2l.twolocal.common.findAppComponent
 import com.android.l2l.twolocal.dataSourse.utils.ViewState
 import com.android.l2l.twolocal.databinding.FragmentLoginBinding
 import com.android.l2l.twolocal.di.viewModel.AppViewModelFactory
-import com.android.l2l.twolocal.model.output.LoginOutput
+import com.android.l2l.twolocal.model.request.LoginRequest
 import com.android.l2l.twolocal.ui.authentication.di.DaggerAuthenticationComponent
 import com.android.l2l.twolocal.ui.authentication.viewModel.formState.LoginFormState
 import com.android.l2l.twolocal.ui.authentication.viewModel.LoginViewModel
@@ -30,7 +29,6 @@ import androidx.navigation.fragment.findNavController
 import com.android.l2l.twolocal.common.hideKeyboard
 import com.android.l2l.twolocal.common.onMessageToast
 import com.android.l2l.twolocal.ui.MainActivity
-import com.android.l2l.twolocal.ui.splash.SplashActivity
 
 @ExperimentalCoroutinesApi
 class FragmentLogin: BaseFragment<LoginViewModel>(R.layout.fragment_login) {
@@ -91,7 +89,7 @@ class FragmentLogin: BaseFragment<LoginViewModel>(R.layout.fragment_login) {
         binding.buttonLogin.setOnClickListener {
             val username= binding.textEmail.text.toString()
             val password= binding.textPassword.text.toString()
-            viewModel.loginUser(LoginOutput(username, password))
+            viewModel.loginUser(LoginRequest(username, password))
         }
 
         binding.textFingerprint.setOnClickListener {

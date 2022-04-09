@@ -1,10 +1,12 @@
 package com.android.l2l.twolocal.model
 
-import com.android.l2l.twolocal.utils.CommonUtils
+import com.android.l2l.twolocal.utils.PriceFormatUtils
 
 data class TotalBalance(val currency: String? = null, val balance: String? = null, val fiatBalance: String? = null, val showAmount: Boolean = true){
 
 
-    var balancePriceFormatter: String =  CommonUtils.formatToDecimalPriceSixDigitsOptional(CommonUtils.stringToBigDecimal(balance))
-    var fiatBalancePriceFormatter: String =  CommonUtils.formatToDecimalPriceSixDigits(CommonUtils.stringToBigDecimal(fiatBalance))
+    var balancePriceFormatter: String =  PriceFormatUtils.formatToDecimalPriceSixDigitsOptional(
+        PriceFormatUtils.stringToBigDecimal(balance))
+    var fiatBalancePriceFormatter: String =  PriceFormatUtils.formatToDecimalPriceSixDigits(
+        PriceFormatUtils.stringToBigDecimal(fiatBalance))
 }

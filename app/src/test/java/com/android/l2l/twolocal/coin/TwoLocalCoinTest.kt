@@ -3,7 +3,7 @@ package com.android.l2l.twolocal.coin
 import android.text.TextUtils
 import com.android.l2l.twolocal.model.CoinExchangeRate
 import com.android.l2l.twolocal.model.enums.FiatType
-import com.android.l2l.twolocal.utils.CommonUtils
+import com.android.l2l.twolocal.utils.PriceFormatUtils
 import com.google.common.truth.Truth
 import org.junit.Before
 import org.junit.Test
@@ -107,24 +107,24 @@ class TwoLocalCoinTest{
         val expecting3 = BigDecimal("5100625.0000000000")
         Truth.assertThat(result3).isEqualTo(expecting3)
 
-        val result4 = CommonUtils.formatToDecimalPriceSixDigits(twoLocalCoin.toCurrency("16322"))
-        val expecting4 = CommonUtils.formatToDecimalPriceSixDigits(BigDecimal("5100625.000000"))
+        val result4 = PriceFormatUtils.formatToDecimalPriceSixDigits(twoLocalCoin.toCurrency("16322"))
+        val expecting4 = PriceFormatUtils.formatToDecimalPriceSixDigits(BigDecimal("5100625.000000"))
         Truth.assertThat(result4).isEqualTo(expecting4)
 
-        val result44 = CommonUtils.formatToDecimalPriceSixDigits(twoLocalCoin.toCurrency("0"))
+        val result44 = PriceFormatUtils.formatToDecimalPriceSixDigits(twoLocalCoin.toCurrency("0"))
         val expecting44 = BigDecimal("0.00").toString()
         Truth.assertThat(result44).isEqualTo(expecting44)
 
-        val result444 = CommonUtils.formatToDecimalPriceSixDigits(twoLocalCoin.toCurrency(""))
+        val result444 = PriceFormatUtils.formatToDecimalPriceSixDigits(twoLocalCoin.toCurrency(""))
         val expecting444 = BigDecimal("0.00").toString()
         Truth.assertThat(result444).isEqualTo(expecting444)
 
-        val result5 = CommonUtils.formatToDecimalPriceSixDigits(twoLocalCoin.toCurrency("10"))
-        val expecting5 = CommonUtils.formatToDecimalPriceSixDigits(BigDecimal("3125.000000"))
+        val result5 = PriceFormatUtils.formatToDecimalPriceSixDigits(twoLocalCoin.toCurrency("10"))
+        val expecting5 = PriceFormatUtils.formatToDecimalPriceSixDigits(BigDecimal("3125.000000"))
         Truth.assertThat(result5).isEqualTo(expecting5)
 
-        val result6 = CommonUtils.formatToDecimalPriceSixDigits(twoLocalCoin.toCurrency("10.101"))
-        val expecting6 = CommonUtils.formatToDecimalPriceSixDigits(BigDecimal("3156.562500"))
+        val result6 = PriceFormatUtils.formatToDecimalPriceSixDigits(twoLocalCoin.toCurrency("10.101"))
+        val expecting6 = PriceFormatUtils.formatToDecimalPriceSixDigits(BigDecimal("3156.562500"))
         Truth.assertThat(result6).isEqualTo(expecting6)
     }
 
@@ -145,24 +145,24 @@ class TwoLocalCoinTest{
         val expecting3 = BigDecimal("5100625.0000000000")
         Truth.assertThat(result3).isEqualTo(expecting3)
 
-        val result4 = CommonUtils.formatToDecimalPriceSixDigits(twoLocalCoin.toCurrency("16322"))
-        val expecting4 = CommonUtils.formatToDecimalPriceSixDigits(BigDecimal("5100625.000000"))
+        val result4 = PriceFormatUtils.formatToDecimalPriceSixDigits(twoLocalCoin.toCurrency("16322"))
+        val expecting4 = PriceFormatUtils.formatToDecimalPriceSixDigits(BigDecimal("5100625.000000"))
         Truth.assertThat(result4).isEqualTo(expecting4)
 
-        val result44 = CommonUtils.formatToDecimalPriceSixDigits(twoLocalCoin.toCurrency("0"))
+        val result44 = PriceFormatUtils.formatToDecimalPriceSixDigits(twoLocalCoin.toCurrency("0"))
         val expecting44 = BigDecimal("0.00").toString()
         Truth.assertThat(result44).isEqualTo(expecting44)
 
-        val result444 = CommonUtils.formatToDecimalPriceSixDigits(twoLocalCoin.toCurrency(""))
+        val result444 = PriceFormatUtils.formatToDecimalPriceSixDigits(twoLocalCoin.toCurrency(""))
         val expecting444 = BigDecimal("0.00").toString()
         Truth.assertThat(result444).isEqualTo(expecting444)
 
-        val result5 = CommonUtils.formatToDecimalPriceSixDigits(twoLocalCoin.toCurrency("10"))
-        val expecting5 = CommonUtils.formatToDecimalPriceSixDigits(BigDecimal("3125.000000"))
+        val result5 = PriceFormatUtils.formatToDecimalPriceSixDigits(twoLocalCoin.toCurrency("10"))
+        val expecting5 = PriceFormatUtils.formatToDecimalPriceSixDigits(BigDecimal("3125.000000"))
         Truth.assertThat(result5).isEqualTo(expecting5)
 
-        val result6 = CommonUtils.formatToDecimalPriceSixDigits(twoLocalCoin.toCurrency("10.101"))
-        val expecting6 = CommonUtils.formatToDecimalPriceSixDigits(BigDecimal("3156.562500"))
+        val result6 = PriceFormatUtils.formatToDecimalPriceSixDigits(twoLocalCoin.toCurrency("10.101"))
+        val expecting6 = PriceFormatUtils.formatToDecimalPriceSixDigits(BigDecimal("3156.562500"))
         Truth.assertThat(result6).isEqualTo(expecting6)
     }
 }

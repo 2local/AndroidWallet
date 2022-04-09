@@ -3,7 +3,7 @@ package com.android.l2l.twolocal.coin
 import android.text.TextUtils
 import com.android.l2l.twolocal.model.CoinExchangeRate
 import com.android.l2l.twolocal.model.enums.FiatType
-import com.android.l2l.twolocal.utils.CommonUtils
+import com.android.l2l.twolocal.utils.PriceFormatUtils
 import com.google.common.truth.Truth
 import org.junit.Before
 import org.junit.Test
@@ -109,24 +109,24 @@ class BinanceCoinTest{
         val expecting3 = BigDecimal("3.2607392608")
         Truth.assertThat(result3).isEqualTo(expecting3)
 
-        val result4 = CommonUtils.formatToDecimalPriceSixDigits(binanceCoin.toCurrency("1622"))
-        val expecting4 = CommonUtils.formatToDecimalPriceSixDigits(BigDecimal("3.240759"))
+        val result4 = PriceFormatUtils.formatToDecimalPriceSixDigits(binanceCoin.toCurrency("1622"))
+        val expecting4 = PriceFormatUtils.formatToDecimalPriceSixDigits(BigDecimal("3.240759"))
         Truth.assertThat(result4).isEqualTo(expecting4)
 
-        val result44 = CommonUtils.formatToDecimalPriceSixDigits(binanceCoin.toCurrency("0"))
+        val result44 = PriceFormatUtils.formatToDecimalPriceSixDigits(binanceCoin.toCurrency("0"))
         val expecting44 = BigDecimal("0.00").toString()
         Truth.assertThat(result44).isEqualTo(expecting44)
 
-        val result444 = CommonUtils.formatToDecimalPriceSixDigits(binanceCoin.toCurrency(""))
+        val result444 = PriceFormatUtils.formatToDecimalPriceSixDigits(binanceCoin.toCurrency(""))
         val expecting444 = BigDecimal("0.00").toString()
         Truth.assertThat(result444).isEqualTo(expecting444)
 
-        val result5 = CommonUtils.formatToDecimalPriceSixDigits(binanceCoin.toCurrency("10"))
-        val expecting5 = CommonUtils.formatToDecimalPriceSixDigits(BigDecimal("0.01998"))
+        val result5 = PriceFormatUtils.formatToDecimalPriceSixDigits(binanceCoin.toCurrency("10"))
+        val expecting5 = PriceFormatUtils.formatToDecimalPriceSixDigits(BigDecimal("0.01998"))
         Truth.assertThat(result5).isEqualTo(expecting5)
 
-        val result6 = CommonUtils.formatToDecimalPriceSixDigits(binanceCoin.toCurrency("10.101"))
-        val expecting6 = CommonUtils.formatToDecimalPriceSixDigits(BigDecimal("0.020181"))
+        val result6 = PriceFormatUtils.formatToDecimalPriceSixDigits(binanceCoin.toCurrency("10.101"))
+        val expecting6 = PriceFormatUtils.formatToDecimalPriceSixDigits(BigDecimal("0.020181"))
         Truth.assertThat(result6).isEqualTo(expecting6)
     }
 
@@ -147,24 +147,24 @@ class BinanceCoinTest{
         val expecting3 = BigDecimal("38.8619047620")
         Truth.assertThat(result3).isEqualTo(expecting3)
 
-        val result4 = CommonUtils.formatToDecimalPriceSixDigits(binanceCoin.toCurrency("16322"))
-        val expecting4 = CommonUtils.formatToDecimalPriceSixDigits(BigDecimal("38.861904"))
+        val result4 = PriceFormatUtils.formatToDecimalPriceSixDigits(binanceCoin.toCurrency("16322"))
+        val expecting4 = PriceFormatUtils.formatToDecimalPriceSixDigits(BigDecimal("38.861904"))
         Truth.assertThat(result4).isEqualTo(expecting4)
 
-        val result44 = CommonUtils.formatToDecimalPriceSixDigits(binanceCoin.toCurrency("0"))
+        val result44 = PriceFormatUtils.formatToDecimalPriceSixDigits(binanceCoin.toCurrency("0"))
         val expecting44 = BigDecimal("0.00").toString()
         Truth.assertThat(result44).isEqualTo(expecting44)
 
-        val result444 = CommonUtils.formatToDecimalPriceSixDigits(binanceCoin.toCurrency(""))
+        val result444 = PriceFormatUtils.formatToDecimalPriceSixDigits(binanceCoin.toCurrency(""))
         val expecting444 = BigDecimal("0.00").toString()
         Truth.assertThat(result444).isEqualTo(expecting444)
 
-        val result5 = CommonUtils.formatToDecimalPriceSixDigits(binanceCoin.toCurrency("10"))
-        val expecting5 = CommonUtils.formatToDecimalPriceSixDigits(BigDecimal("0.023809"))
+        val result5 = PriceFormatUtils.formatToDecimalPriceSixDigits(binanceCoin.toCurrency("10"))
+        val expecting5 = PriceFormatUtils.formatToDecimalPriceSixDigits(BigDecimal("0.023809"))
         Truth.assertThat(result5).isEqualTo(expecting5)
 
-        val result6 = CommonUtils.formatToDecimalPriceSixDigits(binanceCoin.toCurrency("10.101"))
-        val expecting6 = CommonUtils.formatToDecimalPriceSixDigits(BigDecimal("0.02405"))
+        val result6 = PriceFormatUtils.formatToDecimalPriceSixDigits(binanceCoin.toCurrency("10.101"))
+        val expecting6 = PriceFormatUtils.formatToDecimalPriceSixDigits(BigDecimal("0.02405"))
         Truth.assertThat(result6).isEqualTo(expecting6)
     }
 }

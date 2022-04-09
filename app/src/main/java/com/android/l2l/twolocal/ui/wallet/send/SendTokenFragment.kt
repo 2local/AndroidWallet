@@ -31,6 +31,7 @@ import com.android.l2l.twolocal.ui.wallet.send.confirm.SendTokenConfirmFragment
 import com.android.l2l.twolocal.ui.wallet.send.viewmodel.SendFormState
 import com.android.l2l.twolocal.ui.wallet.send.viewmodel.SendViewModel
 import com.android.l2l.twolocal.utils.CommonUtils
+import com.android.l2l.twolocal.utils.PriceFormatUtils
 import com.android.l2l.twolocal.utils.InputTextWatcher
 import com.android.l2l.twolocal.utils.setEditTextError
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -188,7 +189,7 @@ class SendTokenFragment : BaseFragment<SendViewModel>(R.layout.fragment_send_tok
 
     private fun saveForm() {
         sentCryptoCurrency?.address = binding.edtWalletNumber.text.toString().trim()
-        sentCryptoCurrency?.amount = CommonUtils.removeCharactersPriceIfExists(sentCryptoCurrency?.amount)
+        sentCryptoCurrency?.amount = PriceFormatUtils.removeCharactersPriceIfExists(sentCryptoCurrency?.amount)
     }
 
     private fun setUpLiveData() {

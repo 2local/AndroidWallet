@@ -11,12 +11,12 @@ import com.android.l2l.twolocal.R
 import com.android.l2l.twolocal.common.binding.viewBinding
 import com.android.l2l.twolocal.common.findAppComponent
 import com.android.l2l.twolocal.databinding.FragmentAboutBinding
-import com.android.l2l.twolocal.di.component.AppComponent
 import com.android.l2l.twolocal.di.viewModel.AppViewModelFactory
 import com.android.l2l.twolocal.ui.base.BaseFragment
 import com.android.l2l.twolocal.ui.base.BaseViewModel
 import com.android.l2l.twolocal.ui.setting.di.DaggerSettingComponent
 import com.android.l2l.twolocal.utils.CommonUtils
+import com.android.l2l.twolocal.utils.PriceFormatUtils
 import com.android.l2l.twolocal.utils.constants.AppConstants
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject

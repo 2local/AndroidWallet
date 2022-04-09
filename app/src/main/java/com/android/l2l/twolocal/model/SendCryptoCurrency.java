@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import com.android.l2l.twolocal.coin.Coin;
 import com.android.l2l.twolocal.model.enums.CryptoCurrencyType;
 import com.android.l2l.twolocal.model.enums.FiatType;
-import com.android.l2l.twolocal.utils.CommonUtils;
+import com.android.l2l.twolocal.utils.PriceFormatUtils;
 
 import java.util.Objects;
 
@@ -70,7 +70,7 @@ public class SendCryptoCurrency implements Parcelable {
     }
 
     public String getAmountPriceFormat() {
-        return CommonUtils.formatToDecimalPriceSixDigits(CommonUtils.stringToBigDecimal(getAmount()));
+        return PriceFormatUtils.formatToDecimalPriceSixDigits(PriceFormatUtils.stringToBigDecimal(getAmount()));
     }
 
     public String getFiatPrice() {
@@ -82,7 +82,7 @@ public class SendCryptoCurrency implements Parcelable {
 
     public String getFiatPriceFormat() {
         if (coin != null)
-            return CommonUtils.formatToDecimalPriceSixDigits(coin.toFiat(getAmount()));
+            return PriceFormatUtils.formatToDecimalPriceSixDigits(coin.toFiat(getAmount()));
         else
             return "0";
     }

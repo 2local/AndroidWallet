@@ -8,8 +8,8 @@ import androidx.fragment.app.DialogFragment
 import com.android.l2l.twolocal.R
 import com.android.l2l.twolocal.common.binding.viewBinding
 import com.android.l2l.twolocal.databinding.DialogReceiveShareBinding
-import com.android.l2l.twolocal.model.Wallet
 import com.android.l2l.twolocal.utils.CommonUtils
+import com.android.l2l.twolocal.utils.PriceFormatUtils
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalCoroutinesApi

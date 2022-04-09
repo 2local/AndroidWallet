@@ -19,6 +19,7 @@ import com.android.l2l.twolocal.di.viewModel.AppViewModelFactory
 import com.android.l2l.twolocal.model.enums.CryptoCurrencyType
 import com.android.l2l.twolocal.ui.wallet.di.DaggerWalletComponent
 import com.android.l2l.twolocal.utils.CommonUtils
+import com.android.l2l.twolocal.utils.PriceFormatUtils
 import com.android.l2l.twolocal.utils.WalletFactory
 import com.android.l2l.twolocal.utils.MessageUtils
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment

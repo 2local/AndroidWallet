@@ -44,6 +44,19 @@ public final class CommonUtils {
     private CommonUtils() {
     }
 
+    static String[] farsiChars;
+
+    static {
+        farsiChars = new String[]{"\u06f0", "\u06f1", "\u06f2", "\u06f3", "\u06f4", "\u06f5", "\u06f6", "\u06f7", "\u06f8", "\u06f9", "\u066c", "\u066b"};
+    }
+
+    public static String toEnglish(String number) {
+        if (number != null)
+            return number.replaceAll(farsiChars[0], "0").replaceAll(farsiChars[1], "1").replaceAll(farsiChars[2], "2").replaceAll(farsiChars[3], "3").replaceAll(farsiChars[4], "4").replaceAll(farsiChars[5], "5").replaceAll(farsiChars[6], "6").replaceAll(farsiChars[7], "7").replaceAll(farsiChars[8], "8").replaceAll(farsiChars[9], "9");
+        else
+            return "";
+    }
+
     public static String formatDateAsDayMonthName(String date) {
         //2020-01-26
         try {
@@ -70,90 +83,10 @@ public final class CommonUtils {
         return "";
     }
 
-
-    public static String removeCharactersPriceIfExists(String price) {
-        String normalPrice = "0.0";
-        if (!TextUtils.isEmpty(price)) {
-            price = toEnglish(price);
-            normalPrice = price.replaceAll(",", "");
-        }
-
-        if (TextUtils.isEmpty(normalPrice))
-            normalPrice = "0.0";
-        if (normalPrice.startsWith("."))
-            normalPrice = "0" + normalPrice;
-        return normalPrice;
-    }
-
-    public static BigDecimal stringToBigDecimal(String priceStr) {
-        String price = removeCharactersPriceIfExists(priceStr);
-        return new BigDecimal(price);
-    }
-
-
-    static String[] farsiChars;
-
-    static {
-        farsiChars = new String[]{"\u06f0", "\u06f1", "\u06f2", "\u06f3", "\u06f4", "\u06f5", "\u06f6", "\u06f7", "\u06f8", "\u06f9", "\u066c", "\u066b"};
-    }
-
-    public static String toEnglish(String number) {
-        if (number != null)
-            return number.replaceAll(farsiChars[0], "0").replaceAll(farsiChars[1], "1").replaceAll(farsiChars[2], "2").replaceAll(farsiChars[3], "3").replaceAll(farsiChars[4], "4").replaceAll(farsiChars[5], "5").replaceAll(farsiChars[6], "6").replaceAll(farsiChars[7], "7").replaceAll(farsiChars[8], "8").replaceAll(farsiChars[9], "9");
-        else
-            return "";
-    }
-
-
     public static Bitmap generateQrCode(String content) {
         return QRCode.from(content).bitmap();
     }
 
-
-    public static String formatToDecimalPriceTwoDigits(BigDecimal price_long) {
-        try {
-            NumberFormat numberFormat = DecimalFormat.getNumberInstance(Locale.US);
-            DecimalFormat formatter = (DecimalFormat) numberFormat;
-            formatter.applyPattern("###,###,##0.00");
-            formatter.setRoundingMode(RoundingMode.DOWN);
-
-            return formatter.format(price_long);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-        return "0.0";
-
-    }
-
-    public static String formatToDecimalPriceSixDigits(BigDecimal price) {
-        try {
-            NumberFormat numberFormat = DecimalFormat.getNumberInstance(Locale.US);
-            DecimalFormat formatter = (DecimalFormat) numberFormat;
-            formatter.applyPattern("###,###,##0.00####");
-            formatter.setRoundingMode(RoundingMode.DOWN);
-
-            return formatter.format(price);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-        return "0.0";
-
-    }
-
-    public static String formatToDecimalPriceSixDigitsOptional(BigDecimal price) {
-        try {
-            NumberFormat numberFormat = DecimalFormat.getNumberInstance(Locale.US);
-            DecimalFormat formatter = (DecimalFormat) numberFormat;
-            formatter.applyPattern("###,###,##0.######");
-            formatter.setRoundingMode(RoundingMode.DOWN);
-
-            return formatter.format(price);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-        return "0.0";
-
-    }
 
     @SuppressLint("all")
     public static String getDeviceId(Context context) {
@@ -168,10 +101,10 @@ public final class CommonUtils {
     }
 
     public static void shareText(Context context, String text, String title) {
-        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        Intent sharingIntent = new Intent(Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
         sharingIntent.putExtra(Intent.EXTRA_SUBJECT, title);
-        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, text);
+        sharingIntent.putExtra(Intent.EXTRA_TEXT, text);
         context.startActivity(sharingIntent);
     }
 

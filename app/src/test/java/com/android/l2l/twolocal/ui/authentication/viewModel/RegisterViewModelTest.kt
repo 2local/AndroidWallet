@@ -8,7 +8,7 @@ import com.android.l2l.twolocal.dataSourse.local.prefs.UserSession
 import com.android.l2l.twolocal.dataSourse.remote.auth.AuthenticationApiInterface
 import com.android.l2l.twolocal.dataSourse.remote.auth.AuthenticationRemoteDataSource
 import com.android.l2l.twolocal.dataSourse.repository.auth.AuthenticationRepository
-import com.android.l2l.twolocal.model.output.RegisterOutput
+import com.android.l2l.twolocal.model.request.RegisterRequest
 import com.android.l2l.twolocal.ui.authentication.viewModel.formState.LoginFormState
 import com.android.l2l.twolocal.utils.getOrAwaitValueTest
 import com.google.common.truth.Truth.assertThat
@@ -64,7 +64,8 @@ class RegisterViewModelTest {
     @Test
     fun loginInvalidPassword() {
         //GIVEN
-        val loginOutput = RegisterOutput("zxcvbnm1", "sample@gmail.com", "1234567")
+        val loginOutput =
+            RegisterRequest("zxcvbnm1", "sample@gmail.com", "1234567")
 
         //WHEN
         viewModel.registerUser(loginOutput)
@@ -94,7 +95,8 @@ class RegisterViewModelTest {
     @Test
     fun loginInvalidEmail() {
         //GIVEN
-        val loginOutput = RegisterOutput("zxcvbnm1", "samplegmail.com", "12345678")
+        val loginOutput =
+            RegisterRequest("zxcvbnm1", "samplegmail.com", "12345678")
 
         //WHEN
         viewModel.registerUser(loginOutput)
@@ -112,7 +114,8 @@ class RegisterViewModelTest {
     @Test
     fun loginInvalidUsername() {
         //GIVEN
-        val loginOutput = RegisterOutput("zxcvbnm", "sample@gmail.com", "12345678")
+        val loginOutput =
+            RegisterRequest("zxcvbnm", "sample@gmail.com", "12345678")
 
         //WHEN
         viewModel.registerUser(loginOutput)

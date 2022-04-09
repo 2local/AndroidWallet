@@ -36,6 +36,7 @@ import com.android.l2l.twolocal.ui.wallet.di.DaggerWalletComponent
 import com.android.l2l.twolocal.ui.wallet.receive.ReceiveActivity
 import com.android.l2l.twolocal.ui.wallet.send.SendTokenActivity
 import com.android.l2l.twolocal.utils.CommonUtils
+import com.android.l2l.twolocal.utils.PriceFormatUtils
 import com.android.l2l.twolocal.utils.SecurityUtils
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.greenrobot.eventbus.EventBus

@@ -12,7 +12,7 @@ import com.android.l2l.twolocal.common.findAppComponent
 import com.android.l2l.twolocal.dataSourse.utils.ViewState
 import com.android.l2l.twolocal.databinding.FragmentRegisterBinding
 import com.android.l2l.twolocal.di.viewModel.AppViewModelFactory
-import com.android.l2l.twolocal.model.output.RegisterOutput
+import com.android.l2l.twolocal.model.request.RegisterRequest
 import com.android.l2l.twolocal.ui.authentication.di.DaggerAuthenticationComponent
 import com.android.l2l.twolocal.ui.authentication.viewModel.formState.LoginFormState
 import com.android.l2l.twolocal.ui.authentication.viewModel.RegisterViewModel
@@ -80,7 +80,7 @@ class FragmentRegister : BaseFragment<RegisterViewModel>(R.layout.fragment_regis
             val username = binding.textUsername.text.toString()
             val email = binding.textEmail.text.toString()
             val password = binding.textPassword.text.toString()
-            viewModel.registerUser(RegisterOutput(username, email, password))
+            viewModel.registerUser(RegisterRequest(username, email, password))
 
         }
         binding.haveAnAccountLink.setOnClickListener {

@@ -6,11 +6,9 @@ import com.android.l2l.twolocal.dataSourse.remote.auth.AuthenticationApiInterfac
 import com.android.l2l.twolocal.dataSourse.repository.MockWebServerBaseTest
 import com.android.l2l.twolocal.model.ProfileInfo
 import com.android.l2l.twolocal.model.TwoFAVerify
-import com.android.l2l.twolocal.model.output.LoginOutput
-import com.android.l2l.twolocal.model.output.RegisterOutput
-import com.android.l2l.twolocal.model.response.RegisterResponse
+import com.android.l2l.twolocal.model.request.LoginRequest
+import com.android.l2l.twolocal.model.request.RegisterRequest
 import com.android.l2l.twolocal.model.response.base.ApiSingleResponse
-import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.TestObserver
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Before
@@ -51,7 +49,7 @@ class AuthenticationRepositoryTest : MockWebServerBaseTest() {
     @Test
     fun loginApiTest() {
         //Given
-        val loginOutput = LoginOutput("username", "password")
+        val loginOutput = LoginRequest("username", "password")
         mockHttpResponse("json/login_response.json", HttpURLConnection.HTTP_OK)
 
         val testSingle = TestObserver<ApiSingleResponse<ProfileInfo>>()
@@ -67,7 +65,8 @@ class AuthenticationRepositoryTest : MockWebServerBaseTest() {
 
     @Test
     fun sendSignUpTest() {
-        val registerOutput = RegisterOutput("username1234", "erfan@gmail.com", "password")
+        val registerOutput =
+            RegisterRequest("username1234", "erfan@gmail.com", "password")
         mockHttpResponse("json/register_response.json", HttpURLConnection.HTTP_OK)
 
         val testSingle = TestObserver<ApiSingleResponse<ProfileInfo>>()

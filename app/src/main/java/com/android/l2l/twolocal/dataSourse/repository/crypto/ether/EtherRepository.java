@@ -8,7 +8,6 @@ import com.android.l2l.twolocal.R;
 import com.android.l2l.twolocal.coin.CoinHelper;
 import com.android.l2l.twolocal.dataSourse.local.db.AppDatabase;
 import com.android.l2l.twolocal.dataSourse.local.prefs.UserSession;
-import com.android.l2l.twolocal.dataSourse.remote.api.ApiConstants;
 import com.android.l2l.twolocal.dataSourse.remote.currency.CryptoCurrencyRemoteDataSourceHelper;
 import com.android.l2l.twolocal.dataSourse.repository.crypto.CryptoCurrencyRepositoryHelper;
 import com.android.l2l.twolocal.model.TransactionGas;
@@ -19,8 +18,8 @@ import com.android.l2l.twolocal.model.enums.CryptoCurrencyType;
 import com.android.l2l.twolocal.model.mapper.Mapper_EthSendTransaction_To_WalletTransactionHistory;
 import com.android.l2l.twolocal.model.enums.FiatType;
 import com.android.l2l.twolocal.model.CoinExchangeRate;
-import com.android.l2l.twolocal.sdk.binancesmartchainsdk.util.CryptoWalletUtils;
-import com.android.l2l.twolocal.utils.CommonUtils;
+import com.android.l2l.twolocal.dataSourse.repository.crypto.utils.CryptoWalletUtils;
+import com.android.l2l.twolocal.utils.PriceFormatUtils;
 import com.android.l2l.twolocal.utils.WalletFactory;
 import com.android.l2l.twolocal.utils.SecurityUtils;
 
@@ -101,7 +100,7 @@ public class EtherRepository implements CryptoCurrencyRepositoryHelper {
                     else {
                         String amount = Convert.fromWei(etherBalance.getBalance().toString(), Convert.Unit.ETHER).toString();
                         // there is a special condition when balance return 110, we solve it using below convert
-                        amount = CommonUtils.removeCharactersPriceIfExists(CommonUtils.formatToDecimalPriceSixDigitsOptional(CommonUtils.stringToBigDecimal(amount)));
+                        amount = PriceFormatUtils.removeCharactersPriceIfExists(PriceFormatUtils.formatToDecimalPriceSixDigitsOptional(PriceFormatUtils.stringToBigDecimal(amount)));
                         emitter.onSuccess(new WalletBalance(amount, currencyType.name()));
                     }
                 }else

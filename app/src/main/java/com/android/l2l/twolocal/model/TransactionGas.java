@@ -2,7 +2,7 @@ package com.android.l2l.twolocal.model;
 
 import com.android.l2l.twolocal.coin.Coin;
 import com.android.l2l.twolocal.model.enums.CryptoCurrencyType;
-import com.android.l2l.twolocal.utils.CommonUtils;
+import com.android.l2l.twolocal.utils.PriceFormatUtils;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -41,15 +41,15 @@ public class TransactionGas {
     }
 
     public String getSafeGasFiatPrice() {
-        return CommonUtils.formatToDecimalPriceTwoDigits(coin.toFiat(getSafeGasPrice()));
+        return PriceFormatUtils.formatToDecimalPriceTwoDigits(coin.toFiat(getSafeGasPrice()));
     }
 
     public String getFastGasFiatPrice() {
-        return CommonUtils.formatToDecimalPriceTwoDigits(coin.toFiat(getFastGasPrice()));
+        return PriceFormatUtils.formatToDecimalPriceTwoDigits(coin.toFiat(getFastGasPrice()));
     }
 
     public String getProposeGasFiatPrice() {
-        return CommonUtils.formatToDecimalPriceTwoDigits(coin.toFiat(getProposeGasPrice()));
+        return PriceFormatUtils.formatToDecimalPriceTwoDigits(coin.toFiat(getProposeGasPrice()));
     }
 
 

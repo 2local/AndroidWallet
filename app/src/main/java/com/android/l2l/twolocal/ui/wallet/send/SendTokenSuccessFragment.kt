@@ -14,6 +14,7 @@ import com.android.l2l.twolocal.ui.base.BaseFragment
 import com.android.l2l.twolocal.ui.base.BaseViewModel
 import com.android.l2l.twolocal.ui.wallet.di.DaggerWalletComponent
 import com.android.l2l.twolocal.utils.CommonUtils
+import com.android.l2l.twolocal.utils.PriceFormatUtils
 import com.android.l2l.twolocal.utils.WalletFactory
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject

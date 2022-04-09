@@ -5,22 +5,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.android.l2l.twolocal.R
-import com.android.l2l.twolocal.coin.DefaultWallet
 import com.android.l2l.twolocal.coin.TwoLocalCoin
 import com.android.l2l.twolocal.common.withIO
 import com.android.l2l.twolocal.dataSourse.local.prefs.UserSessionHelper
 import com.android.l2l.twolocal.dataSourse.repository.auth.AuthenticationRepositoryHelper
-import com.android.l2l.twolocal.dataSourse.repository.profile.ProfileRepositoryHelper
 import com.android.l2l.twolocal.dataSourse.repository.wallet.WalletRepositoryHelper
 import com.android.l2l.twolocal.dataSourse.utils.ViewState
 import com.android.l2l.twolocal.dataSourse.utils.error.GeneralError
 import com.android.l2l.twolocal.dataSourse.utils.error.withError
 import com.android.l2l.twolocal.model.ProfileInfo
 import com.android.l2l.twolocal.model.enums.CryptoCurrencyType
-import com.android.l2l.twolocal.model.output.LoginOutput
+import com.android.l2l.twolocal.model.request.LoginRequest
 import com.android.l2l.twolocal.ui.authentication.viewModel.formState.LoginFormState
 import com.android.l2l.twolocal.ui.base.BaseViewModel
-import com.android.l2l.twolocal.utils.CommonUtils
 import com.android.l2l.twolocal.utils.InputValidationRegex.isValidPassword
 import com.android.l2l.twolocal.utils.InputValidationRegex.isValidateEmail
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -57,7 +54,7 @@ class LoginViewModel
         }
     }
 
-    fun loginUser(user: LoginOutput) {
+    fun loginUser(user: LoginRequest) {
         val loginEnable = loginDataChanged(user.username, user.password)
         if (loginEnable is LoginFormState.IsDataValid) {
             if (loginEnable.isValid)
@@ -65,7 +62,7 @@ class LoginViewModel
         }
     }
 
-    fun loginUserApiRequest(user: LoginOutput) {
+    fun loginUserApiRequest(user: LoginRequest) {
         authenticationRepository.login(user).withIO()
             .doOnSubscribe {
                 addToDisposable(it)

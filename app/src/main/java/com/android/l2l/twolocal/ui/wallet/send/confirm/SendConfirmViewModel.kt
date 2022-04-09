@@ -9,9 +9,8 @@ import com.android.l2l.twolocal.dataSourse.utils.ViewState
 import com.android.l2l.twolocal.dataSourse.utils.error.GeneralError
 import com.android.l2l.twolocal.dataSourse.utils.error.withError
 import com.android.l2l.twolocal.model.TransactionGas
-import com.android.l2l.twolocal.model.enums.CryptoCurrencyType
 import com.android.l2l.twolocal.ui.base.BaseViewModel
-import com.android.l2l.twolocal.utils.CommonUtils
+import com.android.l2l.twolocal.utils.PriceFormatUtils
 import com.android.l2l.twolocal.utils.SingleLiveEvent
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.cancel
@@ -36,7 +35,7 @@ class SendConfirmViewModel
 
 
     fun sendEther(to: String, amount: String, gasLimit: String) {
-        cryptoRepository.sendAmount(to,  CommonUtils.stringToBigDecimal(amount), CommonUtils.stringToBigDecimal(gasLimit)).withIO()
+        cryptoRepository.sendAmount(to,  PriceFormatUtils.stringToBigDecimal(amount), PriceFormatUtils.stringToBigDecimal(gasLimit)).withIO()
             .doOnSubscribe {
                 addToDisposable(it)
                 _sendTokenLiveData.value = ViewState.Loading

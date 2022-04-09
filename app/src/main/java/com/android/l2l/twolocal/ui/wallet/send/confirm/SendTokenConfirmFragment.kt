@@ -24,7 +24,7 @@ import com.android.l2l.twolocal.model.event.RefreshWalletEvent
 import com.android.l2l.twolocal.ui.base.BaseFragment
 import com.android.l2l.twolocal.ui.wallet.di.DaggerWalletComponent
 import com.android.l2l.twolocal.ui.wallet.send.*
-import com.android.l2l.twolocal.utils.CommonUtils
+import com.android.l2l.twolocal.utils.PriceFormatUtils
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.greenrobot.eventbus.EventBus
 import java.math.BigDecimal
@@ -186,7 +186,7 @@ class SendTokenConfirmFragment : BaseFragment<SendConfirmViewModel>(R.layout.fra
                 gasAmount = gasResponse.proposeGasPrice
                 binding.networkFee.text = getString(
                     R.string.fragment_send_token_confirmation_network_fee,
-                    CommonUtils.formatToDecimalPriceSixDigits(BigDecimal(gasResponse.proposeGasPrice)),
+                    PriceFormatUtils.formatToDecimalPriceSixDigits(BigDecimal(gasResponse.proposeGasPrice)),
                     gasResponse.gasCryptoCurrencyType.symbol,
                     gasResponse.proposeGasFiatPrice
                 )
@@ -197,7 +197,7 @@ class SendTokenConfirmFragment : BaseFragment<SendConfirmViewModel>(R.layout.fra
                 gasAmount = gasResponse.safeGasPrice
                 binding.networkFee.text = getString(
                     R.string.fragment_send_token_confirmation_network_fee,
-                    CommonUtils.formatToDecimalPriceSixDigits(BigDecimal(gasResponse.safeGasPrice)),
+                    PriceFormatUtils.formatToDecimalPriceSixDigits(BigDecimal(gasResponse.safeGasPrice)),
                     gasResponse.gasCryptoCurrencyType.symbol,
                     gasResponse.safeGasFiatPrice
                 )
@@ -208,7 +208,7 @@ class SendTokenConfirmFragment : BaseFragment<SendConfirmViewModel>(R.layout.fra
                 gasAmount = gasResponse.fastGasPrice
                 binding.networkFee.text = getString(
                     R.string.fragment_send_token_confirmation_network_fee,
-                    CommonUtils.formatToDecimalPriceSixDigits(BigDecimal(gasResponse.fastGasPrice)),
+                    PriceFormatUtils.formatToDecimalPriceSixDigits(BigDecimal(gasResponse.fastGasPrice)),
                     gasResponse.gasCryptoCurrencyType.symbol,
                     gasResponse.fastGasFiatPrice
                 )

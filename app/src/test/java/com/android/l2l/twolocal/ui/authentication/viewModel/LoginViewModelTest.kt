@@ -5,10 +5,9 @@ import com.android.l2l.twolocal.dataSourse.local.prefs.UserSession
 import com.android.l2l.twolocal.dataSourse.remote.auth.AuthenticationApiInterface
 import com.android.l2l.twolocal.dataSourse.repository.auth.AuthenticationRepository
 import com.android.l2l.twolocal.dataSourse.repository.wallet.WalletRepository
-import com.android.l2l.twolocal.dataSourse.repository.wallet.WalletRepositoryHelper
 import com.android.l2l.twolocal.dataSourse.utils.ViewState
 import com.android.l2l.twolocal.model.ProfileInfo
-import com.android.l2l.twolocal.model.output.LoginOutput
+import com.android.l2l.twolocal.model.request.LoginRequest
 import com.android.l2l.twolocal.model.response.base.ApiSingleResponse
 import com.android.l2l.twolocal.ui.authentication.viewModel.formState.LoginFormState
 import com.google.common.truth.Truth
@@ -56,7 +55,7 @@ class LoginViewModelTest {
     @Test
     fun loginInvalidPassword() {
         //GIVEN
-        val loginOutput = LoginOutput("sample@gmail.com", "1234567")
+        val loginOutput = LoginRequest("sample@gmail.com", "1234567")
 
         //WHEN
         viewModel.loginUser(loginOutput)
@@ -105,7 +104,7 @@ class LoginViewModelTest {
     @Test
     fun loginWithUnSuccessResponseCode() {
         //GIVEN
-        val loginOutput = LoginOutput("sample@gmail.com", "1234567")
+        val loginOutput = LoginRequest("sample@gmail.com", "1234567")
         val res = ApiSingleResponse<ProfileInfo>("", 500)
 
         //WHEN
@@ -124,7 +123,7 @@ class LoginViewModelTest {
     @Test
     fun loginWithSuccessResponseCode() {
         //GIVEN
-        val loginOutput = LoginOutput("sample@gmail.com", "1234567")
+        val loginOutput = LoginRequest("sample@gmail.com", "1234567")
         val profileInfo = Mockito.mock(ProfileInfo::class.java)
         val res = ApiSingleResponse<ProfileInfo>("", 200)
         res.record = profileInfo

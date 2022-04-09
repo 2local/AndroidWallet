@@ -1,8 +1,8 @@
-package com.android.l2l.twolocal.model.output;
+package com.android.l2l.twolocal.model.request;
 
 import com.google.gson.annotations.SerializedName;
 
-public class RegisterOutput {
+public class RegisterRequest {
     @SerializedName("name")
     private String name;
     @SerializedName("email")
@@ -10,7 +10,7 @@ public class RegisterOutput {
     @SerializedName("password")
     private String password;
 
-    public RegisterOutput(String name, String username, String password) {
+    public RegisterRequest(String name, String username, String password) {
         this.name = name;
         this.username = username;
         this.password = password;

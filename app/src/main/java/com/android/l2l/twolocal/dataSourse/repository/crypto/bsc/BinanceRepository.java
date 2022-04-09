@@ -20,8 +20,8 @@ import com.android.l2l.twolocal.model.enums.CryptoCurrencyType;
 import com.android.l2l.twolocal.model.enums.FiatType;
 import com.android.l2l.twolocal.model.mapper.Mapper_EthSendTransaction_To_WalletTransactionHistory;
 import com.android.l2l.twolocal.model.CoinExchangeRate;
-import com.android.l2l.twolocal.sdk.binancesmartchainsdk.util.CryptoWalletUtils;
-import com.android.l2l.twolocal.utils.CommonUtils;
+import com.android.l2l.twolocal.dataSourse.repository.crypto.utils.CryptoWalletUtils;
+import com.android.l2l.twolocal.utils.PriceFormatUtils;
 import com.android.l2l.twolocal.utils.SecurityUtils;
 import com.android.l2l.twolocal.utils.WalletFactory;
 
@@ -122,7 +122,7 @@ public class BinanceRepository implements CryptoCurrencyRepositoryHelper {
                         .send()
                         .getBalance();
                 String balance = Convert.fromWei(new BigDecimal(valueInWei), Convert.Unit.ETHER).toString();
-                balance = CommonUtils.removeCharactersPriceIfExists(CommonUtils.formatToDecimalPriceSixDigitsOptional(CommonUtils.stringToBigDecimal(balance)));
+                balance = PriceFormatUtils.removeCharactersPriceIfExists(PriceFormatUtils.formatToDecimalPriceSixDigitsOptional(PriceFormatUtils.stringToBigDecimal(balance)));
                 return new WalletBalance(balance, currencyType.getMyName());
             }else
                 return new WalletBalance("0", currencyType.getMyName());

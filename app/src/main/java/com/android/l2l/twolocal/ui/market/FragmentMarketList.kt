@@ -13,7 +13,7 @@ import com.android.l2l.twolocal.di.viewModel.AppViewModelFactory
 import com.android.l2l.twolocal.model.MarketPlace
 import com.android.l2l.twolocal.ui.base.BaseFragment
 import com.android.l2l.twolocal.ui.market.di.DaggerMarketComponent
-import com.android.l2l.twolocal.utils.CommonUtils
+import com.android.l2l.twolocal.utils.PriceFormatUtils
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener
@@ -31,6 +31,7 @@ import android.widget.TextView
 import com.android.l2l.twolocal.common.hideKeyboard
 import com.android.l2l.twolocal.common.onErrorDialog
 import com.android.l2l.twolocal.common.onMessageToast
+import com.android.l2l.twolocal.utils.CommonUtils
 
 
 @ExperimentalCoroutinesApi

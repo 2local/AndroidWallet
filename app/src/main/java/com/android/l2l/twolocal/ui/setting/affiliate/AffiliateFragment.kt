@@ -15,6 +15,7 @@ import com.android.l2l.twolocal.di.viewModel.AppViewModelFactory
 import com.android.l2l.twolocal.ui.base.BaseFragment
 import com.android.l2l.twolocal.ui.setting.di.DaggerSettingComponent
 import com.android.l2l.twolocal.utils.CommonUtils
+import com.android.l2l.twolocal.utils.PriceFormatUtils
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 
